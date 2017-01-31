@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="colorPersonal"  >
   <ion-navbar>
     <ion-title>
       {{global.title}}
@@ -7,14 +7,24 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <ion-input type="text" placeholder="City" [(ngModel)]="citta" ></ion-input>
 
- <button (click)="ricerca()" ion-button icon-left>
-  <ion-icon name="search"></ion-icon>
-  Left Icon
-</button>
+	<br /><br />
+	<div class="row center">
+		<img src="" class="img-circular"  > 
+		<br /><br />
+		 <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+		<br />
+		 
+		 
+		
+		<button (click)="ricerca()" ion-button icon-left >
+		  <ion-icon name="search"></ion-icon>
+			I want to train
+		</button>
+	</div>
+ <!--  <ion-input type="text" (ionInput)="cerca()"  (keyup)="cerca()" placeholder="City" [(ngModel)]="citta" id="citta"></ion-input> -->
+  
 </ion-content>
+ <div class="colorPersonal bar bar-footer bar-assertive">
+   <button class="button icon ion-navicon pull-right"></button>
+</div>

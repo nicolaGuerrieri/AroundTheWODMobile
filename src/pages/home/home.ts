@@ -1,23 +1,43 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController} from 'ionic-angular';
 import {Global} from '../../services/global';
 import { Ricerca } from '../ricerca/ricerca';
+import { AutocompletePage } from './autocomplete';
 
+declare var google: any;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-	public citta:String;
-	constructor(public navCtrl: NavController, public global:Global) {
-			
+
+	address;
+
+	constructor(public navCtrl: NavController, public global:Global, private modalCtrl: ModalController) {
+		this.address = {
+		  place: ''
+		};
 	}
-  
-	ricerca(){
-		console.log(this.citta);
-	    this.navCtrl.push(Ricerca,{
-		
+	showAddressModal () {
+		let modal = this.modalCtrl.create(AutocompletePage);
+		let me = this;
+		modal.onDidDismiss(data => {
+		  this.address.place = data;
 		});
+		modal.present();
+	}
+	
+	ricerca(){
+		console.log(">>"+ this.address.place+ "<<<");
+		
+		if(this.address.place != ""){
+			this.navCtrl.push(Ricerca,{
+				citta: this.address.place
+			});
+		}else{
+			console.log("bloccato");
+			return;
+		}
 	}
 }

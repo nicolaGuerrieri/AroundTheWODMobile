@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {Global} from '../../services/global';
 
 @Component({
@@ -8,9 +8,9 @@ import {Global} from '../../services/global';
   templateUrl: 'ricerca.html'
 })
 export class Ricerca {
-
-  constructor(public navCtrl: NavController, public global:Global) {
-    
+  public citta:any;
+  constructor(public navCtrl: NavController, public global:Global, public params:NavParams) {
+		this.citta= params.get("citta");
   }
 	back(){
 	    this.navCtrl.pop();

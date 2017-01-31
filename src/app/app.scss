@@ -14,3 +14,50 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.toolbar-background, .button-effect, .button-effect::after, .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+	background-color:  map-get($colors, personal3);
+	color: white;
+}
+
+.toolbar-title{
+	color: white;
+}
+.button-md .button-effect{
+	background-color:  map-get($colors, personal3);
+}
+.button-md{
+	background-color:  map-get($colors, personal3);
+}
+.button-md::hover{
+	background-color:  map-get($colors, personal2);
+}
+.button-md.activated{
+	background-color:  map-get($colors, personal3);
+}
+.center {
+	-webkit-box-ordinal-group: 1;
+	-moz-box-ordinal-group: 1;
+	-webkit-order: 0;
+	-ms-flex-order: 0;
+	order: 0;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	-webkit-align-self: auto;
+	-ms-flex-item-align: auto;
+	align-self: auto;
+}
+
+.img-circular{
+	 width: 200px;
+	 height: 200px;
+	 background-size: cover;
+	 display: block;
+	 border: 0px !important;
+	 border-bottom-color: transparent !important;
+	 border-radius: 100px;
+	 background-image: url('../assets/images/ket.jpg');
+}
