@@ -2,5 +2,11 @@
   "name": "aroundTheWODMobile",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/provaV2/",
+      "proxyUrl": "http://app.nicolaguerrieri.it:3000/"
+    }
+  ]
 }

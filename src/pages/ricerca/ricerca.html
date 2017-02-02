@@ -7,7 +7,16 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+  <ion-content>
+	<ion-list style="width: auto !important;">
+	  {{cittaLuogo}}
+     <ion-item *ngFor="let item of cittaLuogo" tappable (click)="chooseItem(item)">
+		 <div>{{ item.citta }} {{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
+			  {{ item.nome }}{{ item.nazione }} {{ item.provincia }} {{ item.orario }} {{ item.punto_risotro }}
+			  {{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }}
+		</div>
+     </ion-item>
+  </ion-list>
   <p>
    {{citta}}
   </p>
@@ -16,3 +25,8 @@
 		Back
 	</button>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

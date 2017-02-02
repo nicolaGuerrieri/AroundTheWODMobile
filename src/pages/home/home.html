@@ -15,8 +15,6 @@
 		 <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
 		<br />
 		 
-		 
-		
 		<button (click)="ricerca()" ion-button icon-left >
 		  <ion-icon name="search"></ion-icon>
 			I want to train
@@ -25,6 +23,8 @@
  <!--  <ion-input type="text" (ionInput)="cerca()"  (keyup)="cerca()" placeholder="City" [(ngModel)]="citta" id="citta"></ion-input> -->
   
 </ion-content>
- <div class="colorPersonal bar bar-footer bar-assertive">
-   <button class="button icon ion-navicon pull-right"></button>
-</div>
+ <ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

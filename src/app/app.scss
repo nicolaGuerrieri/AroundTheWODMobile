@@ -19,7 +19,9 @@
 	background-color:  map-get($colors, personal3);
 	color: white;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 .toolbar-title{
 	color: white;
 }

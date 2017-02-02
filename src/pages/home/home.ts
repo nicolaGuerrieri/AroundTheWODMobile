@@ -16,7 +16,7 @@ export class HomePage {
 
 	constructor(public navCtrl: NavController, public global:Global, private modalCtrl: ModalController) {
 		this.address = {
-		  place: ''
+		  place: 'reggio emilia'
 		};
 	}
 	showAddressModal () {

@@ -28952,6 +28952,10 @@ sub {
   color: white;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .toolbar-title {
   color: white;
 }
