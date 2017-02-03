@@ -37,6 +37,12 @@
 .button-md.activated{
 	background-color:  map-get($colors, personal3);
 }
+
+#map {
+    width: 100%;
+    height: 200px;
+}
+
 .center {
 	-webkit-box-ordinal-group: 1;
 	-moz-box-ordinal-group: 1;

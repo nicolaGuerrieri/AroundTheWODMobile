@@ -7,10 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-content>
 	<ion-list style="width: auto !important;">
-	  {{cittaLuogo}}
-     <ion-item *ngFor="let item of cittaLuogo" tappable (click)="chooseItem(item)">
+	 <ion-buttons end>
+      <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Add Marker</button>
+    </ion-buttons>  
+	<div #map id="map"></div>  
+	<br />
+	<br />
+	<ion-item *ngFor="let item of cittaLuogo" tappable (click)="chooseItem(item)">
 		 <div>{{ item.citta }} {{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
 			  {{ item.nome }}{{ item.nazione }} {{ item.provincia }} {{ item.orario }} {{ item.punto_risotro }}
 			  {{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }}

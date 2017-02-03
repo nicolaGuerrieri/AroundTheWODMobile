@@ -1,0 +1,10 @@
+[0203/120051.503:ERROR:process_reader_win.cc(83)] NtQuerySystemInformation: {Not Enough Quota} Not enough virtual memory or paging file quota is available to complete the specified operation.  (0xc0000017)
+[0203/120051.505:ERROR:exception_snapshot_win.cc(87)] thread ID 6236 not found in process
+[0203/120051.505:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
+[0203/120055.935:ERROR:process_info.cc(608)] range at 0xfffde000, size 0x230 fully unreadable
+[0203/120055.984:ERROR:process_info.cc(608)] range at 0xfffdd000, size 0xf84 fully unreadable
+[0203/120055.984:ERROR:process_info.cc(608)] range at 0xfffda000, size 0xf84 fully unreadable
+[0203/120055.985:ERROR:process_info.cc(608)] range at 0xfffd7000, size 0xf84 fully unreadable
+[0203/120055.985:ERROR:process_info.cc(608)] range at 0xfffaf000, size 0xf84 fully unreadable
+[0203/120055.985:ERROR:process_info.cc(608)] range at 0xfffac000, size 0xf84 fully unreadable
+[0203/120055.985:ERROR:process_info.cc(608)] range at 0xfffa9000, size 0xf84 fully unreadable
