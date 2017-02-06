@@ -38,6 +38,11 @@
 	background-color:  map-get($colors, personal3);
 }
 
+.centraTutto{
+	display:block;
+	margin:auto;
+}
+
 #map {
     width: 100%;
     height: 200px;

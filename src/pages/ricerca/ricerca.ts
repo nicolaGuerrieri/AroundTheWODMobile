@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation } from 'ionic-native';
- 
+import { AutocompletePage } from '../home/autocomplete';
+
 declare var google: any;
 
 @Component({
@@ -15,14 +16,18 @@ export class Ricerca {
 	
 	public citta:any;
 	public cittaLuogo: any;
+	public address:any;
 	
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
  
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService) {
+	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController) {
 		this.citta= params.get("citta"); 
 		this.loadCity(this.citta.split(",")[0]);
+		this.address = {
+		  place: this.citta
+		};
 	}
 	
 	
@@ -80,7 +85,26 @@ export class Ricerca {
 			});
 		}
 	}
-	
+	showAddressModal () {
+		let modal = this.modalCtrl.create(AutocompletePage);
+		let me = this;
+		modal.onDidDismiss(data => {
+		  this.address.place = data;
+		});
+		modal.present();
+	}
+	ricerca(){
+		console.log(">>"+ this.address.place+ "<<<");
+		
+		if(this.address.place != ""){
+			this.navCtrl.push(Ricerca,{
+				citta: this.address.place
+			});
+		}else{
+			console.log("bloccato");
+			return;
+		}
+	}
 	loadCity(cittaP){
 		this.cittaLuogoService.load(cittaP).then(data => {
 			this.cittaLuogo = data;

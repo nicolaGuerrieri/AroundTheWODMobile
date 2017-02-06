@@ -24,6 +24,7 @@ export class HomePage {
 		let me = this;
 		modal.onDidDismiss(data => {
 		  this.address.place = data;
+		  this.ricerca();
 		});
 		modal.present();
 	}

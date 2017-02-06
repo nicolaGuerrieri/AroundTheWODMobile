@@ -9,13 +9,15 @@
 <ion-content padding>
 
 	<br /><br />
-	<div class="row center">
-		<img src="" class="img-circular"  > 
+	<div class="row">
+		<img src="" class="img-circular centraTutto"  > 
 		<br /><br />
-		 <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+		<div class="centraTutto">
+			<ion-input  style="text-align: center" class="centraTutto" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+		</div>
 		<br />
 		 
-		<button (click)="ricerca()" ion-button icon-left >
+		<button (click)="ricerca()" ion-button icon-left class="centraTutto">
 		  <ion-icon name="search"></ion-icon>
 			I want to train
 		</button>

@@ -28976,6 +28976,11 @@ sub {
   background-color: #2cb5e8;
 }
 
+.centraTutto {
+  display: block;
+  margin: auto;
+}
+
 #map {
   width: 100%;
   height: 200px;
@@ -29018,4 +29023,12 @@ page-home {
 
 #ion-header {
   background-color: blue;
+}
+
+input {
+  text-align: center;
+}
+
+input {
+  text-align: center;
 }

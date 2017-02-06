@@ -3,31 +3,47 @@
     <ion-title>
       {{global.title}}
     </ion-title>
+	<ion-buttons end>
+		<button (click)="showAddressModal()" ion-button>
+			<ion-icon name="search"></ion-icon>
+		</button>
+		
+	</ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-	<ion-list style="width: auto !important;">
-	 <ion-buttons end>
-      <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Add Marker</button>
-    </ion-buttons>  
+	
 	<div #map id="map"></div>  
 	<br />
 	<br />
-	<ion-item *ngFor="let item of cittaLuogo" tappable (click)="chooseItem(item)">
-		 <div>{{ item.citta }} {{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
-			  {{ item.nome }}{{ item.nazione }} {{ item.provincia }} {{ item.orario }} {{ item.punto_risotro }}
+	<ion-list style="width: auto !important; text-align: center;">
+		<ion-item *ngFor="let item of cittaLuogo" tappable (click)="chooseItem(item)">
+			<ion-card>
+			  <img src="img/nin-live.png"/>
+			  <ion-card-content>
+				<ion-card-title>
+				  {{ item.nome }},   {{ item.citta }} {{ item.provincia }} {{ item.nazione }} 
+				  </ion-card-title>
+				<p>
+				{{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
+			{{ item.orario }} {{ item.punto_risotro }}
 			  {{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }}
+				</p>
+			  </ion-card-content>
+			</ion-card>
+		</ion-item>
+	</ion-list>
+	<ion-input  style="text-align: center" class="centraTutto" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+ 
+	<div class="row">
+		<div class="col" style="text-align: center;">
+			<button (click)="back()" ion-button icon-left>
+			  <ion-icon name="back"></ion-icon>
+				Back
+			</button>
 		</div>
-     </ion-item>
-  </ion-list>
-  <p>
-   {{citta}}
-  </p>
-   <button (click)="back()" ion-button icon-left>
-	  <ion-icon name="back"></ion-icon>
-		Back
-	</button>
+	</div>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
