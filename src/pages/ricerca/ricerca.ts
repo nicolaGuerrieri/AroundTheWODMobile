@@ -32,7 +32,13 @@ export class Ricerca {
 	
 	
 	ngAfterViewInit() {
-		this.loadMap(null);
+		try {
+		   this.loadMap(null);
+		}
+		catch (e) {
+		  alert("error" + e);
+		}
+		
 	}
 	
 	//load with position
@@ -54,15 +60,39 @@ export class Ricerca {
 	});
 	 
 	} 
-	
+
+
 	loadMap(cittaResult){
+	try {
+		var localizzaRicerca;
+		let mapOptions;
+		let latLng;
+		if(this.address.place){
+			var geocoder =  new google.maps.Geocoder();
+			geocoder.geocode( { 'address': this.address.place}, function(results, status) {
+				  if (status == google.maps.GeocoderStatus.OK) {
+					localizzaRicerca=  results[0];
+					
+					//rifaccio dato che ci mette un pò
+					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
+					mapOptions = {
+					  center: latLng,
+					  zoom: 10,
+					  mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+					this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+				  } else {
+					alert("Something got wrong " + status);
+				  }
+			});
+		}
+		
 		if(cittaResult == null){
 			return;
 		}
-		console.log(cittaResult.size);
 		if(cittaResult.length > 0){
-			let latLng = new google.maps.LatLng(cittaResult[0].latitudine, cittaResult[0].longitudine);
-			let mapOptions = {
+			latLng = new google.maps.LatLng(cittaResult[0].latitudine, cittaResult[0].longitudine);
+			mapOptions = {
 			  center: latLng,
 			  zoom: 10,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -84,33 +114,48 @@ export class Ricerca {
 			
 			});
 		}
+		 }
+    catch (e) {
+       alert("nic" + e);
+    }
+		
 	}
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);
 		let me = this;
 		modal.onDidDismiss(data => {
 		  this.address.place = data;
+		   this.ricerca();
 		});
 		modal.present();
 	}
 	ricerca(){
-		console.log(">>"+ this.address.place+ "<<<");
-		
-		if(this.address.place != ""){
-			this.navCtrl.push(Ricerca,{
-				citta: this.address.place
-			});
-		}else{
-			console.log("bloccato");
-			return;
+		try{
+			if(this.address.place != ""){
+				this.navCtrl.push(Ricerca,{
+					citta: this.address.place
+				});
+			}else{
+				console.log("bloccato");
+				return;
+			}
+			 }
+		catch (e) {
+		   alert("nic" + e);
 		}
+			
 	}
 	loadCity(cittaP){
-		this.cittaLuogoService.load(cittaP).then(data => {
-			this.cittaLuogo = data;
-			this.loadMap(this.cittaLuogo);
-		});
-		
+		try{
+			this.cittaLuogoService.load(cittaP).then(data => {
+				
+				this.cittaLuogo = data;
+				this.loadMap(this.cittaLuogo);
+			});
+		}
+		catch (e) {
+		   alert("nic" + e);
+		}
 	}
 	back(){
 	    this.navCtrl.pop();

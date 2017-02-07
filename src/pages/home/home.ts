@@ -35,7 +35,7 @@ export class HomePage {
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
 				citta: this.address.place
-			});
+			},{ animate: true, direction: 'forward' });
 		}else{
 			console.log("bloccato");
 			return;

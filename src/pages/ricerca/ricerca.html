@@ -27,8 +27,8 @@
 				  </ion-card-title>
 				<p>
 				{{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
-			{{ item.orario }} {{ item.punto_risotro }}
-			  {{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }}
+				{{ item.orario }} {{ item.punto_risotro }}
+				{{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }} {{ item.foto }}
 				</p>
 			  </ion-card-content>
 			</ion-card>
@@ -45,8 +45,13 @@
 		</div>
 	</div>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>Footer</ion-title>
+ <ion-footer class="centraTutto">
+  <ion-toolbar style="color: white; font-size: 35px;"  >
+	<ion-title class="centraTutto">Tell friends</ion-title>
+	<div class="centraTutto" style="padding-left: 15px;">
+		<ion-icon name="logo-facebook"></ion-icon>
+		<ion-icon name="logo-instagram"></ion-icon>
+		<ion-icon name="logo-google"></ion-icon>
+	</div>
   </ion-toolbar>
 </ion-footer>

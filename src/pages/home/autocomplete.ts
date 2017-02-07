@@ -11,6 +11,7 @@ export class AutocompletePage {
   autocompleteItems;
   autocomplete;
   service = new google.maps.places.AutocompleteService();
+
   @ViewChild('citta') searchbar:Searchbar;
   
   constructor (public viewCtrl: ViewController, private zone: NgZone) {
@@ -30,6 +31,7 @@ export class AutocompletePage {
   chooseItem(item: any) {
     this.viewCtrl.dismiss(item);
   }
+  
   
   updateSearch() {
     if (this.autocomplete.query == '') {

@@ -29029,6 +29029,26 @@ input {
   text-align: center;
 }
 
+page-home {
+  color: primary;
+}
+
+.header {
+  color: red !important;
+}
+
+.colorPersonal {
+  background-color: blue;
+}
+
+#ion-header {
+  background-color: blue;
+}
+
+input {
+  text-align: center;
+}
+
 input {
   text-align: center;
 }
