@@ -60,32 +60,17 @@ export class Ricerca {
 	});
 	 
 	} 
-
+	
+	getMapElement(){
+		return this.mapElement;
+	}
 
 	loadMap(cittaResult){
 	try {
 		var localizzaRicerca;
 		let mapOptions;
 		let latLng;
-		if(this.address.place){
-			var geocoder =  new google.maps.Geocoder();
-			geocoder.geocode( { 'address': this.address.place}, function(results, status) {
-				  if (status == google.maps.GeocoderStatus.OK) {
-					localizzaRicerca=  results[0];
-					
-					//rifaccio dato che ci mette un pò
-					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
-					mapOptions = {
-					  center: latLng,
-					  zoom: 10,
-					  mapTypeId: google.maps.MapTypeId.ROADMAP
-					}
-					this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-				  } else {
-					alert("Something got wrong " + status);
-				  }
-			});
-		}
+		
 		
 		if(cittaResult == null){
 			return;
@@ -113,8 +98,31 @@ export class Ricerca {
 				
 			
 			});
+		}else{
+			var elem = this.mapElement;
+			if(this.address.place){
+				var geocoder =  new google.maps.Geocoder();
+				geocoder.geocode( { 'address': this.address.place}, function(results, status) {
+				  if (status == google.maps.GeocoderStatus.OK) {
+					localizzaRicerca=  results[0];
+					
+					//rifaccio dato che ci mette un pò
+					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
+					mapOptions = {
+					  center: latLng,
+					  zoom: 10,
+					  mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+					this.map = new google.maps.Map(elem.nativeElement, mapOptions);
+				  } else {
+					alert("Something got wrong " + status);
+				  }
+			});
+			
+		}		
+		
 		}
-		 }
+	}
     catch (e) {
        alert("nic" + e);
     }
@@ -145,6 +153,11 @@ export class Ricerca {
 		}
 			
 	}
+	
+	selectPlace(idPlace){
+		alert(idPlace);
+	}
+	
 	loadCity(cittaP){
 		try{
 			this.cittaLuogoService.load(cittaP).then(data => {

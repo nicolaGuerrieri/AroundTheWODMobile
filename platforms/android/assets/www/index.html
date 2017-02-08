@@ -12,20 +12,8 @@
   <meta name="theme-color" content="#4e8ef7">
   <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
    <!-- cordova.js required for cordova apps -->
-<meta http-equiv="Content-Security-Policy" content="
-default-src 'self' data: gap:
-    *;
-script-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-style-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-media-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-img-src 'self' 'unsafe-inline' 'unsafe-eval'
-    *;
-connect-srv 'self' 'unsafe-inline' 'unsafe-eval'
-    *
-">  
+ <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' *; object-src 'self'; style-src 'self' 'unsafe-inline'; media-src *">
+
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCmuhOq1fek6HJd6tvkyo2waH1vdv6a6H8&libraries=places&sensor=true""></script>
   <script src="cordova.js"></script>
 
@@ -56,6 +44,7 @@ connect-srv 'self' 'unsafe-inline' 'unsafe-eval'
 
   <!-- The bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+
 
 </body>
 </html>
