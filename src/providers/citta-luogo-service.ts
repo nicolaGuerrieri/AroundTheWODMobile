@@ -16,8 +16,8 @@ export class CittaLuogoService {
 
   // don't have the data yet
   return new Promise(resolve => {
-	 // this.http.get('http://app.nicolaguerrieri.it:3000/getListaForCity?citta='+citta).map(res =>res.json()).subscribe(data => {
-    this.http.get('provaV2/getListaForCity?citta='+ citta).map(res =>res.json()).subscribe(data => {
+	//   this.http.get('http://app.nicolaguerrieri.it:3000/getListaForCity?citta='+citta).map(res =>res.json()).subscribe(data => {
+   this.http.get('provaV2/getListaForCity?citta='+ citta).map(res =>res.json()).subscribe(data => {
 		
         this.data = data.listaLuoghi;
         resolve(this.data);

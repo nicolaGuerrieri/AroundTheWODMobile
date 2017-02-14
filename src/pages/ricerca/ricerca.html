@@ -20,8 +20,8 @@
 	<ion-card *ngFor="let item of cittaLuogo" tappable style="margin: 0" (click)="selectPlace(item._id)">
 	  <ion-card-content>
 		<ion-row class="centraTutto">
-				  <img class="img-circular" *ngIf="item.foto != null" src="provaV2/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>
-			<!-- <img class="img-circular" *ngIf="item.foto != null" src="http://app.nicolaguerrieri.it:3000/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>-->
+				 <img class="img-circular" *ngIf="item.foto != null" src="provaV2/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>
+			<!--  <img class="img-circular" *ngIf="item.foto != null" src="http://app.nicolaguerrieri.it:3000/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>-->
 		</ion-row>
 		<ion-card-title>
 			{{ item.nome }},   {{ item.citta }} {{ item.provincia }} {{ item.nazione }} 
@@ -34,7 +34,7 @@
 	  </ion-card-content>
 	</ion-card>
 	
-	<ion-input  style="text-align: center" class="centraTutto" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+	<ion-input  style="text-align: center" class="centraTutto"  (focus)="showAddressModal()" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
  
 	<div class="row">
 		<div class="col" style="text-align: center;">

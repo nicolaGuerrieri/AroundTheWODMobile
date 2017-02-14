@@ -24,7 +24,8 @@ export class Ricerca {
 	
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController) {
 		this.citta= params.get("citta"); 
-		this.loadCity(this.citta.split(",")[0]);
+		
+		this.loadCity((this.citta) ? this.citta.split(",")[0] : null);
 		this.address = {
 		  place: this.citta
 		};
@@ -43,17 +44,35 @@ export class Ricerca {
 	
 	//load with position
 	loadMap33(){
+		var geocoder;
+		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
-	 
+		console.log(position);
 		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-	 
-		let mapOptions = {
-			center: latLng,
-			zoom: 15,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+		
+		
+		geocoder.geocode({'latLng': latLng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {
+					var add= results[0].address_components;
+					let city=add[3];
+					alert("city name is: " + city.long_name);
+					Ricerca.loadCity(city.long_name);
+				} else  {
+					alert("address not found");
+				}
+			} else {
+				alert("Geocoder failed due to: " + status);
+			}
 		}
+		);
+	//	let mapOptions = {
+	//		center: latLng,
+	//		zoom: 15,
+	//		mapTypeId: google.maps.MapTypeId.ROADMAP
+	//	}
  
-		this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+	//	this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 		//this.addMarker();
 	}, (err) => {
 	  console.log(err);
@@ -94,7 +113,7 @@ export class Ricerca {
 					map: this.map,
 					title: cittaLuogoItem.nome
 				});
-			latLng = null;	
+				latLng = null;	
 				
 			
 			});
@@ -133,7 +152,7 @@ export class Ricerca {
 		let me = this;
 		modal.onDidDismiss(data => {
 		  this.address.place = data;
-		   this.ricerca();
+		  this.ricerca();
 		});
 		modal.present();
 	}
@@ -147,8 +166,7 @@ export class Ricerca {
 				console.log("bloccato");
 				return;
 			}
-			 }
-		catch (e) {
+		}catch (e) {
 		   alert("nic" + e);
 		}
 			
@@ -160,13 +178,17 @@ export class Ricerca {
 	
 	loadCity(cittaP){
 		try{
-			this.cittaLuogoService.load(cittaP).then(data => {
-				
-				this.cittaLuogo = data;
-				this.loadMap(this.cittaLuogo);
-			});
-		}
-		catch (e) {
+			if(cittaP == null){
+				cittaP = this.loadMap33();
+			}else{
+				alert("loadCity" + cittaP);
+				this.cittaLuogoService.load(cittaP).then(data => {
+					
+					this.cittaLuogo = data;
+					this.loadMap(this.cittaLuogo);
+				});
+			}
+		}catch (e) {
 		   alert("nic" + e);
 		}
 	}
