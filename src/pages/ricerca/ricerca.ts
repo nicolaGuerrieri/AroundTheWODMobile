@@ -57,7 +57,8 @@ export class Ricerca {
 					var add= results[0].address_components;
 					let city=add[3];
 					alert("city name is: " + city.long_name);
-					Ricerca.loadCity(city.long_name);
+					//.loadCity(city.long_name);
+					console.log(this);
 				} else  {
 					alert("address not found");
 				}
@@ -66,13 +67,13 @@ export class Ricerca {
 			}
 		}
 		);
-	//	let mapOptions = {
-	//		center: latLng,
-	//		zoom: 15,
-	//		mapTypeId: google.maps.MapTypeId.ROADMAP
-	//	}
+		let mapOptions = {
+			center: latLng,
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
  
-	//	this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+		this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 		//this.addMarker();
 	}, (err) => {
 	  console.log(err);
@@ -124,7 +125,7 @@ export class Ricerca {
 				geocoder.geocode( { 'address': this.address.place}, function(results, status) {
 				  if (status == google.maps.GeocoderStatus.OK) {
 					localizzaRicerca=  results[0];
-					
+					console.log(localizzaRicerca);
 					//rifaccio dato che ci mette un pò
 					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 					mapOptions = {
@@ -133,6 +134,14 @@ export class Ricerca {
 					  mapTypeId: google.maps.MapTypeId.ROADMAP
 					}
 					this.map = new google.maps.Map(elem.nativeElement, mapOptions);
+					
+					var marker = new google.maps.Marker({
+						position: latLng,
+						map: this.map,
+						title: localizzaRicerca.formatted_address
+					});
+					latLng = null;	
+					
 				  } else {
 					alert("Something got wrong " + status);
 				  }
