@@ -9,6 +9,29 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-background-mode.BackgroundMode",
+        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+        "pluginId": "cordova-plugin-background-mode",
+        "clobbers": [
+            "cordova.plugins.backgroundMode",
+            "plugin.backgroundMode"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.geolocation",
+        "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "clobbers": [
+            "navigator.geolocation"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.PositionError",
+        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "runs": true
+    },
+    {
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "pluginId": "cordova-plugin-splashscreen",
@@ -25,6 +48,14 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova.plugins.diagnostic.Diagnostic",
+        "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
+        "pluginId": "cordova.plugins.diagnostic",
+        "clobbers": [
+            "cordova.plugins.diagnostic"
+        ]
+    },
+    {
         "id": "ionic-plugin-keyboard.keyboard",
         "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
         "pluginId": "ionic-plugin-keyboard",
@@ -37,11 +68,15 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-console": "1.0.5",
     "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-background-mode": "0.7.2",
+    "cordova-plugin-compat": "1.1.0",
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-geolocation": "2.4.1",
     "cordova-plugin-splashscreen": "4.0.1",
     "cordova-plugin-statusbar": "2.2.1",
     "cordova-plugin-whitelist": "1.3.1",
+    "cordova.plugins.diagnostic": "3.4.1",
     "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA

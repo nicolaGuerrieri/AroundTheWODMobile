@@ -1,0 +1,56 @@
+<ion-header class="colorPersonal">
+  <ion-navbar>
+    <ion-title>
+      {{global.title}}
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+	<div #map id="map"></div>  
+	<br />
+	<br />
+	<ion-list>
+		<ion-item>
+			<ion-label color="primary" stacked>Citta</ion-label>
+			<ion-input readonly type="text" placeholder="Citta" [(ngModel)]="luogoSelezionato.citta" *ngIf="luogoSelezionato"></ion-input>
+		</ion-item>
+	</ion-list>
+	<br />
+	<br />
+	<ion-list>
+		  <ion-item>
+		<ion-label color="primary" stacked>Provincia</ion-label>
+		<ion-input type="text" readonly placeholder="Provincia" [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato"></ion-input>
+		</ion-item>
+	</ion-list>
+	<br />
+	<br />
+	<ion-list>
+		  <ion-item>
+		<ion-label color="primary" stacked>Nome</ion-label>
+		<ion-input type="text" readonly placeholder="Nome" [(ngModel)]="luogoSelezionato.nome" *ngIf="luogoSelezionato"></ion-input>
+		</ion-item>
+	</ion-list>
+	
+	<div class="row">
+		<div class="col" style="text-align: center;">
+			<button (click)="back()" ion-button icon-left>
+			  <ion-icon name="back"></ion-icon>
+				Back
+			</button>
+		</div>
+	</div>
+</ion-content>
+ <ion-footer class="centraTutto">
+  <ion-toolbar style="color: white; font-size: 35px;"  >
+	<ion-title class="centraTutto">Tell friends</ion-title>
+	<div class="centraTutto" style="padding-left: 15px;">
+		<ion-icon name="logo-facebook"></ion-icon>
+		<ion-icon name="logo-instagram"></ion-icon>
+		<ion-icon name="logo-google"></ion-icon>
+	</div>
+  </ion-toolbar>
+</ion-footer>

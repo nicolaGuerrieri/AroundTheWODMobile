@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform   } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation } from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
+import { Detail } from '../ricerca/detail';
 
 declare var google: any;
 
@@ -22,13 +23,13 @@ export class Ricerca {
 	map: any;
  
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController) {
+	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform) {
 		this.citta= params.get("citta"); 
-		
-		this.loadCity((this.citta) ? this.citta.split(",")[0] : null);
+		this.loadCity(this.citta);
 		this.address = {
-		  place: this.citta
+			place: this.citta
 		};
+		console.log(this.citta);
 	}
 	
 	
@@ -43,7 +44,7 @@ export class Ricerca {
 	}
 	
 	//load with position
-	loadMap33(){
+	loadGeolocalization(){
 		var geocoder;
 		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
@@ -56,9 +57,6 @@ export class Ricerca {
 				if (results[0]) {
 					var add= results[0].address_components;
 					let city=add[3];
-					alert("city name is: " + city.long_name);
-					//.loadCity(city.long_name);
-					console.log(this);
 				} else  {
 					alert("address not found");
 				}
@@ -74,7 +72,6 @@ export class Ricerca {
 		}
  
 		this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-		//this.addMarker();
 	}, (err) => {
 	  console.log(err);
 	});
@@ -85,48 +82,46 @@ export class Ricerca {
 		return this.mapElement;
 	}
 
-	loadMap(cittaResult){
-	try {
-		var localizzaRicerca;
-		let mapOptions;
-		let latLng;
-		
-		
-		if(cittaResult == null){
-			return;
-		}
-		if(cittaResult.length > 0){
-			latLng = new google.maps.LatLng(cittaResult[0].latitudine, cittaResult[0].longitudine);
-			mapOptions = {
-			  center: latLng,
-			  zoom: 10,
-			  mapTypeId: google.maps.MapTypeId.ROADMAP
-			}
-			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-			cittaResult.forEach((cittaLuogoItem: any) => {
-			 
-			
-				latLng = new google.maps.LatLng(cittaLuogoItem.latitudine, cittaLuogoItem.longitudine); 
-
-				// Creating a marker and putting it on the map
-				var marker = new google.maps.Marker({
-					position: latLng,
-					map: this.map,
-					title: cittaLuogoItem.nome
-				});
-				latLng = null;	
-				
-			
+	geolocalizza(){
+		let loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		loader.present();
+		if (this.plt.is('core')) {
+			this.cittaLuogoService.localizza().then(data => {
+				if(data.address_components[2]){
+					this.address.place = data.address_components[2].long_name;
+					this.ricerca();
+					loader.dismiss();
+				}
 			});
 		}else{
+			this.cittaLuogoService.localizza().then(data => {
+				if(data.address_components[2]){
+					this.address.place = data.address_components[2].long_name;
+					this.ricerca();
+					loader.dismiss();
+				}
+			});
+		}
+		
+	}
+	
+
+	loadMap(cittaResult){
+		try {
+			var localizzaRicerca;
+			let mapOptions;
+			let latLng;
+			
+			console.log("loadMap " + this.address.place);
+			
 			var elem = this.mapElement;
-			if(this.address.place){
-				var geocoder =  new google.maps.Geocoder();
-				geocoder.geocode( { 'address': this.address.place}, function(results, status) {
-				  if (status == google.maps.GeocoderStatus.OK) {
+			var geocoder =  new google.maps.Geocoder();
+			geocoder.geocode( { 'address': this.address.place}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
 					localizzaRicerca=  results[0];
-					console.log(localizzaRicerca);
-					//rifaccio dato che ci mette un pò
+					
 					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 					mapOptions = {
 					  center: latLng,
@@ -140,28 +135,52 @@ export class Ricerca {
 						map: this.map,
 						title: localizzaRicerca.formatted_address
 					});
-					latLng = null;	
 					
-				  } else {
-					alert("Something got wrong " + status);
-				  }
+					var infowindow = new google.maps.InfoWindow({
+						content: "<span>" + localizzaRicerca.formatted_address + "</span>"
+					});
+					google.maps.event.addListener(marker, 'click', function() {
+					  infowindow.open(this.map,marker);
+					});
+					if(cittaResult != null){
+						cittaResult.forEach((cittaLuogoItem: any) => {
+							latLng = new google.maps.LatLng(cittaLuogoItem.latitudine, cittaLuogoItem.longitudine); 
+
+							// Creating a marker and putting it on the map
+							var marker = new google.maps.Marker({
+								position: latLng,
+								map: this.map,
+								title: cittaLuogoItem.nome
+							});
+							latLng = null;	
+							var infowindow = new google.maps.InfoWindow({
+								content: "<span>" + cittaLuogoItem.nome + "</span>"
+							});
+							google.maps.event.addListener(marker, 'click', function() {
+							  infowindow.open(this.map, marker);
+							});
+						});
+					}
+				}
 			});
-			
-		}		
-		
+		} catch (e) {
+		   alert("nic" + e);
 		}
 	}
-    catch (e) {
-       alert("nic" + e);
-    }
-		
-	}
-	showAddressModal () {
+	
+	
+	showAddressModalR () {
 		let modal = this.modalCtrl.create(AutocompletePage);
 		let me = this;
 		modal.onDidDismiss(data => {
-		  this.address.place = data;
-		  this.ricerca();
+			if(data != null){
+				console.log(data);
+				this.address.place = data.split(",")[0];
+			}else{
+				return;
+			}
+		  
+			this.ricerca();
 		});
 		modal.present();
 	}
@@ -182,15 +201,26 @@ export class Ricerca {
 	}
 	
 	selectPlace(idPlace){
-		alert(idPlace);
+		try{
+			if(this.address.place != ""){
+				this.navCtrl.push(Detail,{
+					idLuogo: idPlace
+				});
+			}else{
+				console.log("bloccato");
+				return;
+			}
+		}catch (e) {
+		   alert("nic" + e);
+		}
 	}
 	
 	loadCity(cittaP){
 		try{
 			if(cittaP == null){
-				cittaP = this.loadMap33();
+				
+				cittaP = this.loadGeolocalization();
 			}else{
-				alert("loadCity" + cittaP);
 				this.cittaLuogoService.load(cittaP).then(data => {
 					
 					this.cittaLuogo = data;

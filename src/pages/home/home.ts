@@ -1,20 +1,25 @@
 import { Component } from '@angular/core';
+import {CittaLuogoService} from '../../providers/citta-luogo-service';
 
-import { NavController, ModalController} from 'ionic-angular';
+import { NavController, ModalController, LoadingController, Platform  } from 'ionic-angular';
 import {Global} from '../../services/global';
 import { Ricerca } from '../ricerca/ricerca';
 import { AutocompletePage } from './autocomplete';
 
+declare var cordova:any;
 declare var google: any;
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [CittaLuogoService]
 })
 export class HomePage {
 
 	address;
 
-	constructor(public navCtrl: NavController, public global:Global, private modalCtrl: ModalController) {
+	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	
+	//	alert(this.plt.platforms());
 		this.address = {
 		  place: 'reggio emilia'
 		};
@@ -22,16 +27,44 @@ export class HomePage {
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);
 		let me = this;
-		modal.onDidDismiss(data => {
-		  this.address.place = data;
-		  this.ricerca();
+		modal.onDidDismiss(data => { 
+			this.address.place = data.split(",")[0];
+		    this.ricerca();
 		});
 		modal.present();
 	}
-	
+	geolocalizza(){
+		let loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		loader.present();
+		if (this.plt.is('core')) {
+			this.cittaLuogoService.localizza().then(data => {
+				if(data.address_components[2]){
+					//alert(data.address_components[2].long_name);
+					this.address.place = data.address_components[2].long_name;
+					this.ricerca();
+					loader.dismiss();
+				}
+			});
+		}else{
+			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+				if(enabled){
+					this.cittaLuogoService.localizza().then(data => {
+						if(data.address_components[2]){
+							//alert(data.address_components[2].long_name);
+							this.address.place = data.address_components[2].long_name;
+							this.ricerca();
+							loader.dismiss();
+						}
+					});
+				}else{
+					alert("Please enable GPS localization");
+				}
+			});
+		}
+	}
 	ricerca(){
-		console.log(">>"+ this.address.place+ "<<<");
-		
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
 				citta: this.address.place

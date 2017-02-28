@@ -3,39 +3,44 @@
     <ion-title>
       {{global.title}}
     </ion-title>
+ 
 	<ion-buttons end>
-		<button (click)="showAddressModal()" ion-button>
+		<button (click)="showAddressModalR()" ion-button>
 			<ion-icon name="search"></ion-icon>
 		</button>
-		
+		<button (click)="geolocalizza()"  ion-button class="centraTutto">
+			<ion-icon name="locate"></ion-icon>
+		</button>
 	</ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="text-align: center;">
 	
 	<div #map id="map"></div>  
 	<br />
 	<br />
-	<ion-card *ngFor="let item of cittaLuogo" tappable style="margin: 0" (click)="selectPlace(item._id)">
+	<ion-chip>
+	  <ion-label>{{citta}}</ion-label>
+	</ion-chip>
+	<br />
+	<br />
+
+	<ion-card *ngFor="let item of cittaLuogo" tappable style="margin: 0; text-align: left;" (click)="selectPlace(item._id)">
+	  <img class="img-circular" *ngIf="item.foto != null" src="provaV2/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>
 	  <ion-card-content>
-		<ion-row class="centraTutto">
-				 <img class="img-circular" *ngIf="item.foto != null" src="provaV2/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>
-			<!--  <img class="img-circular" *ngIf="item.foto != null" src="http://app.nicolaguerrieri.it:3000/users/leggi/{{item.foto}}" style="width: 100px; height: 100px;"/>-->
-		</ion-row>
 		<ion-card-title>
-			{{ item.nome }},   {{ item.citta }} {{ item.provincia }} {{ item.nazione }} 
+		  {{ item.nome }},   {{ item.citta }} {{ item.provincia }} {{ item.nazione }} 
 		  </ion-card-title>
 		<p>
-		{{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
-		{{ item.orario }} {{ item.punto_risotro }}
-		{{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }} {{ item.foto }}
+			{{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
+			{{ item.orario }} {{ item.punto_risotro }}
+			{{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }} {{ item.foto }}
 		</p>
 	  </ion-card-content>
 	</ion-card>
-	
-	<ion-input  style="text-align: center" class="centraTutto"  (focus)="showAddressModal()" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
- 
+	  
+	  
 	<div class="row">
 		<div class="col" style="text-align: center;">
 			<button (click)="back()" ion-button icon-left>
