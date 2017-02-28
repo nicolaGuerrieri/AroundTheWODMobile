@@ -28,8 +28,12 @@ export class HomePage {
 		let modal = this.modalCtrl.create(AutocompletePage);
 		let me = this;
 		modal.onDidDismiss(data => { 
-			this.address.place = data.split(",")[0];
-		    this.ricerca();
+			if(data != null){
+				this.address.place = data.split(",")[0];
+				this.ricerca();
+			}else{
+				return;
+			}
 		});
 		modal.present();
 	}
