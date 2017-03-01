@@ -21,15 +21,27 @@
 	<br />
 	<br />
 	<ion-list>
-		  <ion-item>
-		<ion-label color="primary" stacked>Provincia</ion-label>
-		<ion-input type="text" readonly placeholder="Provincia" [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato"></ion-input>
+		 <ion-item>
+			<ion-label color="primary" stacked>Provincia</ion-label>
+			<ion-input type="text" readonly placeholder="Provincia" [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
-		  <ion-item>
+		<ion-item class="nowrap">
+			<ion-label color="primary" stacked>Nome</ion-label>
+			<ion-input type="text" readonly placeholder="Nome" [(ngModel)]="luogoSelezionato.nome" *ngIf="luogoSelezionato"></ion-input>
+		</ion-item>
+		<ion-item class="nowrap">
+		<ion-label color="primary" stacked>Nome</ion-label>
+		<ion-input type="text" readonly placeholder="Nome" [(ngModel)]="luogoSelezionato.nome" *ngIf="luogoSelezionato"></ion-input>
+		</ion-item>
+	</ion-list>
+	<br />
+	<br />
+	<ion-list>
+		<ion-item>
 		<ion-label color="primary" stacked>Nome</ion-label>
 		<ion-input type="text" readonly placeholder="Nome" [(ngModel)]="luogoSelezionato.nome" *ngIf="luogoSelezionato"></ion-input>
 		</ion-item>
