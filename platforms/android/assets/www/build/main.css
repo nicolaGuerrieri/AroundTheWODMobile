@@ -29009,6 +29009,22 @@ sub {
   background-image: url("../assets/images/ket.jpg");
 }
 
+.imgDetail {
+  height: 30vh;
+  width: auto;
+  margin: auto;
+  display: block;
+  border-radius: 100px;
+}
+
+.imgDetailLittle {
+  height: 10vh;
+  width: auto;
+  margin: auto;
+  display: block;
+  border-radius: 100px;
+}
+
 page-home {
   color: primary;
 }
@@ -29043,6 +29059,10 @@ page-home {
 
 #ion-header {
   background-color: blue;
+}
+
+input {
+  text-align: center;
 }
 
 input {

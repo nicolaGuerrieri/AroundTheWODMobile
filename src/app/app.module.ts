@@ -5,9 +5,18 @@ import { HomePage } from '../pages/home/home';
 import { AutocompletePage } from '../pages/home/autocomplete';
 import { Ricerca } from '../pages/ricerca/ricerca';
 import { Detail } from '../pages/ricerca/detail';
-
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
-
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '1116576615134600'
+  },
+  'auth': {
+    'facebook': {
+      'scope': []
+    }
+  }
+};
 @NgModule({
   declarations: [
     MyApp,
@@ -17,7 +26,8 @@ import {Global} from '../services/global';
 	Detail
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+	 CloudModule.forRoot(cloudSettings) 
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,0 +1,75 @@
+<ion-header class="colorPersonal">
+  <ion-navbar>
+    <ion-title>
+      {{global.title}}
+    </ion-title>
+ 
+	<ion-buttons end>
+		<button style="font-size: 30px;" (click)="showAddressModalR()" ion-button>
+			<ion-icon name="search"></ion-icon>
+		</button>
+		<button style="font-size: 30px;"(click)="geolocalizza()"  ion-button>
+			<ion-icon name="locate"></ion-icon>
+		</button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="text-align: center;">
+	
+	<div #map id="map"></div>  
+	<br />
+	<br />
+	<ion-chip>
+	  <ion-label>{{citta}}</ion-label>
+	</ion-chip>
+	<br />
+	<br />
+
+	<ion-card *ngFor="let item of cittaLuogo" tappable style="margin: 0; text-align: left;" (click)="selectPlace(item._id)">
+	  <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>
+ 
+	  <ion-card-content>
+		<ion-card-title>
+		  {{ item.nome }},   {{ item.citta }} {{ item.provincia }} {{ item.nazione }} 
+		  </ion-card-title>
+		<p>
+			{{ item.descrizione }}{{ item.latitudine }} {{ item.longitudine }} <br />
+			{{ item.orario }} {{ item.punto_risotro }}
+			{{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }} {{ item.foto }}
+		</p>
+	  </ion-card-content>
+	</ion-card>
+	  
+	  
+	<div class="row">
+		<div class="col" style="text-align: center;">
+			<button (click)="back()" ion-button icon-left>
+			  <ion-icon name="back"></ion-icon>
+				Back
+			</button>
+			<button ion-button color="primary" full (click)="doFacebook()">
+				<ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
+				Login with Facebook
+			</button>
+			<button ion-button color="primary" full (click)="doTwitter()">
+				<ion-icon name="logo-twitter"></ion-icon>&nbsp;&nbsp;
+				Login with Twitter
+			</button>
+
+		</div>
+	</div>
+	
+	
+	
+</ion-content>
+ <ion-footer class="centraTutto">
+  <ion-toolbar style="color: white; font-size: 35px;"  >
+	<ion-title class="centraTutto">Tell friends</ion-title>
+	<div class="centraTutto" style="padding-left: 15px;">
+		<ion-icon name="logo-facebook"></ion-icon>
+		<ion-icon name="logo-instagram"></ion-icon>
+		<ion-icon name="logo-google"></ion-icon>
+	</div>
+  </ion-toolbar>
+</ion-footer>

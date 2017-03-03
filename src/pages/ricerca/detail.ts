@@ -106,3 +106,4 @@ export class Detail implements OnInit{
 	    this.navCtrl.pop();
 	}
 }
+//https://www.raymondcamden.com/2016/11/17/a-social-example-of-ionic-auth

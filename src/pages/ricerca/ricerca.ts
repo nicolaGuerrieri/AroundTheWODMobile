@@ -5,6 +5,8 @@ import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation } from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
 import { Detail } from '../ricerca/detail';
+import { FacebookAuth, User, Auth } from '@ionic/cloud-angular';
+import { Login } from '../ricerca/login';
 
 declare var google: any;
 
@@ -18,21 +20,41 @@ export class Ricerca {
 	public citta:any;
 	public cittaLuogo: any;
 	public address:any;
-	
+	public loader;
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
  
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform) {
+	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this.citta= params.get("citta"); 
 		this.loadCity(this.citta);
 		this.address = {
 			place: this.citta
 		};
-		console.log(this.citta);
+	 
 	}
-	
-	
+	doTwitter() {
+		try{
+			console.log('do Twitter');
+			this.auth.login('facebook').then(() => {
+				this.navCtrl.setRoot(Login);
+			});
+		}catch (e) {
+		   alert("nic" + e);
+		}
+	}
+	doFacebook() {
+		try{
+			   console.log('do FB');
+			this.facebookAuth.login().then(() => {
+			  this.navCtrl.setRoot(Login);
+			});
+			 
+			
+		}catch (e) {
+		   alert("nic" + e);
+		}
+	}
 	ngAfterViewInit() {
 		try {
 		   this.loadMap(null);
@@ -83,28 +105,22 @@ export class Ricerca {
 	}
 
 	geolocalizza(){
-		let loader = this.loading.create({
-			content: 'Please wait...',
-		});
-		loader.present();
+		  
 		if (this.plt.is('core')) {
 			this.cittaLuogoService.localizza().then(data => {
 				if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
-					this.ricerca();
-					loader.dismiss();
+					this.ricerca(); 
 				}
 			});
 		}else{
 			this.cittaLuogoService.localizza().then(data => {
 				if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
-					this.ricerca();
-					loader.dismiss();
+					this.ricerca(); 
 				}
 			});
-		}
-		
+		} 
 	}
 	
 
@@ -120,6 +136,7 @@ export class Ricerca {
 			var geocoder =  new google.maps.Geocoder();
 			geocoder.geocode( { 'address': this.address.place}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
+				
 					localizzaRicerca=  results[0];
 					
 					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
@@ -159,8 +176,11 @@ export class Ricerca {
 							google.maps.event.addListener(marker, 'click', function() {
 							  infowindow.open(this.map, marker);
 							});
+							
 						});
 					}
+					
+				
 				}
 			});
 		} catch (e) {
@@ -216,6 +236,7 @@ export class Ricerca {
 	}
 	
 	loadCity(cittaP){
+		 
 		try{
 			if(cittaP == null){
 				
