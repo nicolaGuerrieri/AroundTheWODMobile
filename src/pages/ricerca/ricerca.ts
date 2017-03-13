@@ -2,14 +2,15 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, Platform   } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
-import { Geolocation } from 'ionic-native';
+import { Geolocation, SocialSharing} from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
 import { Detail } from '../ricerca/detail';
+import { DialogSocial } from '../dialog/dialogSocial';
 import { FacebookAuth, User, Auth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
 
 declare var google: any;
-
+declare var cordova:any;
 @Component({
   selector: 'ricerca',
   templateUrl: 'ricerca.html',
@@ -18,14 +19,18 @@ declare var google: any;
 export class Ricerca {
 	
 	public citta:any;
+	
 	public cittaLuogo: any;
 	public address:any;
+
 	public loader;
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
- 
+    public url  : string = 'www.aroundTheWOD.com';
+    public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here ' + this.url;
+
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this.citta= params.get("citta"); 
 		this.loadCity(this.citta);
 		this.address = {
@@ -33,21 +38,19 @@ export class Ricerca {
 		};
 	 
 	}
-	doTwitter() {
+ 
+	doInstagram() {
+		var full_name;
 		try{
-			console.log('do Twitter');
-			this.auth.login('facebook').then(() => {
-				this.navCtrl.setRoot(Login);
-			});
-		}catch (e) {
-		   alert("nic" + e);
-		}
-	}
-	doFacebook() {
-		try{
-			   console.log('do FB');
-			this.facebookAuth.login().then(() => {
-			  this.navCtrl.setRoot(Login);
+			console.log('do FB');
+			//this.facebookAuth.login().then(() => {
+			//this.auth.login('facebook').then(() => {
+			//	  this.navCtrl.setRoot(Login);
+			
+			SocialSharing.shareViaInstagram(this.message, this.url).then((data) => {
+				alert(data);
+			}).catch(() => {
+			  // Error!
 			});
 			 
 			
@@ -55,6 +58,61 @@ export class Ricerca {
 		   alert("nic" + e);
 		}
 	}
+	
+	addPlace(){
+		this.navCtrl.push(Detail,{
+			idLuogo: -1
+		});
+	} 
+	
+	doShare() {
+		var full_name;
+		try{
+			console.log('do FB');
+			//this.facebookAuth.login().then(() => {
+			//this.auth.login('facebook').then(() => {
+			//	  this.navCtrl.setRoot(Login);
+			
+			SocialSharing.share(this.message, null, null, this.url).then((data) => {
+				alert(data);
+			}).catch(() => {
+			  // Error!
+			});
+			 
+			
+		}catch (e) {
+		   alert("nic" + e);
+		}
+	}
+	doFacebook() {
+		var full_name;
+		try{
+			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, null, this.url).then((result) => {
+				alert(result);
+			}).catch(() => {
+			  alert("Error please contact AroundTheWOD support");
+			});
+			 
+			
+		}catch (e) {
+		   alert("nic" + e);
+		}
+	}
+	doTwitter() {
+		var full_name;
+		try{
+			SocialSharing.shareViaTwitter(this.message, null, this.url).then((result) => {
+				alert(result);
+			}).catch(() => {
+			  alert("Error please contact AroundTheWOD support");
+			});
+			 
+			
+		}catch (e) {
+		   alert("nic" + e);
+		}
+	}
+ 
 	ngAfterViewInit() {
 		try {
 		   this.loadMap(null);
@@ -85,18 +143,17 @@ export class Ricerca {
 			} else {
 				alert("Geocoder failed due to: " + status);
 			}
-		}
-		);
+		});
 		let mapOptions = {
 			center: latLng,
 			zoom: 15,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		}
  
-		this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-	}, (err) => {
-	  console.log(err);
-	});
+			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+		}, (err) => {
+		  console.log(err);
+		});
 	 
 	} 
 	
@@ -105,19 +162,32 @@ export class Ricerca {
 	}
 
 	geolocalizza(){
-		  
+		let loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		loader.present();
 		if (this.plt.is('core')) {
 			this.cittaLuogoService.localizza().then(data => {
 				if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
 					this.ricerca(); 
+					loader.dismiss();
 				}
 			});
 		}else{
+			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+				if(!enabled){
+					alert("Please enable GPS localization");
+					loader.dismiss();
+					return;
+				}
+			});
+				
 			this.cittaLuogoService.localizza().then(data => {
 				if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
 					this.ricerca(); 
+					loader.dismiss();
 				}
 			});
 		} 
@@ -184,7 +254,7 @@ export class Ricerca {
 				}
 			});
 		} catch (e) {
-		   alert("nic" + e);
+		   alert("error: " + e);
 		}
 	}
 	
@@ -215,7 +285,7 @@ export class Ricerca {
 				return;
 			}
 		}catch (e) {
-		   alert("nic" + e);
+		   alert("error: " + e);
 		}
 			
 	}
@@ -231,7 +301,7 @@ export class Ricerca {
 				return;
 			}
 		}catch (e) {
-		   alert("nic" + e);
+		   alert("error: " + e);
 		}
 	}
 	
@@ -249,7 +319,7 @@ export class Ricerca {
 				});
 			}
 		}catch (e) {
-		   alert("nic" + e);
+		   alert("error: " + e);
 		}
 	}
 	back(){

@@ -80,6 +80,14 @@ module.exports = [
         "clobbers": [
             "facebookConnectPlugin"
         ]
+    },
+    {
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -96,7 +104,8 @@ module.exports.metadata =
     "cordova.plugins.diagnostic": "3.4.1",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-inappbrowser": "1.6.1",
-    "cordova-plugin-facebook4": "1.7.4"
+    "cordova-plugin-facebook4": "1.7.4",
+    "cordova-plugin-x-socialsharing": "5.1.6"
 };
 // BOTTOM OF METADATA
 });

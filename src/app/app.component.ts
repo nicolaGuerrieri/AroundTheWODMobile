@@ -21,6 +21,14 @@ export class MyApp {
 		Splashscreen.hide();
 		//this.registerBackButtonListener();
 		
+		if (!platform.is('core')) {
+			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+				if(!enabled){
+					alert("Please enable GPS location");
+				    cordova.plugins.diagnostic.switchToLocationSettings();
+				}
+			});			 
+		}
     });
   }
   

@@ -27,9 +27,9 @@ export class Login {
  
 	
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
-			console.log(user);
+		console.log(user);
 		 if(user.social && user.social.facebook) {
-		  this.name = user.social.facebook.data.full_name;
+		  alert(user.social.facebook.data.full_name);
 		} else if(user.social && user.social.twitter) {
 		  this.name = user.social.twitter.data.full_name;
 		} else {

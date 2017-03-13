@@ -54,10 +54,5 @@
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
-    <plugin name="cordova-plugin-inappbrowser" spec="~1.6.1" />
-	    <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
-        <variable name="APP_ID" value="1116576615134600" />
-        <variable name="APP_NAME" value="AroundTheWODMobile" />
-    </plugin>
-    <plugin name="cordova-plugin-inappbrowser" spec="~1.5.0" />
+
 </widget>

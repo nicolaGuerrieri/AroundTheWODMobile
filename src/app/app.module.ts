@@ -5,6 +5,7 @@ import { HomePage } from '../pages/home/home';
 import { AutocompletePage } from '../pages/home/autocomplete';
 import { Ricerca } from '../pages/ricerca/ricerca';
 import { Detail } from '../pages/ricerca/detail';
+import { DialogSocial } from '../pages/dialog/dialogSocial';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
 const cloudSettings: CloudSettings = {
@@ -23,7 +24,8 @@ const cloudSettings: CloudSettings = {
     HomePage,
 	Ricerca,
 	AutocompletePage,
-	Detail
+	Detail,
+	DialogSocial
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -35,7 +37,8 @@ const cloudSettings: CloudSettings = {
     HomePage,
 	Ricerca,
 	AutocompletePage,
-	Detail
+	Detail,
+	DialogSocial
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global]
 })

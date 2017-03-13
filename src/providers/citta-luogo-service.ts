@@ -62,14 +62,18 @@ export class CittaLuogoService {
 		var geocoder;
 		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
-			let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			
+		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	 
 			geocoder.geocode({'latLng': latLng}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
+		 		if (status == google.maps.GeocoderStatus.OK) {
+			 
 					if (results[0]) {
 						
 						this.dataLocalizzazione =results[0];
 						resolve(this.dataLocalizzazione);
+					}else{
+										alert("cazz");
+
 					}
 				}
 			});

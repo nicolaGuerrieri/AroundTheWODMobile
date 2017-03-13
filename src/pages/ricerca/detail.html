@@ -11,16 +11,15 @@
 	
 	<div #map id="map"></div>  
 	<br />
-	<br />
-	
+	<br /> 
 	<div class="row text-center" *ngIf="luogoSelezionato">
 		<img *ngIf="luogoSelezionato.foto" src="{{global.preUrl}}users/leggi/{{luogoSelezionato.foto}}" alt="" class="imgDetail">
 	</div>
 	<ion-list>
 		<ion-item>
-			<ion-label color="primary" stacked>Where</ion-label>	<ion-img class="imgDetail" *ngIf="luogoSelezionato"  src="provaV2/users/leggi/{{luogoSelezionato.foto}}"></ion-img>
-	
-			<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato"></ion-input>
+			<ion-label color="primary" stacked>Where</ion-label> 
+			<ion-input type="text" placeholder="ricerca" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
+			<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -28,7 +27,8 @@
 	<ion-list>
 		<ion-item>
 			<ion-label color="primary" stacked>City</ion-label>
-			<ion-input readonly type="text" placeholder="Citta" floating [(ngModel)]="luogoSelezionato.citta" *ngIf="luogoSelezionato"></ion-input>
+			<ion-input   type="text" placeholder="City" floating [(ngModel)]="nuovoLuogoObject.citta" *ngIf="nuovoLuogo"></ion-input>
+			<ion-input readonly type="text" placeholder="Citta" floating [(ngModel)]="luogoSelezionato.citta" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -36,7 +36,8 @@
 	<ion-list>
 		 <ion-item>
 			<ion-label color="primary" stacked>District</ion-label>
-			<ion-input type="text" readonly placeholder="Provincia"   floating [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato"></ion-input>
+			<ion-input type="text" placeholder="District" [(ngModel)]="nuovoLuogoObject.provincia"  floating *ngIf="nuovoLuogo"></ion-input>
+			<ion-input type="text" readonly placeholder="District"   floating [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -44,7 +45,8 @@
 	<ion-list>
 		<ion-item class="nowrap">
 			<ion-label color="primary" stacked>Nation</ion-label>
-			<ion-input type="text" readonly placeholder="Nome" floating [(ngModel)]="luogoSelezionato.nome" *ngIf="luogoSelezionato"></ion-input>
+			<ion-input type="text" [(ngModel)]="nuovoLuogoObject.nazione"  placeholder="Nation" floating *ngIf="nuovoLuogo"></ion-input>
+			<ion-input type="text" readonly   floating [(ngModel)]="luogoSelezionato.nazione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -52,7 +54,8 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>Street</ion-label>
-		<ion-input type="text" readonly placeholder="via"  floating [(ngModel)]="luogoSelezionato.via" *ngIf="luogoSelezionato"></ion-input>
+		<ion-input type="text" placeholder="Street" [(ngModel)]="nuovoLuogoObject.via" floating *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="via"  floating [(ngModel)]="luogoSelezionato.via" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -60,7 +63,8 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>CAP</ion-label>
-		<ion-input type="text" readonly placeholder="cap" floating [(ngModel)]="luogoSelezionato.cap" *ngIf="luogoSelezionato"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.cap"  placeholder="Cap" floating *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="cap" floating [(ngModel)]="luogoSelezionato.cap" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -68,7 +72,8 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>Description</ion-label>
-		<ion-input type="text" readonly placeholder="descrizione" floating [(ngModel)]="luogoSelezionato.descrizione" *ngIf="luogoSelezionato"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.descrizione"   placeholder="Description" floating   *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="descrizione" floating [(ngModel)]="luogoSelezionato.descrizione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 		<br />
@@ -76,7 +81,8 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>Bar, restaurant</ion-label>
-		<ion-input type="text" readonly placeholder="Ristoro" floating [(ngModel)]="luogoSelezionato.punto_risotro" *ngIf="luogoSelezionato"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.punto_risotro"   placeholder="Bar, restaurant" floating  *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="Ristoro" floating [(ngModel)]="luogoSelezionato.punto_risotro" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 			<br />
@@ -84,7 +90,8 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>Workout equipment</ion-label>
-		<ion-input type="text" readonly placeholder="attrezzature" floating [(ngModel)]="luogoSelezionato.attrezzature" *ngIf="luogoSelezionato"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.attrezzature"   placeholder="Workout equipment" floating  *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="attrezzature" floating [(ngModel)]="luogoSelezionato.attrezzature" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -92,14 +99,17 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>Time</ion-label>
-		<ion-input type="text" readonly placeholder="orario" floating [(ngModel)]="luogoSelezionato.orario" *ngIf="luogoSelezionato"></ion-input>
+		<ion-input type="text" placeholder="Time" floating  [(ngModel)]="nuovoLuogoObject.orario"  *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="orario" floating [(ngModel)]="luogoSelezionato.orario" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<div class="row">
 		<div class="col" style="text-align: center;">
-			<button (click)="back()" ion-button icon-left>
-			  <ion-icon name="back"></ion-icon>
+			<button (click)="back()" ion-button icon-left> 
 				Back
+			</button>
+			<button *ngIf="nuovoLuogo" (click)="salva()" ion-button icon-left>
+				Save
 			</button>
 		</div>
 	</div>

@@ -41,6 +41,9 @@
             "APP_ID": "1116576615134600",
             "APP_NAME": "AroundTheWODMobile",
             "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
         }
     },
     "dependent_plugins": {

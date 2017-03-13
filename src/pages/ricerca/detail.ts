@@ -5,6 +5,7 @@ import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation } from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
 import { Ricerca } from '../ricerca/ricerca';
+import { DialogSocial } from '../dialog/dialogSocial';
 
 declare var google: any;
 
@@ -16,7 +17,9 @@ declare var google: any;
 export class Detail implements OnInit{
 	
 	public idLuogo;
+	public nuovoLuogo = false;
 	public luogoSelezionato;
+	public nuovoLuogoObject:any;
 	
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
@@ -25,9 +28,28 @@ export class Detail implements OnInit{
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform) {
 		
 	}
+	
+	
 	ngOnInit() {
+		
 		this.idLuogo= this.params.get("idLuogo"); 
-		this.cercaPerId(this.idLuogo);
+		if(this.idLuogo != -1){
+			this.nuovoLuogo = false;
+			this.cercaPerId(this.idLuogo);
+		}else{
+			this.nuovoLuogo = true;
+			this.nuovoLuogoObject = {};
+			this.nuovoLuogoObject.ricerca = "";
+			this.nuovoLuogoObject.citta = "";
+			this.nuovoLuogoObject.nazione = "";
+			this.nuovoLuogoObject.provincia = "";
+			this.nuovoLuogoObject.via = "";
+			this.nuovoLuogoObject.descrizione = "";
+			this.nuovoLuogoObject.cap = "";
+			this.nuovoLuogoObject.punto_risotro = "";
+			this.nuovoLuogoObject.attrezzature = "";
+			this.nuovoLuogoObject.orario = "";
+		}
 	}
 	
 	
@@ -50,7 +72,10 @@ export class Detail implements OnInit{
 	
 	}
 	
-	
+	salva(){
+		let modal = this.modalCtrl.create(DialogSocial);
+		modal.present();
+	}
 	
 	cercaLuogo(luogo){
 		try {

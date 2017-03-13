@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
-
+ 
 import { NavController, ModalController, LoadingController, Platform  } from 'ionic-angular';
 import {Global} from '../../services/global';
 import { Ricerca } from '../ricerca/ricerca';
 import { AutocompletePage } from './autocomplete';
-
+ 
 declare var cordova:any;
 declare var google: any;
 @Component({
@@ -38,35 +38,46 @@ export class HomePage {
 		modal.present();
 	}
 	geolocalizza(){
-		let loader = this.loading.create({
-			content: 'Please wait...',
-		});
-		loader.present();
-		if (this.plt.is('core')) {
-			this.cittaLuogoService.localizza().then(data => {
-				if(data.address_components[2]){
-					//alert(data.address_components[2].long_name);
-					this.address.place = data.address_components[2].long_name;
-					this.ricerca();
-					loader.dismiss();
-				}
+		try{
+			let loader = this.loading.create({
+				content: 'Please wait...',
 			});
-		}else{
-			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-				if(enabled){
-					this.cittaLuogoService.localizza().then(data => {
-						if(data.address_components[2]){
-							//alert(data.address_components[2].long_name);
-							this.address.place = data.address_components[2].long_name;
-							this.ricerca();
-							loader.dismiss();
-						}
-					});
-				}else{
-					alert("Please enable GPS localization");
-				}
-			});
+			loader.present();
+			if (this.plt.is('core')) {
+				this.cittaLuogoService.localizza().then(data => {
+					if(data.address_components[2]){
+						this.address.place = data.address_components[2].long_name;
+						this.ricerca();
+						loader.dismiss();
+					}
+				});
+			}else{
+				cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+					if(!enabled){
+						alert("Please enable GPS localization");
+						loader.dismiss();
+						return;
+					}
+				});
+				this.chiamaLocalizzazione(loader);
+				
+			
+			}
+		} catch (e) {
+		   alert("error" + e);
 		}
+	}
+	
+	chiamaLocalizzazione(loader){
+		this.cittaLuogoService.localizza().then(data => {
+			if(data.address_components[2]){
+				this.address.place = data.address_components[2].long_name;
+				this.ricerca();
+				loader.dismiss();
+			}else{
+				alert("No data found");
+			}
+		});
 	}
 	ricerca(){
 		if(this.address.place != ""){
