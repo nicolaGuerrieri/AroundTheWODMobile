@@ -88,6 +88,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.socialsharing"
         ]
+    },
+    {
+        "id": "cordova-plugin-googleplus.GooglePlus",
+        "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
+        "pluginId": "cordova-plugin-googleplus",
+        "clobbers": [
+            "window.plugins.googleplus"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -105,7 +113,8 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-inappbrowser": "1.6.1",
     "cordova-plugin-facebook4": "1.7.4",
-    "cordova-plugin-x-socialsharing": "5.1.6"
+    "cordova-plugin-x-socialsharing": "5.1.6",
+    "cordova-plugin-googleplus": "5.1.1"
 };
 // BOTTOM OF METADATA
 });

@@ -44,6 +44,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-googleplus": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
         }
     },
     "dependent_plugins": {

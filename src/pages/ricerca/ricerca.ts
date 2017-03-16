@@ -39,24 +39,9 @@ export class Ricerca {
 	 
 	}
  
-	doInstagram() {
-		var full_name;
-		try{
-			console.log('do FB');
-			//this.facebookAuth.login().then(() => {
-			//this.auth.login('facebook').then(() => {
-			//	  this.navCtrl.setRoot(Login);
-			
-			SocialSharing.shareViaInstagram(this.message, this.url).then((data) => {
-				alert(data);
-			}).catch(() => {
-			  // Error!
-			});
-			 
-			
-		}catch (e) {
-		   alert("nic" + e);
-		}
+	share(){
+		let modal = this.modalCtrl.create(DialogSocial, {"from": "social"});
+		modal.present();
 	}
 	
 	addPlace(){
@@ -84,35 +69,7 @@ export class Ricerca {
 		   alert("nic" + e);
 		}
 	}
-	doFacebook() {
-		var full_name;
-		try{
-			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, null, this.url).then((result) => {
-				alert(result);
-			}).catch(() => {
-			  alert("Error please contact AroundTheWOD support");
-			});
-			 
-			
-		}catch (e) {
-		   alert("nic" + e);
-		}
-	}
-	doTwitter() {
-		var full_name;
-		try{
-			SocialSharing.shareViaTwitter(this.message, null, this.url).then((result) => {
-				alert(result);
-			}).catch(() => {
-			  alert("Error please contact AroundTheWOD support");
-			});
-			 
-			
-		}catch (e) {
-		   alert("nic" + e);
-		}
-	}
- 
+	 
 	ngAfterViewInit() {
 		try {
 		   this.loadMap(null);

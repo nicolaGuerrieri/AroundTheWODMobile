@@ -3,7 +3,7 @@ import { NavController, NavParams, ModalController, LoadingController, Platform,
 import {Global} from '../../services/global'; 
 import {SocialSharing} from 'ionic-native'; 
 import { Detail } from '../ricerca/detail';
-import { FacebookAuth, User, Auth } from '@ionic/cloud-angular';
+import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
 
 declare var google: any;
@@ -23,29 +23,25 @@ export class DialogSocial {
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
     public url  : string = 'www.aroundTheWOD.com';
-    public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here ' + this.url;
-
+    public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here www.aroundTheWOD.com';
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
-		 
+	
+	public from:String;
+		
+	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+		this.from = this.params.get("from");
 	 
 	}
- 
-	doInstagram() { 
-		try{
-			console.log('do FB');
-			SocialSharing.shareViaInstagram(this.message, this.url).then((data) => {
-				alert(data);
-			}).catch(() => {
-			  // Error!
-			});
-			 
-			
-		}catch (e) {
-		   alert("error: " + e);
-		}
+	dismiss() {
+		this.viewCtrl.dismiss();
 	}
-	
+	doInstagram() { 
+		alert("passa di qua");
+		this.googleAuth.login().then((success) => {
+			alert(JSON.stringify(success));
+		});
+	}
+//	https://forum.ionicframework.com/t/ionic-2-ionic-cloud-auth-google-auth-failing-12501/72967/3
 		
 	doShare() {
 		var full_name;

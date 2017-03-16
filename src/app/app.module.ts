@@ -9,15 +9,16 @@ import { DialogSocial } from '../pages/dialog/dialogSocial';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
 const cloudSettings: CloudSettings = {
-  'core': {
-    'app_id': '1116576615134600'
+    'core': {
+    'app_id': 'f33b26b8'
   },
   'auth': {
-    'facebook': {
+    'google': {
+      'webClientId': '923547097240-vj2comu32e960c7rr6h9sccrpsiihhef.apps.googleusercontent.com',
       'scope': []
     }
   }
-};
+}
 @NgModule({
   declarations: [
     MyApp,

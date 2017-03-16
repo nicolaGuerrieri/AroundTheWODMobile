@@ -6,6 +6,7 @@ import { Geolocation } from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
 import { Ricerca } from '../ricerca/ricerca';
 import { DialogSocial } from '../dialog/dialogSocial';
+import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
 declare var google: any;
 
@@ -25,7 +26,7 @@ export class Detail implements OnInit{
 	map: any;
  
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform) {
+	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public facebookAuth:FacebookAuth, public auth:Auth) {
 		
 	}
 	
@@ -71,10 +72,19 @@ export class Detail implements OnInit{
 		}
 	
 	}
+	loginGoogle(){
+		this.googleAuth.login().then((success) => {
+			alert(JSON.stringify(success));
+			this.inviaDatiServer();
+		});
+	}
 	
 	salva(){
-		let modal = this.modalCtrl.create(DialogSocial);
+		let modal = this.modalCtrl.create(DialogSocial, {"from": "login"});
 		modal.present();
+	}
+	inviaDatiServer(){
+		alert(this.nuovoLuogoObject);
 	}
 	
 	cercaLuogo(luogo){
