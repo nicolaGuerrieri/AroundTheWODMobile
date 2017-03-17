@@ -32,14 +32,27 @@ export class DialogSocial {
 		this.from = this.params.get("from");
 	 
 	}
+	
+	loginGoogle(){
+		this.viewCtrl.dismiss("google");
+	}
+	
 	dismiss() {
 		this.viewCtrl.dismiss();
 	}
 	doInstagram() { 
-		alert("passa di qua");
-		this.googleAuth.login().then((success) => {
-			alert(JSON.stringify(success));
-		});
+		 try{
+			console.log('do FB');
+			SocialSharing.shareViaInstagram(this.message, this.url).then((data) => {
+				alert(data);
+			}).catch(() => {
+			  // Error!
+			});
+			 
+			
+		}catch (e) {
+		   alert("error: " + e);
+		}
 	}
 //	https://forum.ionicframework.com/t/ionic-2-ionic-cloud-auth-google-auth-failing-12501/72967/3
 		

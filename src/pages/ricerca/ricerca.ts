@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform   } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, ActionSheetController} from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation, SocialSharing} from 'ionic-native';
@@ -30,7 +30,7 @@ export class Ricerca {
     public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here ' + this.url;
 
 	
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this.citta= params.get("citta"); 
 		this.loadCity(this.citta);
 		this.address = {
@@ -38,7 +38,40 @@ export class Ricerca {
 		};
 	 
 	}
- 
+	
+	presentActionSheet() {
+		let actionSheet = this.actionSheetCtrl.create({
+		  title: 'Menu',
+		  buttons: [
+			{
+			  text: 'Add place',
+			  role: 'addPlace',
+			  handler: () => {
+				this.addPlace();
+			  }
+			},{
+			  text: 'Search',
+			  handler: () => {
+				this.showAddressModalR();
+			  }
+			},{
+			  text: 'Locate',
+			  role: 'locate',
+			  handler: () => {
+				this.geolocalizza();
+			  }
+			},{
+			  text: 'Share',
+			  role: 'Share',
+			  handler: () => {
+				this.share();
+			  }
+			}
+		  ]
+		});
+		actionSheet.present();
+	}
+	
 	share(){
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "social"});
 		modal.present();
@@ -125,11 +158,15 @@ export class Ricerca {
 		loader.present();
 		if (this.plt.is('core')) {
 			this.cittaLuogoService.localizza().then(data => {
-				if(data.address_components[2]){
+				if(data.formatted_address != null){
+					this.address.place = data.formatted_address;
+				}else if(data.address_components[1]){
+					this.address.place = data.address_components[1].long_name;
+				}else if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
-					this.ricerca(); 
-					loader.dismiss();
 				}
+				this.ricerca(); 
+				loader.dismiss();
 			});
 		}else{
 			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
@@ -169,7 +206,7 @@ export class Ricerca {
 					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 					mapOptions = {
 					  center: latLng,
-					  zoom: 10,
+					  zoom: 15,
 					  mapTypeId: google.maps.MapTypeId.ROADMAP
 					}
 					this.map = new google.maps.Map(elem.nativeElement, mapOptions);
