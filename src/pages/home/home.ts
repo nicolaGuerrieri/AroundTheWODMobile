@@ -16,7 +16,7 @@ declare var google: any;
 export class HomePage {
 
 	address;
-
+	public allSearchPlace:any;
 	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 	
 	//	alert(this.plt.platforms());
@@ -29,7 +29,8 @@ export class HomePage {
 		let me = this;
 		modal.onDidDismiss(data => { 
 			if(data != null){
-				this.address.place = data.split(",")[0];
+				this.allSearchPlace =data;
+				this.address.place = data.description.split(",")[0];
 				this.ricerca();
 			}else{
 				return;
@@ -43,35 +44,25 @@ export class HomePage {
 				content: 'Please wait...',
 			});
 			loader.present();
-			if (this.plt.is('core')) {
-				this.cittaLuogoService.localizza().then(data => {
-					if(data != "error"){
-						if(data.address_components[2]){
-							this.address.place = data.address_components[2].long_name;
-							this.ricerca();
-						}
+			this.cittaLuogoService.localizza(loader).then(data => {
+				if(data != "error"){
+					if(data.address_components[2]){
+						this.address.place = data.address_components[2].long_name;
+						this.allSearchPlace = data;
+						this.ricerca();
 					}
-					loader.dismiss();
-				});
-			}else{
-				cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-					if(!enabled){
-						alert("Please enable GPS localization");
-						loader.dismiss();
-						return;
-					}
-				});
-				this.chiamaLocalizzazione(loader);
-				
-			
-			}
+				}else{
+					alert("No data found");
+				}
+				loader.dismiss();
+			});
 		} catch (e) {
 		   alert("error" + e);
 		}
 	}
 	
 	chiamaLocalizzazione(loader){
-		this.cittaLuogoService.localizza().then(data => {
+		this.cittaLuogoService.localizza(loader).then(data => {
 			if(data.address_components[2]){
 				this.address.place = data.address_components[2].long_name;
 				this.ricerca();
@@ -84,7 +75,8 @@ export class HomePage {
 	ricerca(){
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
-				citta: this.address.place
+				citta: this.address.place,
+				allSearchPlace: this.allSearchPlace
 			},{ animate: true, direction: 'forward' });
 		}else{
 			console.log("bloccato");

@@ -2,7 +2,6 @@ import { Component, ViewChild, ElementRef, OnInit  } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, Platform   } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
-import { Geolocation } from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
 import { Ricerca } from '../ricerca/ricerca';
 import { DialogSocial } from '../dialog/dialogSocial';
@@ -285,31 +284,13 @@ export class Detail implements OnInit{
 			content: 'Please wait...',
 		});
 		loader.present();
-		if (this.plt.is('core')) {
-			this.cittaLuogoService.localizza().then(data => {
-				if(data != "error"){
-					this.riempiOggetto(data);	
-					this.loadMap(null);
-				}
-				loader.dismiss();
-			});
-		}else{
-			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-				if(!enabled){
-					alert("Please enable GPS localization");
-					loader.dismiss();
-					return;
-				}
-			});
-				
-			this.cittaLuogoService.localizza().then(data => {
-				if(data.address_components[2]){
-					this.riempiOggetto(data);
-					this.loadMap(null);
-					loader.dismiss();
-				}
-			});
-		} 
+		this.cittaLuogoService.localizza(loader).then(data => {
+			if(data != "error"){
+				this.riempiOggetto(data);	
+				this.loadMap(null);
+			}
+			loader.dismiss();
+		});
 	}
 	//carica la mappa in base al risultato da db
 	cercaLuogo(luogo){

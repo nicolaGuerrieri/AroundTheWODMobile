@@ -1,0 +1,17 @@
+AroundTheWODMobile
+
+IO
+- test su xcode
+- gestire ritorno da salvataggio
+- provare a fare login con facebook
+
+
+AroundTheWOD
+
+IO
+- aumentare logsu file
+- sistemare la questione della città in varie lingue
+
+
+
+RIC
