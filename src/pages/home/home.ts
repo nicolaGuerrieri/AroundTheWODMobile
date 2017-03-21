@@ -45,11 +45,13 @@ export class HomePage {
 			loader.present();
 			if (this.plt.is('core')) {
 				this.cittaLuogoService.localizza().then(data => {
-					if(data.address_components[2]){
-						this.address.place = data.address_components[2].long_name;
-						this.ricerca();
-						loader.dismiss();
+					if(data != "error"){
+						if(data.address_components[2]){
+							this.address.place = data.address_components[2].long_name;
+							this.ricerca();
+						}
 					}
+					loader.dismiss();
 				});
 			}else{
 				cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){

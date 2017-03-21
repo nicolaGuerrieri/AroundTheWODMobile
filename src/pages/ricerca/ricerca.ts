@@ -158,14 +158,16 @@ export class Ricerca {
 		loader.present();
 		if (this.plt.is('core')) {
 			this.cittaLuogoService.localizza().then(data => {
-				if(data.formatted_address != null){
-					this.address.place = data.formatted_address;
-				}else if(data.address_components[1]){
-					this.address.place = data.address_components[1].long_name;
-				}else if(data.address_components[2]){
-					this.address.place = data.address_components[2].long_name;
+				if(data != "error"){
+					if(data.formatted_address != null){
+						this.address.place = data.formatted_address;
+					}else if(data.address_components[1]){
+						this.address.place = data.address_components[1].long_name;
+					}else if(data.address_components[2]){
+						this.address.place = data.address_components[2].long_name;
+					}
+					this.ricerca(); 
 				}
-				this.ricerca(); 
 				loader.dismiss();
 			});
 		}else{

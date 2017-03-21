@@ -80,7 +80,7 @@ export class Detail implements OnInit{
 	
 	loginGoogle(){ 
 		if (this.plt.is('core')) {
-			this.inviaDatiServer(this.user);
+			this.inviaDatiServer("afdsafscsasd");
 		}else{
 			this.googleAuth.login().then((success) => {
 				alert(success.token);
@@ -287,8 +287,10 @@ export class Detail implements OnInit{
 		loader.present();
 		if (this.plt.is('core')) {
 			this.cittaLuogoService.localizza().then(data => {
-				this.riempiOggetto(data);
-				this.loadMap(null);
+				if(data != "error"){
+					this.riempiOggetto(data);	
+					this.loadMap(null);
+				}
 				loader.dismiss();
 			});
 		}else{

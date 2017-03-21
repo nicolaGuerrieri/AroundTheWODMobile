@@ -51,7 +51,7 @@ export class CittaLuogoService {
 			let body = JSON.stringify(luogo);
 			let headers = new Headers({ 'Content-Type': 'application/json' });
 			let options = new RequestOptions({ headers: headers });
-			this.http.post(this.preUrl + 'upload', body, options).map(res => res.json()).subscribe(data => {
+			this.http.post(this.preUrl + 'users/upload', body, options).map(res => res.json()).subscribe(data => {
 					resolve(data);
 				  },err => console.error(">>" + err),() => console.log('done'));
 	    });
@@ -97,6 +97,9 @@ export class CittaLuogoService {
 				}
 			});
 		
+		},(error) => {
+			alert("Please enable GPS localization");
+			resolve("error");
 		});
 	});
 		  
