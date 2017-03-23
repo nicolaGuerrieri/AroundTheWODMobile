@@ -23,6 +23,7 @@ export class Ricerca {
 	public cittaLuogo: any;
 	public address:any;
 
+	public allSearchPlace:any;
 	public loader;
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
@@ -32,6 +33,7 @@ export class Ricerca {
 	
 	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this.citta= params.get("citta"); 
+		this.allSearchPlace = params.get("allSearchPlace");
 		this.loadCity(this.citta);
 		this.address = {
 			place: this.citta
@@ -105,7 +107,7 @@ export class Ricerca {
 	 
 	ngAfterViewInit() {
 		try {
-		   this.loadMap(null);
+		   this.loadMapWithPlace(null);
 		}
 		catch (e) {
 		  alert("error" + e);
@@ -156,8 +158,8 @@ export class Ricerca {
 			content: 'Please wait...',
 		});
 		loader.present();
-		if (this.plt.is('core')) {
-			this.cittaLuogoService.localizza().then(data => {
+		this.cittaLuogoService.localizza(loader).then(data => {
+			if(data != "error"){
 				if(data.formatted_address != null){
 					this.address.place = data.formatted_address;
 				}else if(data.address_components[1]){
@@ -165,30 +167,17 @@ export class Ricerca {
 				}else if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
 				}
+				console.log(data)
+				this.allSearchPlace = data;
 				this.ricerca(); 
-				loader.dismiss();
-			});
-		}else{
-			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-				if(!enabled){
-					alert("Please enable GPS localization");
-					loader.dismiss();
-					return;
-				}
-			});
-				
-			this.cittaLuogoService.localizza().then(data => {
-				if(data.address_components[2]){
-					this.address.place = data.address_components[2].long_name;
-					this.ricerca(); 
-					loader.dismiss();
-				}
-			});
-		} 
+			}
+			loader.dismiss();
+		});
+		
 	}
 	
 
-	loadMap(cittaResult){
+	loadMapWithPlace(cittaResult){
 		try {
 			var localizzaRicerca;
 			let mapOptions;
@@ -259,11 +248,11 @@ export class Ricerca {
 		modal.onDidDismiss(data => {
 			if(data != null){
 				console.log(data);
-				this.address.place = data.split(",")[0];
+				this.address.place = data.description.split(",")[0];
 			}else{
 				return;
 			}
-		  
+			this.allSearchPlace = data;
 			this.ricerca();
 		});
 		modal.present();
@@ -272,7 +261,8 @@ export class Ricerca {
 		try{
 			if(this.address.place != ""){
 				this.navCtrl.push(Ricerca,{
-					citta: this.address.place
+					citta: this.address.place,
+					allSearchPlace: this.allSearchPlace
 				});
 			}else{
 				console.log("bloccato");
@@ -300,16 +290,28 @@ export class Ricerca {
 	}
 	
 	loadCity(cittaP){
-		 
+		//troppi if
+		if(this.allSearchPlace && this.allSearchPlace.types){
+			if(this.allSearchPlace.types != 'locality'){
+				if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
+					if(this.allSearchPlace.terms){
+						cittaP = this.allSearchPlace.terms[1].value;
+					}else{
+						if(this.allSearchPlace.address_components){
+							cittaP = this.allSearchPlace.address_components[2].long_name;
+						}
+					}
+				}
+			}
+		}
 		try{
 			if(cittaP == null){
-				
 				cittaP = this.loadGeolocalization();
 			}else{
 				this.cittaLuogoService.load(cittaP).then(data => {
 					
 					this.cittaLuogo = data;
-					this.loadMap(this.cittaLuogo);
+					this.loadMapWithPlace(this.cittaLuogo);
 				});
 			}
 		}catch (e) {

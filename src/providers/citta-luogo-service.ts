@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Geolocation } from 'ionic-native';
-import { Platform  } from 'ionic-angular'; 
+import { Platform, LoadingController } from 'ionic-angular'; 
 
  
 declare var google: any;
+declare var cordova:any;
 
 @Injectable()
 export class CittaLuogoService {
 	public data:any;
 	public preUrl = "";
 	public dataLocalizzazione:any;
-	constructor(public http: Http, public platform: Platform) {
+	constructor(public http: Http, public platform: Platform, public loading: LoadingController) {
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		}else{
@@ -72,13 +73,23 @@ export class CittaLuogoService {
 				() => console.log('done'));
 		});
 	}
-	localizza() {
+	localizza(loader) {
 	  if (this.dataLocalizzazione) {
 		alert("mica qui");
 		return Promise.resolve(this.dataLocalizzazione);
 	  }
 
 	return new Promise(resolve => {
+
+		if (this.platform.is('android')) {
+			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+				if(!enabled){
+					alert("Please enable GPS localization");
+					loader.dismiss();
+					return;
+				}
+			});
+		}
 		var geocoder;
 		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
@@ -88,7 +99,6 @@ export class CittaLuogoService {
 		 		if (status == google.maps.GeocoderStatus.OK) {
 					 
 					if (results[0]) {
-						
 						this.dataLocalizzazione =results[0];
 						resolve(this.dataLocalizzazione);
 					}else{
@@ -97,6 +107,9 @@ export class CittaLuogoService {
 				}
 			});
 		
+		},(error) => {
+			alert("Please enable GPS localization");
+			resolve("error");
 		});
 	});
 		  

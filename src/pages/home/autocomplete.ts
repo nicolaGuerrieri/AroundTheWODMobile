@@ -44,7 +44,8 @@ export class AutocompletePage {
       me.zone.run(function () {
 		if(predictions){
 			predictions.forEach(function (prediction) {
-				me.autocompleteItems.push(prediction.description);
+        console.log(prediction);
+				me.autocompleteItems.push(prediction);
 			});
 		}
       });

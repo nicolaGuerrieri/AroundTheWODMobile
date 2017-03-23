@@ -2,7 +2,6 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, Platform, ViewController} from 'ionic-angular';
 import {Global} from '../../services/global'; 
 import {SocialSharing} from 'ionic-native'; 
-import { Detail } from '../ricerca/detail';
 import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
 

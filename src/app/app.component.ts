@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, Alert } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
