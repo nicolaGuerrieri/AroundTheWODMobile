@@ -248,7 +248,7 @@ export class Ricerca {
 		modal.onDidDismiss(data => {
 			if(data != null){
 				console.log(data);
-				this.address.place = data.description.split(",")[0];
+				this.address.place = data.description;
 			}else{
 				return;
 			}
@@ -290,26 +290,37 @@ export class Ricerca {
 	}
 	
 	loadCity(cittaP){
-		//troppi if
-		if(this.allSearchPlace && this.allSearchPlace.types){
-			if(this.allSearchPlace.types != 'locality'){
+		try{
+			//troppi if
+			console.log(this.allSearchPlace);
+			console.log("---------");
+			if(this.allSearchPlace && this.allSearchPlace.types){
+							console.log("ma passa di qua");		
+
 				if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
+					console.log("ma passa di qua");		
 					if(this.allSearchPlace.terms){
-						cittaP = this.allSearchPlace.terms[1].value;
-					}else{
-						if(this.allSearchPlace.address_components){
+						if(this.allSearchPlace.types[0] == 'street_address'){
+							//ho anche il civico al numero [1]
+							cittaP = this.allSearchPlace.terms[2].value;
+						}else{
+							cittaP = this.allSearchPlace.terms[1].value;
+						}
+					}else{		
+						if(this.allSearchPlace.address_components){		
+							console.log("certo");
 							cittaP = this.allSearchPlace.address_components[2].long_name;
 						}
 					}
+				}else{
+					cittaP = cittaP.split(",")[0];
+					console.log(cittaP + "certo");				
 				}
 			}
-		}
-		try{
 			if(cittaP == null){
 				cittaP = this.loadGeolocalization();
 			}else{
 				this.cittaLuogoService.load(cittaP).then(data => {
-					
 					this.cittaLuogo = data;
 					this.loadMapWithPlace(this.cittaLuogo);
 				});

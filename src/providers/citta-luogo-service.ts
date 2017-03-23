@@ -37,6 +37,7 @@ export class CittaLuogoService {
 		  });
 		  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
 	}
+	
 	save(luogo) {
 		if(!luogo){
 			alert("errore luogo service");
@@ -52,11 +53,12 @@ export class CittaLuogoService {
 			let body = JSON.stringify(luogo);
 			let headers = new Headers({ 'Content-Type': 'application/json' });
 			let options = new RequestOptions({ headers: headers });
-			this.http.post(this.preUrl + 'users/upload', body, options).map(res => res.json()).subscribe(data => {
+			this.http.post(this.preUrl + 'users/upload', body, options).subscribe(data => {
 					resolve(data);
 				  },err => console.error(">>" + err),() => console.log('done'));
 	    });
 	}
+	
 	getLuogoForId(idLuogo) {
 		this.data = null;
 		if (this.data) {
@@ -73,6 +75,7 @@ export class CittaLuogoService {
 				() => console.log('done'));
 		});
 	}
+	
 	localizza(loader) {
 	  if (this.dataLocalizzazione) {
 		alert("mica qui");

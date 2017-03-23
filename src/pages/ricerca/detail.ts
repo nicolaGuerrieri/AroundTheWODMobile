@@ -5,6 +5,7 @@ import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { AutocompletePage } from '../home/autocomplete';
 import { Ricerca } from '../ricerca/ricerca';
 import { DialogSocial } from '../dialog/dialogSocial';
+import { Success } from '../dialog/success';
 import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
 declare var google: any;
@@ -136,7 +137,6 @@ export class Detail implements OnInit{
 		}
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "login"});
 		modal.onDidDismiss(data => {
-			alert(data);
 		    this.loginGoogle();
 	    });
 		modal.present();
@@ -195,10 +195,31 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
 			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
-				alert(data);
+				if(data.status == 200){
+					//andato bene il salvataggio
+						let modal = this.modalCtrl.create(Success, {"from": "detail"});
+						modal.onDidDismiss(data => {
+							 this.ricerca();
+						});
+						modal.present();
+				}
 			});
 		} catch (e) {
 		   alert("error: " + e);
+		}
+	}
+	
+	ricerca(){
+		var navOptions = {
+			animation: 'ios-transition'
+		};
+		if(this.nuovoLuogoObject.ricerca){
+			this.navCtrl.push(Ricerca,{
+				citta: this.nuovoLuogoObject.ricerca
+			});
+		}else{
+			console.log("bloccato");
+			return;
 		}
 	}
 	

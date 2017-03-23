@@ -44,7 +44,6 @@ export class AutocompletePage {
       me.zone.run(function () {
 		if(predictions){
 			predictions.forEach(function (prediction) {
-        console.log(prediction);
 				me.autocompleteItems.push(prediction);
 			});
 		}

@@ -6,6 +6,7 @@ import {Global} from '../../services/global';
 import { Ricerca } from '../ricerca/ricerca';
 import { AutocompletePage } from './autocomplete';
  
+import { Success } from '../dialog/success';
 declare var cordova:any;
 declare var google: any;
 @Component({
@@ -30,12 +31,19 @@ export class HomePage {
 		modal.onDidDismiss(data => { 
 			if(data != null){
 				this.allSearchPlace =data;
-				this.address.place = data.description.split(",")[0];
+				this.address.place = data.description;
 				this.ricerca();
 			}else{
 				return;
 			}
 		});
+		modal.present();
+	}
+	showAddressModal2 () {
+	let modal = this.modalCtrl.create(Success, {"from": "login"});
+		modal.onDidDismiss(data => {
+		    
+	    });
 		modal.present();
 	}
 	geolocalizza(){
@@ -62,6 +70,7 @@ export class HomePage {
 	}
 	
 	chiamaLocalizzazione(loader){
+	
 		this.cittaLuogoService.localizza(loader).then(data => {
 			if(data.address_components[2]){
 				this.address.place = data.address_components[2].long_name;
@@ -73,11 +82,12 @@ export class HomePage {
 		});
 	}
 	ricerca(){
+
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
 				citta: this.address.place,
 				allSearchPlace: this.allSearchPlace
-			},{ animate: true, direction: 'forward' });
+			});
 		}else{
 			console.log("bloccato");
 			return;
