@@ -7,7 +7,7 @@
 	<ion-buttons end>
 
 		<button *ngIf="!nuovoLuogo" (click)="openMapsApp()"  ion-button>
-			<img  src="/assets/images/g.png"  style="width: 45px; height: 45px" alt="" class="imgDetail">
+			<img  src="assets/images/g.png"  style="width: 30px; height: 30px" alt="" class="imgDetail">
 		</button>
 	</ion-buttons>
   </ion-navbar>
@@ -114,8 +114,8 @@
 	<ion-list>
 		<ion-item>
 		<ion-label color="primary" stacked>Time</ion-label>
-		<ion-input type="text" placeholder="Time" floating  [(ngModel)]="nuovoLuogoObject.orario"  *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="orario" floating [(ngModel)]="luogoSelezionato.orario" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input type="text" placeholder="Time" floating  [(ngModel)]="nuovoLuogoObject.orari"  *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="orario" floating [(ngModel)]="luogoSelezionato.orari" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />

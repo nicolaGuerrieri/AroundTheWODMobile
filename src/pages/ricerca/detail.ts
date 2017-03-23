@@ -50,10 +50,12 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.via = "";
 			this.nuovoLuogoObject.descrizione = "";
 			this.nuovoLuogoObject.cap = "";
-			this.nuovoLuogoObject.punto_risotro = "";
+			this.nuovoLuogoObject.ristoro = "";
 			this.nuovoLuogoObject.attrezzature = "";
-			this.nuovoLuogoObject.orario = "";
+			this.nuovoLuogoObject.orari = "";
 			this.nuovoLuogoObject.errore = null;
+			this.nuovoLuogoObject.dal = null;
+			this.nuovoLuogoObject.al = null;
 			this.geolocalizza();
 		}
 	}
@@ -80,7 +82,7 @@ export class Detail implements OnInit{
 	
 	loginGoogle(){ 
 		if (this.plt.is('core')) {
-			this.inviaDatiServer(this.user);
+			this.inviaDatiServer("asdffasdcvasfdcvasdvvvvvvvvvvvvvv");
 		}else{
 			this.googleAuth.login().then((success) => {
 				alert(success.token);
@@ -146,6 +148,11 @@ export class Detail implements OnInit{
 		if(!data){
 			return;
 		}
+		console.log(data.geometry);
+		if(data.geometry != null){
+			this.nuovoLuogoObject.lat = data.geometry.location.lat();
+			this.nuovoLuogoObject.longi = data.geometry.location.lng();
+		}
 		if(data.formatted_address != null){
 			this.nuovoLuogoObject.ricerca = data.formatted_address;
 		}else if(data.address_components[1]){
@@ -177,10 +184,17 @@ export class Detail implements OnInit{
 			if(!tokenAuth){
 				alert("No token");
 				return;
-			}
+			}	
 			console.log(tokenAuth);
-			this.nuovoLuogoObject.utente = tokenAuth;
-			console.log(this.nuovoLuogoObject);
+			this.nuovoLuogoObject.utente = tokenAuth;   
+			 
+		
+			
+			this.nuovoLuogoObject.localita = this.nuovoLuogoObject.citta;
+			this.nuovoLuogoObject.fisso = 'true'; 
+			this.nuovoLuogoObject.aperto = 'true'; 
+			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
+			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
 				alert(data);
 			});
