@@ -3,7 +3,7 @@ import { Platform  } from 'ionic-angular';
 
 @Injectable()
 export class Global {
-  public title:string = "AroundTheWOD";
+  public title:string = "AroundTheWOD App";
    public preUrl:string;
  	constructor(public platform: Platform) {
 		if (this.platform.is('core')) {

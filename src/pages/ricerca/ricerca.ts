@@ -31,7 +31,8 @@ export class Ricerca {
     public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here ' + this.url;
 	
 	navOptions = {
-		animation: 'android-transition'
+		animate: true,
+		animation: 'wp-transition'
 	};
 	
 	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {

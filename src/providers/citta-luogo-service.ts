@@ -87,7 +87,8 @@ export class CittaLuogoService {
 		if (this.platform.is('android')) {
 			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
 				if(!enabled){
-					alert("Please enable GPS localization");
+					alert("Please enable GPS localization"); 
+				    cordova.plugins.diagnostic.switchToLocationSettings();
 					loader.dismiss();
 					return;
 				}

@@ -18,23 +18,16 @@ export class HomePage {
 	splash= true;
 	address;
 	public allSearchPlace:any;
+	plat: any;
 	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
-	
-		if (!plt.is('core')) {
-			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-				if(!enabled){
-					alert("Please enable GPS location");
-				    cordova.plugins.diagnostic.switchToLocationSettings();
-				}
-			});			 
-		}
+
 		this.address = {
-			place: 'reggio emilia'
+		  place: 'reggio emilia'
 		};
 	}
 	
 	ionViewDidLoad() {
-		setTimeout(() => this.splash = false, 2000);
+		setTimeout(() => this.splash = false, 4000);
 	}
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);
@@ -95,7 +88,7 @@ export class HomePage {
 	ricerca(){
 		var navOptions = {
 			animate: true,
-			animation: 'md-transition'
+			animation: 'wp-transition'
 		};
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{

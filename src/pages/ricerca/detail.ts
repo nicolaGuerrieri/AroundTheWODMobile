@@ -27,7 +27,8 @@ export class Detail implements OnInit{
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
  	navOptions = {
-		animation: 'android-transition'
+		animate: true,
+		animation: 'wp-transition'
 	};
 	
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {

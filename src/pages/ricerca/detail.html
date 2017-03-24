@@ -8,7 +8,7 @@
 
 		<button *ngIf="!nuovoLuogo" (click)="openMapsApp()"  ion-button>
  
-			<img  src="assets/images/g.png"  style="width: 30px; height: 30px" alt="" class="imgDetail">
+			<img  src="assets/images/g.png"  style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail">
  
 		</button>
 	</ion-buttons>
@@ -45,7 +45,9 @@
 			<ion-input type="text" placeholder="Place" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
 			<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 	 		<button *ngIf="nuovoLuogo" (click)="loadMapVed()" clear ion-button item-right style="color: white; font-size:15px"><ion-icon name="search"></ion-icon></button>
-	 		<button *ngIf="nuovoLuogo" (click)="geolocalizza()" clear ion-button item-right style="color: white; font-size:15px"><ion-icon name="locate"></ion-icon></button>
+	 		<button *ngIf="nuovoLuogo" (click)="geolocalizza()" clear ion-button item-right style="color: white; font-size:15px">
+				<ion-icon style="font-size: 20px" name="ios-navigate-outline"></ion-icon>
+			</button>
 		</ion-item>
 	</ion-list>
 	<br />
