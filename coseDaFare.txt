@@ -1,11 +1,8 @@
 "# AroundTheWODMobile" 
 
-Io
-- ok finire il salvataggio
+Io 
 - correggere share
-- bottone coordinate su
-- cambiare icona google
-- sistemare card
+ 
 
 - fare account apple e google
 - contattare grafico
