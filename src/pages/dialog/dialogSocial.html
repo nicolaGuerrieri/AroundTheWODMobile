@@ -1,24 +1,36 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Description
+      Social share
     </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
  <ion-content>
 	<div class="row"  *ngIf="from == 'social'">
 		<div class="col" style="text-align: center;">
-			<button (click)="dismiss()" ion-button icon-left>
-			  <ion-icon name="back"></ion-icon>
-				Close
+			<br />
+			<span  style="text-align: center; font-size: 30px; color: #2cb5e8;" >
+				Share with your friends AroundTheWOD App...<br />
+				Choose your favorite social
+			</span>
+		
+			<br />
+			<br />
+			<button ion-button color="primary" round icon-only (click)="doFacebook()">
+				<ion-icon name="logo-facebook"></ion-icon>
 			</button>
-			<button ion-button color="primary" full (click)="doFacebook()">
+			<button ion-button color="primary" round icon-only (click)="doInstagram()">
+				<ion-icon name="logo-instagram"></ion-icon> 
+			</button>
+			<button ion-button color="primary" round icon-only (click)="doTwitter()">
+				<ion-icon name="logo-twitter"></ion-icon> 
+			</button>
+			<button ion-button color="primary" round icon-only (click)="doShare()">
+				<ion-icon name="share"></ion-icon> 
+			</button>
+			
+			
+		<!--	<button ion-button color="primary" full (click)="doFacebook()">
 				<ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 				Share on Facebook
 			</button>
@@ -33,7 +45,7 @@
 			<button ion-button color="primary" full (click)="doShare()">
 				<ion-icon name="logo-share"></ion-icon>&nbsp;&nbsp;
 				Or choose another...
-			</button>
+			</button>-->
 		</div>
 	</div>
 	<div class="row"  *ngIf="from == 'login'">
@@ -43,5 +55,13 @@
 				Login with google
 			</button>
 		</div>
+	</div>
+	
+	<br />
+	<div class="centraTutto"  style="text-align: center;">
+		<button (click)="dismiss()" ion-button icon-left>
+			<ion-icon name="back"></ion-icon>
+			Close
+		</button>
 	</div>
 </ion-content>

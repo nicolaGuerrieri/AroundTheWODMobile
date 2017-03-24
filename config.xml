@@ -38,6 +38,8 @@
     <allow-intent href="https://maps.googleapis.com"/>
     <allow-intent href="http://maps.googleapis.com"/>
   </platform>
+  <preference name="SplashScreenDelay" value="0"/>
+  <preference name="ShowSplashScreen" value="false"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

@@ -1,3 +1,11 @@
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top"></div>
+		<img src="assets/images/kedtwhite.png">
+    <div class="Aligner-item Aligner-item--bottom"></div>
+  </div>
+</div>
+
 <ion-header class="colorPersonal"  >
   <ion-navbar>
     <ion-title>
@@ -10,7 +18,7 @@
 
 	<br /><br />
 	<div class="row">
-		<img src="" class="img-circular centraTutto"  > 
+		<img src="assets/images/ket.jpg" class="img-circular centraTutto"  > 
 		<br /><br />
 		<div class="centraTutto">
 			<ion-input  style="text-align: center; border: 2px solid #2cb5e8; border-radius: 20px;" class="centraTutto" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
@@ -20,9 +28,9 @@
 		<button (click)="ricerca()" ion-button icon-left class="centraTutto">
 		  <ion-icon name="search"></ion-icon>
 			I want to train
-		</button> <br /> <button (click)="geolocalizza()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button>
+		</button> <button (click)="geolocalizza()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> 
+		<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
 	</div>
- <!--  <ion-input type="text" (ionInput)="cerca()"  (keyup)="cerca()" placeholder="City" [(ngModel)]="citta" id="citta"></ion-input> -->
   
 </ion-content>
  <ion-footer class="centraTutto">

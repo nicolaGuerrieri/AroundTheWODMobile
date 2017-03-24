@@ -15,15 +15,26 @@ declare var google: any;
   providers: [CittaLuogoService]
 })
 export class HomePage {
-
+	splash= true;
 	address;
 	public allSearchPlace:any;
 	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 	
-	//	alert(this.plt.platforms());
+		if (!plt.is('core')) {
+			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+				if(!enabled){
+					alert("Please enable GPS location");
+				    cordova.plugins.diagnostic.switchToLocationSettings();
+				}
+			});			 
+		}
 		this.address = {
-		  place: 'reggio emilia'
+			place: 'reggio emilia'
 		};
+	}
+	
+	ionViewDidLoad() {
+		setTimeout(() => this.splash = false, 2000);
 	}
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);
@@ -82,12 +93,15 @@ export class HomePage {
 		});
 	}
 	ricerca(){
-
+		var navOptions = {
+			animate: true,
+			animation: 'md-transition'
+		};
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
 				citta: this.address.place,
 				allSearchPlace: this.allSearchPlace
-			});
+			}, navOptions);
 		}else{
 			console.log("bloccato");
 			return;

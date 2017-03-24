@@ -26,7 +26,9 @@ export class Detail implements OnInit{
 	private _isiOS: boolean; 
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
- 
+ 	navOptions = {
+		animation: 'android-transition'
+	};
 	
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this._isAndroid = plt.is('android');
@@ -210,13 +212,10 @@ export class Detail implements OnInit{
 	}
 	
 	ricerca(){
-		var navOptions = {
-			animation: 'ios-transition'
-		};
-		if(this.nuovoLuogoObject.ricerca){
+		if(this.nuovoLuogoObject.citta){
 			this.navCtrl.push(Ricerca,{
-				citta: this.nuovoLuogoObject.ricerca
-			});
+				citta: this.nuovoLuogoObject.citta
+			}, this.navOptions);
 		}else{
 			console.log("bloccato");
 			return;

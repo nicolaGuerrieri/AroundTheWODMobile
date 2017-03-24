@@ -43,7 +43,7 @@ export class DialogSocial {
 		 try{
 			console.log('do FB');
 			SocialSharing.shareViaInstagram(this.message, this.url).then((data) => {
-				alert(data);
+				 
 			}).catch(() => {
 			  // Error!
 			});
@@ -58,13 +58,9 @@ export class DialogSocial {
 	doShare() {
 		var full_name;
 		try{
-			console.log('do FB');
-			//this.facebookAuth.login().then(() => {
-			//this.auth.login('facebook').then(() => {
-			//	  this.navCtrl.setRoot(Login);
-			
+			 
 			SocialSharing.share(this.message, null, null, this.url).then((data) => {
-				alert(data);
+			 
 			}).catch(() => {
 			  // Error!
 			});
@@ -78,7 +74,7 @@ export class DialogSocial {
 		var full_name;
 		try{
 			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, null, this.url).then((result) => {
-				alert(result);
+				 
 			}).catch(() => {
 			  alert("Error please contact AroundTheWOD support");
 			});
@@ -92,7 +88,7 @@ export class DialogSocial {
 		var full_name;
 		try{
 			SocialSharing.shareViaTwitter(this.message, null, this.url).then((result) => {
-				alert(result);
+				 
 			}).catch(() => {
 			  alert("Error please contact AroundTheWOD support");
 			});
