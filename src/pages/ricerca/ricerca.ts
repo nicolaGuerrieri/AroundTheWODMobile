@@ -29,7 +29,11 @@ export class Ricerca {
 	map: any;
     public url  : string = 'www.aroundTheWOD.com';
     public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here ' + this.url;
-
+	
+	navOptions = {
+		animate: true,
+		animation: 'wp-transition'
+	};
 	
 	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this.citta= params.get("citta"); 
@@ -82,7 +86,7 @@ export class Ricerca {
 	addPlace(){
 		this.navCtrl.push(Detail,{
 			idLuogo: -1
-		});
+		}, this.navOptions);
 	} 
 	
 	doShare() {
@@ -195,7 +199,7 @@ export class Ricerca {
 					latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 					mapOptions = {
 					  center: latLng,
-					  zoom: 15,
+					  zoom: 12,
 					  mapTypeId: google.maps.MapTypeId.ROADMAP
 					}
 					this.map = new google.maps.Map(elem.nativeElement, mapOptions);
@@ -248,7 +252,7 @@ export class Ricerca {
 		modal.onDidDismiss(data => {
 			if(data != null){
 				console.log(data);
-				this.address.place = data.description.split(",")[0];
+				this.address.place = data.description;
 			}else{
 				return;
 			}
@@ -263,7 +267,7 @@ export class Ricerca {
 				this.navCtrl.push(Ricerca,{
 					citta: this.address.place,
 					allSearchPlace: this.allSearchPlace
-				});
+				}, this.navOptions);
 			}else{
 				console.log("bloccato");
 				return;
@@ -279,7 +283,7 @@ export class Ricerca {
 			if(this.address.place != ""){
 				this.navCtrl.push(Detail,{
 					idLuogo: idPlace
-				});
+				}, this.navOptions);
 			}else{
 				console.log("bloccato");
 				return;
@@ -290,23 +294,37 @@ export class Ricerca {
 	}
 	
 	loadCity(cittaP){
-		if(this.allSearchPlace.types != 'locality'){
-			if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
-				if(this.allSearchPlace.terms){
-					cittaP = this.allSearchPlace.terms[1].value;
-				}else{
-					if(this.allSearchPlace.address_components){
-						cittaP = this.allSearchPlace.address_components[2].long_name;
+		try{
+			//troppi if
+			console.log(this.allSearchPlace);
+			console.log("---------");
+			if(this.allSearchPlace && this.allSearchPlace.types){
+							console.log("ma passa di qua");		
+
+				if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
+					console.log("ma passa di qua");		
+					if(this.allSearchPlace.terms){
+						if(this.allSearchPlace.types[0] == 'street_address'){
+							//ho anche il civico al numero [1]
+							cittaP = this.allSearchPlace.terms[2].value;
+						}else{
+							cittaP = this.allSearchPlace.terms[1].value;
+						}
+					}else{		
+						if(this.allSearchPlace.address_components){		
+							console.log("certo");
+							cittaP = this.allSearchPlace.address_components[2].long_name;
+						}
 					}
+				}else{
+					cittaP = cittaP.split(",")[0];
+					console.log(cittaP + "certo");				
 				}
 			}
-		}
-		try{
 			if(cittaP == null){
 				cittaP = this.loadGeolocalization();
 			}else{
 				this.cittaLuogoService.load(cittaP).then(data => {
-					
 					this.cittaLuogo = data;
 					this.loadMapWithPlace(this.cittaLuogo);
 				});

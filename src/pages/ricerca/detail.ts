@@ -5,6 +5,7 @@ import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { AutocompletePage } from '../home/autocomplete';
 import { Ricerca } from '../ricerca/ricerca';
 import { DialogSocial } from '../dialog/dialogSocial';
+import { Success } from '../dialog/success';
 import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
 declare var google: any;
@@ -25,7 +26,10 @@ export class Detail implements OnInit{
 	private _isiOS: boolean; 
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
- 
+ 	navOptions = {
+		animate: true,
+		animation: 'wp-transition'
+	};
 	
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this._isAndroid = plt.is('android');
@@ -49,10 +53,12 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.via = "";
 			this.nuovoLuogoObject.descrizione = "";
 			this.nuovoLuogoObject.cap = "";
-			this.nuovoLuogoObject.punto_risotro = "";
+			this.nuovoLuogoObject.ristoro = "";
 			this.nuovoLuogoObject.attrezzature = "";
-			this.nuovoLuogoObject.orario = "";
+			this.nuovoLuogoObject.orari = "";
 			this.nuovoLuogoObject.errore = null;
+			this.nuovoLuogoObject.dal = null;
+			this.nuovoLuogoObject.al = null;
 			this.geolocalizza();
 		}
 	}
@@ -79,7 +85,7 @@ export class Detail implements OnInit{
 	
 	loginGoogle(){ 
 		if (this.plt.is('core')) {
-			this.inviaDatiServer("afdsafscsasd");
+			this.inviaDatiServer("asdffasdcvasfdcvasdvvvvvvvvvvvvvv");
 		}else{
 			this.googleAuth.login().then((success) => {
 				alert(success.token);
@@ -134,7 +140,6 @@ export class Detail implements OnInit{
 		}
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "login"});
 		modal.onDidDismiss(data => {
-			alert(data);
 		    this.loginGoogle();
 	    });
 		modal.present();
@@ -144,6 +149,11 @@ export class Detail implements OnInit{
 		this.nuovoLuogoObject = {};
 		if(!data){
 			return;
+		}
+		console.log(data.geometry);
+		if(data.geometry != null){
+			this.nuovoLuogoObject.lat = data.geometry.location.lat();
+			this.nuovoLuogoObject.longi = data.geometry.location.lng();
 		}
 		if(data.formatted_address != null){
 			this.nuovoLuogoObject.ricerca = data.formatted_address;
@@ -176,15 +186,40 @@ export class Detail implements OnInit{
 			if(!tokenAuth){
 				alert("No token");
 				return;
-			}
+			}	
 			console.log(tokenAuth);
-			this.nuovoLuogoObject.utente = tokenAuth;
-			console.log(this.nuovoLuogoObject);
+			this.nuovoLuogoObject.utente = tokenAuth;   
+			 
+		
+			
+			this.nuovoLuogoObject.localita = this.nuovoLuogoObject.citta;
+			this.nuovoLuogoObject.fisso = 'true'; 
+			this.nuovoLuogoObject.aperto = 'true'; 
+			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
+			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
-				alert(data);
+				if(data.status == 200){
+					//andato bene il salvataggio
+						let modal = this.modalCtrl.create(Success, {"from": "detail"});
+						modal.onDidDismiss(data => {
+							 this.ricerca();
+						});
+						modal.present();
+				}
 			});
 		} catch (e) {
 		   alert("error: " + e);
+		}
+	}
+	
+	ricerca(){
+		if(this.nuovoLuogoObject.citta){
+			this.navCtrl.push(Ricerca,{
+				citta: this.nuovoLuogoObject.citta
+			}, this.navOptions);
+		}else{
+			console.log("bloccato");
+			return;
 		}
 	}
 	

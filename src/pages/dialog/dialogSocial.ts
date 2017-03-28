@@ -22,12 +22,14 @@ export class DialogSocial {
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
     public url  : string = 'www.aroundTheWOD.com';
-    public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here www.aroundTheWOD.com';
-	
+    public subject  : string = 'AroundTheWOD App';
+    public message  : string = 'Hey guys, i share new location on AroundTheWOD app...look on site';
+	public image    : string	= 'http://app.nicolaguerrieri.it:3000/images/ket.jpg'; 
+
 	
 	public from:String;
 		
-	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this.from = this.params.get("from");
 	 
 	}
@@ -40,34 +42,43 @@ export class DialogSocial {
 		this.viewCtrl.dismiss();
 	}
 	doInstagram() { 
-		 try{
-			console.log('do FB');
-			SocialSharing.shareViaInstagram(this.message, this.url).then((data) => {
-				alert(data);
-			}).catch(() => {
-			  // Error!
-			});
-			 
-			
-		}catch (e) {
-		   alert("error: " + e);
-		}
-	}
+	   this.platform.ready() .then(() =>		  {
+			 SocialSharing.shareViaInstagram(this.message, this.image)
+			 .then((data) => {
+				console.log('Shared via shareViaInstagram');
+			 }) .catch((err) => {
+				alert('Was not shared via Instagram' + err);
+			 });
+
+		  });
+   }
 //	https://forum.ionicframework.com/t/ionic-2-ionic-cloud-auth-google-auth-failing-12501/72967/3
-		
-	doShare() {
-		var full_name;
+	
+	doSharePicker(){
+      this.platform.ready()
+      .then(() =>
+      {
+         SocialSharing.share(this.message, this.subject, this.image, this.url)
+         .then((data) =>
+         {
+            console.log('Shared via SharePicker');
+         })
+         .catch((err) =>
+         {
+            	alert('Not able to be shared via SharePicker ' + err);
+         });
+
+      });
+   }
+   
+	doShare() { 
+		alert("do share")
 		try{
-			console.log('do FB');
-			//this.facebookAuth.login().then(() => {
-			//this.auth.login('facebook').then(() => {
-			//	  this.navCtrl.setRoot(Login);
-			
-			SocialSharing.share(this.message, null, null, this.url).then((data) => {
-				alert(data);
-			}).catch(() => {
-			  // Error!
-			});
+		SocialSharing.share(this.message, this.subject, this.image, this.url).then((data) => {
+			 
+		}).catch((err) => {
+		  alert('Not able to be shared ' + err);
+		});
 			 
 			
 		}catch (e) {
@@ -75,32 +86,31 @@ export class DialogSocial {
 		}
 	}
 	doFacebook() {
-		var full_name;
-		try{
-			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, null, this.url).then((result) => {
-				alert(result);
-			}).catch(() => {
-			  alert("Error please contact AroundTheWOD support");
+		this.platform.ready().then(() => {
+			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, this.image, this.url, this.message).then((data) =>{
+			   alert('Shared via Facebook');
+			}).catch((err) =>			{
+			   alert('Was not shared via Facebook');
 			});
-			 
-			
-		}catch (e) {
-		   alert("error: " + e);
-		}
+		});
 	}
 	doTwitter() {
-		var full_name;
-		try{
-			SocialSharing.shareViaTwitter(this.message, null, this.url).then((result) => {
-				alert(result);
-			}).catch(() => {
-			  alert("Error please contact AroundTheWOD support");
+		//this.platform.ready()
+		//	.then(() =>{
+		//		SocialSharing.canShareVia('com.apple.social.twitter', this.message, this.image, this.url).then((data) =>{
+
+			SocialSharing.shareViaTwitter(this.message, this.image, this.url).then((result) => {
+					 
+			}).catch((err) =>{
+				alert('Not able to be shared via twitter ' + err);
 			});
 			 
 			
-		}catch (e) {
-		   alert("error: " + e);
-		}
+		//	});
+				//		}).catch(() => {
+		//		  alert("Error please contact AroundTheWOD support");
+		//		});
+		
 	}
  
 		back(){

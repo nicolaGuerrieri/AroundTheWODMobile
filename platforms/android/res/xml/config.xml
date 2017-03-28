@@ -56,6 +56,7 @@
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://app.nicolaguerrieri.it:3000/" />
+    <allow-navigation href="http://10.10.1.173:8100" />
     <allow-intent href="http://maps.googleapis.com" />
     <allow-intent href="market:*" />
     <allow-intent href="http://*/*" />
@@ -69,6 +70,8 @@
     <preference name="KeepRunning" value="true" />
     <preference name="AndroidLaunchMode" value="singleInstance" />
     <preference name="android-minSdkVersion" value="16" />
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="ShowSplashScreen" value="false" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
