@@ -17,9 +17,13 @@ const cloudSettings: CloudSettings = {
     'google': {
       'webClientId': '923547097240-vj2comu32e960c7rr6h9sccrpsiihhef.apps.googleusercontent.com',
       'scope': []
+    },
+    'facebook': {
+      'scope': [ ]
     }
   }
 }
+
 @NgModule({
   declarations: [
     MyApp,

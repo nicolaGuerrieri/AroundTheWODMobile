@@ -21,11 +21,11 @@
 		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" > 
 		<br /><br />
 		<div class="centraTutto">
-			<ion-input  style="text-align: center; border: 2px solid #2cb5e8; border-radius: 10px;" class="centraTutto" (focus)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+			<ion-input  style="text-align: center; border: 2px solid #2cb5e8; border-radius: 10px;" class="centraTutto" (blur)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
 		</div>
 		<br />
 		<div style="text-align: center;">
-			<button (click)="ricerca()" ion-button icon-left class="">
+			<button (click)="ricerca()" ion-button icon-left class="buttonColor">
 			  <ion-icon name="search"></ion-icon>
 				I want to train
 			</button> <button (click)="geolocalizza()"  ion-button class=""><ion-icon style="font-size: 30px" name="ios-navigate-outline"></ion-icon></button> 

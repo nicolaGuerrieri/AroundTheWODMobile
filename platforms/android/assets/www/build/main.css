@@ -29031,6 +29031,11 @@ sub {
   border-radius: 100px;
 }
 
+button, input[type="button"] {
+  background: #2cb5e8 !important;
+  color: red;
+}
+
 input {
   text-align: center;
 }

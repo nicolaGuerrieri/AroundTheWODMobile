@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, Platform, ViewController} from 'ionic-angular';
 import {Global} from '../../services/global'; 
 import {SocialSharing} from 'ionic-native'; 
-import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
+import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
 
 declare var google: any;
@@ -38,79 +38,88 @@ export class DialogSocial {
 		this.viewCtrl.dismiss("google");
 	}
 	
+	loginGoogle1(){ 
+		
+			this.googleAuth.login().then((success) => {
+				alert(success.token);
+			}, (error) => {
+				alert(error);
+			});
+	}
+	//f33b26b8
 	dismiss() {
 		this.viewCtrl.dismiss();
 	}
 	doInstagram() { 
-	   this.platform.ready() .then(() =>		  {
-			 SocialSharing.shareViaInstagram(this.message, this.image)
+	   this.platform.ready().then(() => {
+			SocialSharing.shareViaInstagram(this.message, this.image) 
 			 .then((data) => {
 				console.log('Shared via shareViaInstagram');
 			 }) .catch((err) => {
 				alert('Was not shared via Instagram' + err);
-			 });
-
-		  });
+			 }); 
+		});
    }
-//	https://forum.ionicframework.com/t/ionic-2-ionic-cloud-auth-google-auth-failing-12501/72967/3
-	
-	doSharePicker(){
-      this.platform.ready()
-      .then(() =>
-      {
-         SocialSharing.share(this.message, this.subject, this.image, this.url)
-         .then((data) =>
-         {
-            console.log('Shared via SharePicker');
-         })
-         .catch((err) =>
-         {
-            	alert('Not able to be shared via SharePicker ' + err);
-         });
 
-      });
+   loginInstagram(){  
+		try{
+			this.auth.login('instagram').then	((data) => {
+				alert("ok ok");
+				alert(data);
+			});
+	   		
+		}catch(err){
+			alert(err);
+		}
    }
-   
+   loginFacebook(){
+   		try{
+
+			this.facebookAuth.login().then((data) => {
+				alert("ok ok");
+				alert(data);
+			});
+	   		
+		}catch(err){
+			alert(err);
+		}
+   		
+   }
+
+//facebook android
+//   ionic plugin add cordova-plugin-facebook4 --save --variable APP_ID="1116576615134600" --variable APP_NAME="aroundTheWodMobile"
+//google ios
+//   cordova plugin add cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID="com.googleusercontent.apps.923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm"
+
+//	https://forum.ionicframework.com/t/ionic-2-ionic-cloud-auth-google-auth-failing-12501/72967/3	
+  
 	doShare() { 
 		alert("do share")
 		try{
-		SocialSharing.share(this.message, this.subject, this.image, this.url).then((data) => {
-			 
-		}).catch((err) => {
-		  alert('Not able to be shared ' + err);
-		});
-			 
-			
+			SocialSharing.share(this.message, this.subject, this.image, this.url).then((data) => {
+				 
+			}).catch((err) => {
+			  alert('Not able to be shared ' + err);
+			});
 		}catch (e) {
 		   alert("error: " + e);
 		}
 	}
 	doFacebook() {
 		this.platform.ready().then(() => {
-			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, this.image, this.url, this.message).then((data) =>{
-			   alert('Shared via Facebook');
+			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, this.url, 'Prova testo').then((data) =>{
+			 
 			}).catch((err) =>			{
 			   alert('Was not shared via Facebook');
 			});
 		});
 	}
 	doTwitter() {
-		//this.platform.ready()
-		//	.then(() =>{
-		//		SocialSharing.canShareVia('com.apple.social.twitter', this.message, this.image, this.url).then((data) =>{
-
-			SocialSharing.shareViaTwitter(this.message, this.image, this.url).then((result) => {
-					 
-			}).catch((err) =>{
-				alert('Not able to be shared via twitter ' + err);
-			});
-			 
-			
-		//	});
-				//		}).catch(() => {
-		//		  alert("Error please contact AroundTheWOD support");
-		//		});
-		
+		SocialSharing.shareViaTwitter(this.message, this.image, this.url).then((result) => {
+				 
+		}).catch((err) =>{
+			alert('Not able to be shared via twitter ' + err);
+		});
 	}
  
 		back(){

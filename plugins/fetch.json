@@ -82,7 +82,7 @@
     "cordova-plugin-inappbrowser": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-inappbrowser@~1.5.1"
+            "id": "cordova-plugin-inappbrowser@1.7.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -90,12 +90,12 @@
     "cordova-plugin-facebook4": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-facebook4"
+            "id": "cordova-plugin-facebook4@~1.7.4"
         },
         "is_top_level": true,
         "variables": {
             "APP_ID": "1116576615134600",
-            "APP_NAME": "AroundTheWODMobile"
+            "APP_NAME": "aroundTheWodMobile"
         }
     },
     "cordova-plugin-x-socialsharing": {
@@ -109,11 +109,11 @@
     "cordova-plugin-googleplus": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-googleplus"
+            "id": "cordova-plugin-googleplus@~5.1.1"
         },
         "is_top_level": true,
         "variables": {
-            "REVERSED_CLIENT_ID": "myreversedclientid"
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm"
         }
     }
 }

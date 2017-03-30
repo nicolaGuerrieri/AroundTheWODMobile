@@ -90,6 +90,8 @@ export class Detail implements OnInit{
 			this.googleAuth.login().then((success) => {
 				alert(success.token);
 				this.inviaDatiServer(success.token);
+			},(error) => {
+				alert(error);
 			});
 
 		}

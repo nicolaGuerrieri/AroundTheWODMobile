@@ -25,12 +25,14 @@
 			<button ion-button color="primary" round icon-only (click)="doTwitter()">
 				<ion-icon name="logo-twitter"></ion-icon> 
 			</button>
- 
+	
 			<button ion-button color="primary" round icon-only (click)="doShare()">
 				<ion-icon name="share"></ion-icon> 
 			</button>
 			
-			
+			<br />
+			<br />
+			* To share on Instagram or Facebook you can paste a message manually
 		<!--	<button ion-button color="primary" full (click)="doFacebook()">
 				<ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 				Share on Facebook
@@ -45,7 +47,7 @@
 			</button>
 			<button ion-button color="primary" full (click)="doShare()">
 				<ion-icon name="logo-share"></ion-icon>&nbsp;&nbsp;
-				Or choose another...
+				Or choose another... loginGoogle1
 			</button>-->
 		</div>
 	</div>
@@ -56,8 +58,28 @@
 				Login with google
 			</button>
 		</div>
+		
+		
 	</div>
-	
+		<div class="col" style="text-align: center;">
+			<button (click)="loginGoogle1()" ion-button icon-left>
+			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
+				Login with google
+			</button>
+		</div>
+		
+	<div class="col" style="text-align: center;">
+		<button (click)="loginFacebook()" ion-button icon-left>
+		  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
+			Login with facebook
+		</button>
+	</div>
+	<div class="col" style="text-align: center;">
+		<button (click)="loginInstagram()" ion-button icon-left>
+		  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
+			Login with instagram
+		</button>
+	</div>
 	<br />
 	<div class="centraTutto"  style="text-align: center;">
 		<button (click)="dismiss()" ion-button icon-left>
