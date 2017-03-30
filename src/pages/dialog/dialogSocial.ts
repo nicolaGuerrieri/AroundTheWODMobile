@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController, Platform, ViewController} from 'ionic-angular';
 import {Global} from '../../services/global'; 
 import {SocialSharing} from 'ionic-native'; 
+import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
 
@@ -10,6 +11,7 @@ declare var cordova:any;
 @Component({
   selector: 'dialogSocial',
   templateUrl: 'dialogSocial.html',
+  providers: [CittaLuogoService]
 })
 export class DialogSocial {
 	
@@ -29,7 +31,7 @@ export class DialogSocial {
 	
 	public from:String;
 		
-	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth, public cittaLuogoService: CittaLuogoService,) {
 		this.from = this.params.get("from");
 	 
 	}
@@ -38,14 +40,20 @@ export class DialogSocial {
 		this.viewCtrl.dismiss("google");
 	}
 	
-	loginGoogle1(){ 
-		
-			this.googleAuth.login().then((success) => {
-				alert(success.token);
-			}, (error) => {
-				alert(error);
-			});
+
+	loginSocial(data){
+		let loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		loader.present();
+		this.cittaLuogoService.loginSocial(data).then(data => {
+			if(data){
+				alert(JSON.stringify(data));	
+				loader.dismiss();
+			}
+		});
 	}
+	
 	//f33b26b8
 	dismiss() {
 		this.viewCtrl.dismiss();
@@ -62,30 +70,12 @@ export class DialogSocial {
    }
 
    loginInstagram(){  
-		try{
-			this.auth.login('instagram').then	((data) => {
-				alert("ok ok");
-				alert(data);
-			});
-	   		
-		}catch(err){
-			alert(err);
-		}
+		this.viewCtrl.dismiss("instagram");
    }
    loginFacebook(){
-   		try{
-
-			this.facebookAuth.login().then((data) => {
-				alert("ok ok");
-				alert(data);
-			});
-	   		
-		}catch(err){
-			alert(err);
-		}
-   		
-   }
-
+   		this.viewCtrl.dismiss("facebook");  		
+   } 
+  
 //facebook android
 //   ionic plugin add cordova-plugin-facebook4 --save --variable APP_ID="1116576615134600" --variable APP_NAME="aroundTheWodMobile"
 //google ios

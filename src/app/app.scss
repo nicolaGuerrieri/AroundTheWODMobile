@@ -95,7 +95,13 @@
 	border-radius: 100px;
 }
 
-button, input[type="button"]{
-	background: #2cb5e8 !important;
-	color: red;	
+button.buttonClass{
+	background: color($colors, personal3) !important;
+	color: white !important;
+}
+
+.inputSearch{
+	text-align: center;
+	border: 2px solid map-get($colors, personal3) !important;
+	border-radius: 10px;
 }

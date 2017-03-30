@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ViewController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
@@ -19,15 +19,25 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 		StatusBar.styleDefault();
 		Splashscreen.hide();
-		//this.registerBackButtonListener();
+		this.registerBackButtonListener();
 		
 		
     });
+
   }
   
 	registerBackButtonListener() {
-		document.addEventListener('backbutton', () => {
-			navigator['app'].exitApp();   
-		});
+		
+			let nav = app.getActiveNav();
+			let activeView: ViewController = nav.getActive();
+
+			if(activeView != null){
+			  if(nav.canGoBack()) {
+				nav.pop();
+			  }else if (typeof activeView.instance.backButtonAction === 'function')
+				activeView.instance.backButtonAction();
+			  else nav.parent.select(0); // goes to the first tab
+			}
+		
 	}
 }

@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Geolocation } from 'ionic-native';
 import { Platform, LoadingController } from 'ionic-angular'; 
+import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
  
 declare var google: any;
@@ -13,7 +14,7 @@ export class CittaLuogoService {
 	public data:any;
 	public preUrl = "";
 	public dataLocalizzazione:any;
-	constructor(public http: Http, public platform: Platform, public loading: LoadingController) {
+	constructor(public http: Http, public platform: Platform, public loading: LoadingController, public googleAuth:GoogleAuth,  public facebookAuth:FacebookAuth, public auth:Auth) {
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		}else{
@@ -120,6 +121,43 @@ export class CittaLuogoService {
 	  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
 	}
 	
+	loginSocial(social){
+ 
+		return new Promise(resolve => {
+			try {
+				if (!this.platform.is('core')) {
+					if(social == 'google'){
+						this.googleAuth.login().then((dataSocial) => { 
+							this.dataLocalizzazione = dataSocial;
+							resolve(this.dataLocalizzazione);
+						},(error) => {
+							alert(error);
+						}); 
+					}else if(social == 'instagram'){
+						this.auth.login('instagram').then((dataSocial) => {
+							this.dataLocalizzazione = dataSocial;
+							resolve(this.dataLocalizzazione);
+						},(error) => {
+							alert(error);
+						});
+					}else if(social == 'facebook'){
+						this.facebookAuth.login().then((dataSocial) => {
+							this.dataLocalizzazione = dataSocial;
+							resolve(this.dataLocalizzazione);
+						},(error) => {
+							alert(error);
+						});  
+					}
+				}else{
+					this.dataLocalizzazione ="fsasdfergv554t3fg4tfg1";
+					resolve(this.dataLocalizzazione);
+				}
+			} catch (e) {
+			   alert("error: " + e);
+			}
+		
+		});
+	}
 	loadMap(cittaResult){
 		if (this.dataLocalizzazione) {
 			alert("mica qui");

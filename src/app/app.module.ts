@@ -16,10 +16,10 @@ const cloudSettings: CloudSettings = {
   'auth': {
     'google': {
       'webClientId': '923547097240-vj2comu32e960c7rr6h9sccrpsiihhef.apps.googleusercontent.com',
-      'scope': []
+      'scope': ['profile']
     },
     'facebook': {
-      'scope': [ ]
+      'scope': ['public_profile']
     }
   }
 }

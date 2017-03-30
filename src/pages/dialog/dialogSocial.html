@@ -9,7 +9,7 @@
 	<div class="row"  *ngIf="from == 'social'">
 		<div class="col" style="text-align: center;">
 			<br />
-			<span  style="text-align: center; font-size: 30px; color: #2cb5e8;" >
+			<span  style="text-align: center; font-size: 30px;" color="personal3">
 				Share with your friends AroundTheWOD App...<br />
 				Choose your favorite social
 			</span>
@@ -58,24 +58,34 @@
 				Login with google
 			</button>
 		</div>
-		
-		
-	</div>
 		<div class="col" style="text-align: center;">
-			<button (click)="loginGoogle1()" ion-button icon-left>
+			<button (click)="loginFacebook()" ion-button icon-left>
+			  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
+				Login with facebook
+			</button>
+		</div>
+		<div class="col" style="text-align: center;">
+			<button (click)="loginInstagram()" ion-button icon-left>
+			  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
+				Login with instagram
+			</button>
+		</div>
+	</div>
+		<div *ngIf="from == 'social'" class="col" style="text-align: center;">
+			<button (click)="loginSocial('google')" ion-button icon-left>
 			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
 				Login with google
 			</button>
 		</div>
 		
-	<div class="col" style="text-align: center;">
-		<button (click)="loginFacebook()" ion-button icon-left>
+	<div  *ngIf="from == 'social'"  class="col" style="text-align: center;">
+		<button (click)="loginSocial('facebook')" ion-button icon-left>
 		  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 			Login with facebook
 		</button>
 	</div>
-	<div class="col" style="text-align: center;">
-		<button (click)="loginInstagram()" ion-button icon-left>
+	<div  *ngIf="from == 'social'"  class="col" style="text-align: center;">
+		<button (click)="loginSocial('instagram')" ion-button icon-left>
 		  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
 			Login with instagram
 		</button>

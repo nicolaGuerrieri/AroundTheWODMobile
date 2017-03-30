@@ -1,6 +1,11 @@
 "# AroundTheWODMobile" 
 
 Io 
+- Google ok android no ios
+- Facebook ok android no ios
+- instagram ok android ok ios
+
+
 - fare account apple e google
 - OK contattare grafico
 - creare profilo su kickstarter
@@ -14,7 +19,7 @@ Riccardo
 - fare pagine social
 - immagini richieste
 - descrizioni da mettere sul sito e app
-- fare pec e dominio aroundTheWOD_App
+- fare pec e dominio aroundTheWOD_App (posso fa pure io)
 - contattare PALO ALTO (solo dopo business plan e pubblicazione) per Imola
 
 

@@ -82,21 +82,8 @@ export class Detail implements OnInit{
 		}
 	
 	}
-	
-	loginGoogle(){ 
-		if (this.plt.is('core')) {
-			this.inviaDatiServer("asdffasdcvasfdcvasdvvvvvvvvvvvvvv");
-		}else{
-			this.googleAuth.login().then((success) => {
-				alert(success.token);
-				this.inviaDatiServer(success.token);
-			},(error) => {
-				alert(error);
-			});
-
-		}
-	}
-	
+ 
+ 
 	openMapsApp(item) {
 		
  		var coords = this.luogoSelezionato.latitudine + "," + this.luogoSelezionato.longitudine;
@@ -136,17 +123,35 @@ export class Detail implements OnInit{
 	
 	
 	salva(){
+		
 		this.validaDati();
 		if(this.nuovoLuogoObject.errore){
 			return;
 		}
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "login"});
 		modal.onDidDismiss(data => {
-		    this.loginGoogle();
+			this.loginSocial(data);
 	    });
 		modal.present();
 	}
 	
+	loginSocial(social){
+		let loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		loader.present();
+		if(!social){
+			loader.dismiss();
+		}
+		
+		this.cittaLuogoService.loginSocial(social).then(socialData => {
+			let datiSocial = socialData;
+			if(datiSocial){
+				alert(JSON.stringify(datiSocial));
+				this.inviaDatiServer(socialData, loader);
+			}
+		});
+	}
 	riempiOggetto(data){
 		this.nuovoLuogoObject = {};
 		if(!data){
@@ -183,7 +188,8 @@ export class Detail implements OnInit{
 			
 		});
 	}
-	inviaDatiServer(tokenAuth){
+	inviaDatiServer(tokenAuth, loader){
+ 
 		try{
 			if(!tokenAuth){
 				alert("No token");
@@ -200,6 +206,7 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
 			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
+			 
 				if(data.status == 200){
 					//andato bene il salvataggio
 						let modal = this.modalCtrl.create(Success, {"from": "detail"});
@@ -208,8 +215,10 @@ export class Detail implements OnInit{
 						});
 						modal.present();
 				}
+				loader.dismiss();
 			});
 		} catch (e) {
+			loader.dismiss();
 		   alert("error: " + e);
 		}
 	}
