@@ -19,7 +19,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 		StatusBar.styleDefault();
 		Splashscreen.hide();
-		this.registerBackButtonListener();
+		//this.registerBackButtonListener();
 		
 		
     });
@@ -28,16 +28,6 @@ export class MyApp {
   
 	registerBackButtonListener() {
 		
-			let nav = app.getActiveNav();
-			let activeView: ViewController = nav.getActive();
-
-			if(activeView != null){
-			  if(nav.canGoBack()) {
-				nav.pop();
-			  }else if (typeof activeView.instance.backButtonAction === 'function')
-				activeView.instance.backButtonAction();
-			  else nav.parent.select(0); // goes to the first tab
-			}
 		
 	}
 }

@@ -158,11 +158,11 @@ export class Ricerca {
 	}
 
 	geolocalizza(){
-		let loader = this.loading.create({
+		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
-		loader.present();
-		this.cittaLuogoService.localizza(loader).then(data => {
+		this.loader.present();
+		this.cittaLuogoService.localizza(this.loader).then(data => {
 			if(data != "error"){
 				if(data.formatted_address != null){
 					this.address.place = data.formatted_address;
@@ -175,7 +175,7 @@ export class Ricerca {
 				this.allSearchPlace = data;
 				this.ricerca(); 
 			}
-			loader.dismiss();
+			this.loader.dismiss();
 		});
 		
 	}
@@ -334,6 +334,9 @@ export class Ricerca {
 		}
 	}
 	back(){
-	    this.navCtrl.pop();
+		if(this.loader){
+			this.loader.dismiss();
+	    }
+		this.navCtrl.popToRoot();
 	}
 }

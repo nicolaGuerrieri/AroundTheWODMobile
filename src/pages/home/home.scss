@@ -33,7 +33,7 @@ input{
 }
 
 .flb {
-  background-color: #3ebffb;
+  background-color: color($colors, personal3) !important;
   height:100%;
   width:100%;
   animation: pulse 1s linear forwards;

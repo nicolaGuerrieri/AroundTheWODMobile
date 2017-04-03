@@ -20,6 +20,7 @@ export class Detail implements OnInit{
 	
 	public idLuogo;
 	public nuovoLuogo = false;
+	public loader; 
 	public luogoSelezionato;
 	public nuovoLuogoObject:any;
 	private _isAndroid: boolean;
@@ -136,19 +137,19 @@ export class Detail implements OnInit{
 	}
 	
 	loginSocial(social){
-		let loader = this.loading.create({
+		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
-		loader.present();
+		this.loader.present();
 		if(!social){
-			loader.dismiss();
+			this.loader.dismiss();
 		}
 		
 		this.cittaLuogoService.loginSocial(social).then(socialData => {
 			let datiSocial = socialData;
 			if(datiSocial){
 				alert(JSON.stringify(datiSocial));
-				this.inviaDatiServer(socialData, loader);
+				this.inviaDatiServer(socialData, this.loader);
 			}
 		});
 	}
@@ -215,10 +216,10 @@ export class Detail implements OnInit{
 						});
 						modal.present();
 				}
-				loader.dismiss();
+				this.loader.dismiss();
 			});
 		} catch (e) {
-			loader.dismiss();
+			this.loader.dismiss();
 		   alert("error: " + e);
 		}
 	}
@@ -326,16 +327,16 @@ export class Detail implements OnInit{
 	
 	//localizzazione posizione
 	geolocalizza(){
-		let loader = this.loading.create({
+		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
-		loader.present();
-		this.cittaLuogoService.localizza(loader).then(data => {
+		this.loader.present();
+		this.cittaLuogoService.localizza(this.loader).then(data => {
 			if(data != "error"){
 				this.riempiOggetto(data);	
 				this.loadMap(null);
 			}
-			loader.dismiss();
+			this.loader.dismiss();
 		});
 	}
 	//carica la mappa in base al risultato da db
@@ -390,6 +391,9 @@ export class Detail implements OnInit{
 	}
 	
 	back(){
+		if(this.loader){
+			this.loader.dismiss();
+		}
 	    this.navCtrl.pop();
 	}
 }

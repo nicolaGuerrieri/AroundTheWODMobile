@@ -42,14 +42,14 @@ export class DialogSocial {
 	
 
 	loginSocial(data){
-		let loader = this.loading.create({
+		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
-		loader.present();
+		this.loader.present();
 		this.cittaLuogoService.loginSocial(data).then(data => {
 			if(data){
 				alert(JSON.stringify(data));	
-				loader.dismiss();
+				this.loader.dismiss();
 			}
 		});
 	}
@@ -112,7 +112,10 @@ export class DialogSocial {
 		});
 	}
  
-		back(){
+	back(){
+		if(this.loader){
+			this.loader.dismiss();
+		}
 	    this.navCtrl.pop();
 	}
 }

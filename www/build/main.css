@@ -29082,7 +29082,7 @@ input {
 }
 
 .flb {
-  background-color: #3ebffb;
+  background-color: #1fc8db !important;
   height: 100%;
   width: 100%;
   -webkit-animation: pulse 1s linear forwards;
