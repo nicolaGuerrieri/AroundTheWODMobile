@@ -27,12 +27,15 @@ export class DialogSocial {
     public subject  : string = 'AroundTheWOD App';
     public message  : string = 'Hey guys, i share new location on AroundTheWOD app...look on site';
 	public image    : string	= 'http://app.nicolaguerrieri.it:3000/images/ket.jpg'; 
-
+	private _isAndroid: boolean;
+	private _isiOS: boolean; 
 	
 	public from:String;
 		
 	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth, public cittaLuogoService: CittaLuogoService,) {
 		this.from = this.params.get("from");
+		this._isAndroid = platform.is('android');
+		this._isiOS = platform.is('ios');
 	 
 	}
 	

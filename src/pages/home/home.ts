@@ -21,6 +21,10 @@ export class HomePage {
 	plat: any;
 	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 
+	var navOptions = {
+		animate: true,
+		animation: 'wp-transition'
+	};
 		this.address = {
 		  place: 'reggio emilia'
 		};
@@ -86,15 +90,12 @@ export class HomePage {
 		});
 	}
 	ricerca(){
-		var navOptions = {
-			animate: true,
-			animation: 'wp-transition'
-		};
+
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
 				citta: this.address.place,
 				allSearchPlace: this.allSearchPlace
-			}, navOptions);
+			}, this.navOptions);
 		}else{
 			console.log("bloccato");
 			return;

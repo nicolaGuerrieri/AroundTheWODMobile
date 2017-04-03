@@ -7,11 +7,11 @@ page-home {
 
 }
 .colorPersonal{
-	background-color: blue;
+	background-color: color($colors, personal1) !important;
 }
 
 #ion-header{
-	background-color: blue;
+	background-color: color($colors, personal1) !important;
 }
 
 input{

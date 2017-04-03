@@ -52,13 +52,13 @@
 		</div>
 	</div>
 	<div class="row"  *ngIf="from == 'login'">
-		<div class="col" style="text-align: center;">
+		<div class="col" style="text-align: center;"  *ngIf="!_isiOS">
 			<button (click)="loginGoogle()" ion-button icon-left>
 			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
 				Login with google
 			</button>
 		</div>
-		<div class="col" style="text-align: center;">
+		<div class="col" style="text-align: center;" *ngIf="!_isiOS">
 			<button (click)="loginFacebook()" ion-button icon-left>
 			  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 				Login with facebook
