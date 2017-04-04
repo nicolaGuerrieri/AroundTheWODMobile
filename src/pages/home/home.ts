@@ -19,12 +19,11 @@ export class HomePage {
 	address;
 	public allSearchPlace:any;
 	plat: any;
-	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
-
-	var navOptions = {
+	navOptions = {
 		animate: true,
 		animation: 'wp-transition'
 	};
+	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 		  place: 'reggio emilia'
 		};

@@ -28976,6 +28976,10 @@ sub {
   background-color: #1fc8db;
 }
 
+.buttonNavText {
+  color: white;
+}
+
 .centraTutto {
   display: block;
   margin: auto;
@@ -29068,6 +29072,11 @@ page-home {
 
 input {
   text-align: center;
+}
+
+.buttonNav {
+  font-size: 30px;
+  color: white;
 }
 
 #custom-overlay {

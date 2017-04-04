@@ -26,7 +26,7 @@
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center;">
-			<button *ngIf="!nuovoLuogo" (click)="openMapsApp()" ion-button icon-left>
+			<button *ngIf="!nuovoLuogo" class="buttonNavText" (click)="openMapsApp()" ion-button icon-left>
 				Take me there
 			</button>
 		</div>
@@ -133,10 +133,10 @@
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center;">
-			<button (click)="back()" ion-button icon-left> 
+			<button (click)="back()" class="buttonNavText" ion-button icon-left> 
 				Back
 			</button>
-			<button *ngIf="nuovoLuogo" (click)="salva()" ion-button icon-left>
+			<button *ngIf="nuovoLuogo" class="buttonNavText" (click)="salva()" ion-button icon-left>
 				Save
 			</button>
 		</div>

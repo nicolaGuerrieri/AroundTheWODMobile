@@ -37,7 +37,9 @@
 .button-md.activated{
 	background-color:  map-get($colors, personal3);
 }
-
+.buttonNavText{
+	color: white;
+}
 .centraTutto{
 	display:block;
 	margin:auto;
