@@ -7,7 +7,7 @@ page-home {
 
 }
 .colorPersonal{
-	background-color: color($colors, personal1) !important;
+	background-color: color($colors, light) !important;
 }
 
 #ion-header{
@@ -20,7 +20,9 @@ input{
 
 .buttonNav{
 	font-size: 30px;
-	color: white;
+	color: white !important;
+  background-color: color($colors, personal3) !important;
+
 }
 
  

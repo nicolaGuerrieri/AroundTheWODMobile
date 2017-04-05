@@ -172,7 +172,6 @@ export class CittaLuogoService {
 					if (status == google.maps.GeocoderStatus.OK) {
 					 
 					if (results[0]) {
-						
 						this.dataLocalizzazione =results[0];
 						resolve(this.dataLocalizzazione);
 					}else{

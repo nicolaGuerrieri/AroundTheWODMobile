@@ -1,6 +1,6 @@
 import { Component, NgZone, ViewChild } from '@angular/core';
 
-import { ViewController, Searchbar } from 'ionic-angular';
+import { ViewController, Searchbar, Platform} from 'ionic-angular';
 declare var google: any;
 
 @Component({
@@ -11,14 +11,17 @@ export class AutocompletePage {
   autocompleteItems;
   autocomplete;
   service = new google.maps.places.AutocompleteService();
-
+  private _isAndroid: boolean;
+  private _isiOS: boolean; 
   @ViewChild('citta') searchbar:Searchbar;
   
-  constructor (public viewCtrl: ViewController, private zone: NgZone) {
+  constructor (public viewCtrl: ViewController, private zone: NgZone, public platform: Platform,) {
     this.autocompleteItems = [];
     this.autocomplete = {
       query: ''
     };
+    this._isAndroid = platform.is('android');
+    this._isiOS = platform.is('ios');
   }
 	
   dismiss() {

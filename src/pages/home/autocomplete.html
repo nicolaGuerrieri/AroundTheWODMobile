@@ -1,9 +1,12 @@
-<ion-header class="colorPersonal">
+
+
+<ion-header  class="colorPersonal">
   <ion-toolbar>
-    <ion-title >Enter address</ion-title>
-    <ion-searchbar [(ngModel)]="autocomplete.query" #citta [showCancelButton]="true"  (change)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-title *ngIf="!_isiOS">Enter address</ion-title> 
+    <ion-searchbar [(ngModel)]="autocomplete.query" #citta [showCancelButton]="true" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-list>
   
