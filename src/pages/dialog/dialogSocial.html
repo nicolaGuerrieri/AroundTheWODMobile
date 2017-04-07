@@ -16,17 +16,17 @@
 		
 			<br />
 			<br />
-			<button ion-button color="primary" round icon-only (click)="doFacebook()">
+			<button ion-button color="buttonNav" round icon-only (click)="doFacebook()">
 				<ion-icon name="logo-facebook"></ion-icon>
 			</button>
-			<button ion-button color="primary" round icon-only (click)="doInstagram()">
+			<button ion-button color="buttonNav" round icon-only (click)="doInstagram()">
 				<ion-icon name="logo-instagram"></ion-icon> 
 			</button>
-			<button ion-button color="primary" round icon-only (click)="doTwitter()">
+			<button ion-button color="buttonNav" round icon-only (click)="doTwitter()">
 				<ion-icon name="logo-twitter"></ion-icon> 
 			</button>
 	
-			<button ion-button color="primary" round icon-only (click)="doShare()">
+			<button ion-button color="buttonNav" round icon-only (click)="doShare()">
 				<ion-icon name="share"></ion-icon> 
 			</button>
 			
@@ -53,46 +53,46 @@
 	</div>
 	<div class="row"  *ngIf="from == 'login'">
 		<div class="col" style="text-align: center;"  *ngIf="!_isiOS">
-			<button (click)="loginGoogle()" ion-button icon-left>
+			<button (click)="loginGoogle()" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
 				Login with google
 			</button>
 		</div>
 		<div class="col" style="text-align: center;" *ngIf="!_isiOS">
-			<button (click)="loginFacebook()" ion-button icon-left>
+			<button (click)="loginFacebook()" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 				Login with facebook
 			</button>
 		</div>
 		<div class="col" style="text-align: center;">
-			<button (click)="loginInstagram()" ion-button icon-left>
+			<button (click)="loginInstagram()" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
 				Login with instagram
 			</button>
 		</div>
 	</div>
 		<div *ngIf="from == 'social'" class="col" style="text-align: center;">
-			<button (click)="loginSocial('google')" ion-button icon-left>
+			<button (click)="loginSocial('google')" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
 				Login with google
 			</button>
 		</div>
 		
 	<div  *ngIf="from == 'social'"  class="col" style="text-align: center;">
-		<button (click)="loginSocial('facebook')" ion-button icon-left>
+		<button (click)="loginSocial('facebook')" class="buttonNavSenzaFont" ion-button icon-left>
 		  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 			Login with facebook
 		</button>
 	</div>
 	<div  *ngIf="from == 'social'"  class="col" style="text-align: center;">
-		<button (click)="loginSocial('instagram')" ion-button icon-left>
+		<button (click)="loginSocial('instagram')" class="buttonNavSenzaFont" ion-button icon-left>
 		  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
 			Login with instagram
 		</button>
 	</div>
 	<br />
 	<div class="centraTutto"  style="text-align: center;">
-		<button (click)="dismiss()" ion-button icon-left>
+		<button (click)="dismiss()" ion-button class="buttonNavSenzaFont" icon-left>
 			<ion-icon name="back" showWhen="android,windows,ios"></ion-icon>
 			Close
 		</button>

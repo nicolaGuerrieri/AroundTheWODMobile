@@ -27,6 +27,7 @@ export class CittaLuogoService {
 		if (this.data) {
 			return Promise.resolve(this.data);
 		}
+		alert(citta);
 
 		  // don't have the data yet
 		  return new Promise(resolve => {
@@ -65,7 +66,6 @@ export class CittaLuogoService {
 		if (this.data) {
 			return Promise.resolve(this.data);
 		}
-
 		  // don't have the data yet
 		return new Promise(resolve => {
 			this.http.get(this.preUrl+'getLuogoById?idLuogo='+idLuogo).map(res =>res.json()).subscribe(data => {
