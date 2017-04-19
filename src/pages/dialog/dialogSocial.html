@@ -1,7 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-title  *ngIf="from == 'social'">
       Social share
+    </ion-title>
+	<ion-title  *ngIf="from == 'login'">
+      Social login
+    </ion-title>
+	<ion-title  *ngIf="from == 'info'">
+      Who we are?
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,17 +22,17 @@
 		
 			<br />
 			<br />
-			<button ion-button color="primary" round icon-only (click)="doFacebook()">
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doFacebook()">
 				<ion-icon name="logo-facebook"></ion-icon>
 			</button>
-			<button ion-button color="primary" round icon-only (click)="doInstagram()">
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doInstagram()">
 				<ion-icon name="logo-instagram"></ion-icon> 
 			</button>
-			<button ion-button color="primary" round icon-only (click)="doTwitter()">
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doTwitter()">
 				<ion-icon name="logo-twitter"></ion-icon> 
 			</button>
 	
-			<button ion-button color="primary" round icon-only (click)="doShare()">
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doShare()">
 				<ion-icon name="share"></ion-icon> 
 			</button>
 			
@@ -53,46 +59,62 @@
 	</div>
 	<div class="row"  *ngIf="from == 'login'">
 		<div class="col" style="text-align: center;"  *ngIf="!_isiOS">
-			<button (click)="loginGoogle()" ion-button icon-left>
+			<button (click)="loginGoogle()" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
 				Login with google
 			</button>
 		</div>
 		<div class="col" style="text-align: center;" *ngIf="!_isiOS">
-			<button (click)="loginFacebook()" ion-button icon-left>
+			<button (click)="loginFacebook()" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 				Login with facebook
 			</button>
 		</div>
 		<div class="col" style="text-align: center;">
-			<button (click)="loginInstagram()" ion-button icon-left>
+			<button (click)="loginInstagram()" class="buttonNavSenzaFont" ion-button icon-left>
 			  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
 				Login with instagram
 			</button>
 		</div>
 	</div>
-		<div *ngIf="from == 'social'" class="col" style="text-align: center;">
-			<button (click)="loginSocial('google')" ion-button icon-left>
-			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
-				Login with google
-			</button>
-		</div>
+	<br /> 	
+	<div  *ngIf="from == 'info'" class="centraTutto"  style="text-align: center; color: #2cb5e8; padding: 10px;">
+		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" > 
+		<br />
+		<br /> 
+		<span  style="text-align: center; font-size: 30px; color: #2cb5e8;" >
+			AroundTheWod App...<br /> </span><br />
+		<span style="text-align: center; font-size: 15px; color: #2cb5e8;" >
+			 born from the idea of bringing all outdoor sports, athletes and not aware of the various locations in sport background that each municipality makes available to its citizens. Fitness Trail, parks equipped with facilities to practice free body workout, tracks dedicated to trail run, outdoor gyms ... From today, all traceable and accessible with one click.
+			  The sport is a source of stimulation, well-being, but especially sharing. 
+			Get out of your comfort zone and become part of the Community ArounTheWod.
+			<br /></span>
+		<span  style="text-align: center; font-size: 20px; color: #2cb5e8;" >
+			La scoperta inizia ora<br /> </span>
+	</div>
+	<br />
+	<div *ngIf="from == 'fast'" class="col" style="text-align: center;">
+		<button (click)="loginSocial('google')" class="buttonNavSenzaFont" ion-button icon-left>
+		  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
+			Login with google
+		</button>
+	</div>
 		
-	<div  *ngIf="from == 'social'"  class="col" style="text-align: center;">
-		<button (click)="loginSocial('facebook')" ion-button icon-left>
+	<div  *ngIf="from == 'fast'"  class="col" style="text-align: center;">
+		<button (click)="loginSocial('facebook')" class="buttonNavSenzaFont" ion-button icon-left>
 		  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
 			Login with facebook
 		</button>
-	</div>
-	<div  *ngIf="from == 'social'"  class="col" style="text-align: center;">
-		<button (click)="loginSocial('instagram')" ion-button icon-left>
+	</div> 
+	<div *ngIf="from == 'fast'"  class="col" style="text-align: center;">
+		<button (click)="loginSocial('instagram')" class="buttonNavSenzaFont" ion-button icon-left>
 		  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
 			Login with instagram
 		</button>
 	</div>
 	<br />
 	<div class="centraTutto"  style="text-align: center;">
-		<button (click)="dismiss()" ion-button icon-left>
+		<button (click)="dismiss()" ion-button class="buttonNavSenzaFont" icon-left>
 			<ion-icon name="back" showWhen="android,windows,ios"></ion-icon>
 			Close
 		</button>

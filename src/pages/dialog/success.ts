@@ -18,7 +18,6 @@ export class Success {
 		
 	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController, public plt: Platform) {
 		this.from = this.params.get("from");
-	 
 	}
 	
 	dismiss() {

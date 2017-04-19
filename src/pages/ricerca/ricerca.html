@@ -24,7 +24,9 @@
 	</ion-chip>
 	<br />
 	<br />
-	 
+	 <ion-fab  right bottom>
+		<button mini (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
+	</ion-fab>
 	<ion-card *ngFor="let item of cittaLuogo" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;" (click)="selectPlace(item._id)">
 	  <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>
  

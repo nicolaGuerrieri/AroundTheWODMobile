@@ -25,7 +25,7 @@ export class DialogSocial {
 	map: any;
     public url  : string = 'www.aroundTheWOD.com';
     public subject  : string = 'AroundTheWOD App';
-    public message  : string = 'Hey guys, i share new location on AroundTheWOD app...look on site';
+    public message  : string = 'Hey guys, i use AroundTheWOD app...Share and find new location for your WOD... look on site';
 	public image    : string	= 'http://app.nicolaguerrieri.it:3000/images/ket.jpg'; 
 	private _isAndroid: boolean;
 	private _isiOS: boolean; 

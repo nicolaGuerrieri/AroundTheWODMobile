@@ -4,11 +4,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AutocompletePage } from '../pages/home/autocomplete';
 import { Ricerca } from '../pages/ricerca/ricerca';
+import { Organizzazioni } from '../pages/ricerca/organizzazioni';
 import { Detail } from '../pages/ricerca/detail';
 import { DialogSocial } from '../pages/dialog/dialogSocial';
 import { Success } from '../pages/dialog/success';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
+import {HttpModule, Http} from "@angular/http";
+
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -30,12 +33,13 @@ const cloudSettings: CloudSettings = {
     HomePage,
 	Ricerca,
 	AutocompletePage,
+	Organizzazioni,
 	Detail,
 	DialogSocial,
 	Success
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp), 
 	 CloudModule.forRoot(cloudSettings) 
   ],
   bootstrap: [IonicApp],
@@ -45,6 +49,7 @@ const cloudSettings: CloudSettings = {
 	Ricerca,
 	AutocompletePage,
 	Detail,
+	Organizzazioni,
 	DialogSocial,
 	Success
   ],

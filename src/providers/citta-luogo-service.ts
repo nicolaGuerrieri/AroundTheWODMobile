@@ -38,6 +38,22 @@ export class CittaLuogoService {
 		  });
 		  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
 	}
+	loadOrganizzazioni(citta) {
+		this.data = null;
+		if (this.data) {
+			return Promise.resolve(this.data);
+		}
+
+		  // don't have the data yet
+		  return new Promise(resolve => {
+				this.http.get(this.preUrl + 'getOrganizzazioni?citta='+ citta).map(res =>res.json()).subscribe(data => {
+				this.data = data.listaLuoghi;
+				resolve(this.data);
+			  },err => console.error(">>" + err),
+				() => console.log('done'));
+		  });
+		  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
+	}
 	
 	save(luogo) {
 		if(!luogo){
@@ -65,7 +81,6 @@ export class CittaLuogoService {
 		if (this.data) {
 			return Promise.resolve(this.data);
 		}
-
 		  // don't have the data yet
 		return new Promise(resolve => {
 			this.http.get(this.preUrl+'getLuogoById?idLuogo='+idLuogo).map(res =>res.json()).subscribe(data => {

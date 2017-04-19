@@ -1,0 +1,42 @@
+<ion-header class="colorPersonal">
+  <ion-navbar>
+    <ion-title>
+      {{global.title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="text-align: center;">
+
+	Your search: <br />
+	<ion-chip>
+	  <ion-label>{{citta}}</ion-label>
+	</ion-chip>
+	<br />
+	<br />
+	Friends: <br />
+	<ion-card *ngFor="let item of listaOrganizzazioni" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;" (click)="selectPlace(item._id)">
+	  <ion-card-content >
+		<ion-card-title>
+		  {{ item.nome }},   {{ item.citta }} <br />  {{ item.tipo }} 
+		  </ion-card-title>
+		<p>
+			{{ item.descrizione }} <br />
+			Where: {{ item.dove }} <br />
+			{{ item.telefono }}{{ item.url_social }} 
+		</p>
+	  </ion-card-content>
+	</ion-card>
+	  
+	 
+</ion-content>
+ <ion-footer class="centraTutto">
+  <ion-toolbar style="color: white; font-size: 35px;"  >
+	<ion-title class="centraTutto">Follow us</ion-title>
+	<div class="centraTutto" style="padding-left: 15px;">
+		<ion-icon name="logo-facebook"></ion-icon>
+		<ion-icon name="logo-instagram"></ion-icon>
+		<ion-icon name="logo-google"></ion-icon>
+	</div>
+  </ion-toolbar>
+</ion-footer>

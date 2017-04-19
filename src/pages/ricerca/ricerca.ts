@@ -1,10 +1,11 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform, ActionSheetController} from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, ActionSheetController, Content} from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation, SocialSharing} from 'ionic-native';
 import { AutocompletePage } from '../home/autocomplete';
 import { Detail } from '../ricerca/detail';
+import { Organizzazioni } from '../ricerca/organizzazioni';
 import { DialogSocial } from '../dialog/dialogSocial';
 import { FacebookAuth, User, Auth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
@@ -19,7 +20,7 @@ declare var cordova:any;
 export class Ricerca {
 	
 	public citta:any;
-	
+	@ViewChild(Content) content: Content;
 	public cittaLuogo: any;
 	public address:any;
 
@@ -50,27 +51,33 @@ export class Ricerca {
 		  title: 'Menu',
 		  buttons: [
 			{
-			  text: 'Add place',
+			  text: 'Add your new place',
 			  role: 'addPlace',
 			  handler: () => {
 				this.addPlace();
 			  }
 			},{
-			  text: 'Search',
+			  text: 'Search your place',
 			  handler: () => {
 				this.showAddressModalR();
 			  }
 			},{
-			  text: 'Locate',
+			  text: 'Locate your position',
 			  role: 'locate',
 			  handler: () => {
 				this.geolocalizza();
 			  }
 			},{
-			  text: 'Share',
+			  text: 'Share your experience',
 			  role: 'Share',
 			  handler: () => {
 				this.share();
+			  }
+			},{
+			  text: 'Friends',
+			  role: 'Friends',
+			  handler: () => {
+				this.organizzazioni();
 			  }
 			}
 		  ]
@@ -82,6 +89,7 @@ export class Ricerca {
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "social"});
 		modal.present();
 	}
+
 	
 	addPlace(){
 		this.navCtrl.push(Detail,{
@@ -117,6 +125,9 @@ export class Ricerca {
 		  alert("error" + e);
 		}
 		
+	}
+	scrollToBottom() {
+		this.content.scrollToBottom();
 	}
 	
 	//load with position
@@ -267,6 +278,21 @@ export class Ricerca {
 				this.navCtrl.push(Ricerca,{
 					citta: this.address.place,
 					allSearchPlace: this.allSearchPlace
+				}, this.navOptions);
+			}else{
+				console.log("bloccato");
+				return;
+			}
+		}catch (e) {
+		   alert("error: " + e);
+		}
+			
+	}
+	organizzazioni(){
+		try{
+			if(this.address.place != ""){
+				this.navCtrl.push(Organizzazioni,{
+					citta: this.address.place 
 				}, this.navOptions);
 			}else{
 				console.log("bloccato");

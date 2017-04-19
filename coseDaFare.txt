@@ -1,9 +1,9 @@
 "# AroundTheWODMobile" 
 
 Io 
-- Google ok android no ios
-- Facebook ok android no ios
-- instagram ok android ok ios
+- Attaccare nuovo logo
+- attaccare pagine link social
+-  descizione app
 
 
 - fare account apple e google

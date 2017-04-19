@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
- 
-import { NavController, ModalController, LoadingController, Platform  } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, Platform, ViewController } from 'ionic-angular';
 import {Global} from '../../services/global';
 import { Ricerca } from '../ricerca/ricerca';
 import { AutocompletePage } from './autocomplete';
- 
+import { DialogSocial } from '../dialog/dialogSocial';
+
 import { Success } from '../dialog/success';
 declare var cordova:any;
 declare var google: any;
@@ -23,12 +23,19 @@ export class HomePage {
 		animate: true,
 		animation: 'wp-transition'
 	};
-	constructor(public navCtrl: NavController, public global:Global, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	constructor( public navCtrl: NavController, public global:Global,  public viewCtrl:ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 		  place: 'reggio emilia'
-		};
+		}; 
+	}
+	info(){ 
+		let modal = this.modalCtrl.create(DialogSocial, {"from": "info"});
+		modal.present();
 	}
 	
+	dismiss() {
+		this.viewCtrl.dismiss();
+	}
 	ionViewDidLoad() {
 		setTimeout(() => this.splash = false, 4000);
 	}

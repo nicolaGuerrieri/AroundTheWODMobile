@@ -20,13 +20,16 @@
 	<div #map id="map"></div>  
 	<br />
 	<br /> 
+	 <ion-fab right bottom>
+		<button mini (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
+	</ion-fab>
 	<div class="row text-center" *ngIf="luogoSelezionato">
 		<img *ngIf="luogoSelezionato.foto" src="{{global.preUrl}}users/leggi/{{luogoSelezionato.foto}}" alt="" class="imgDetail">
 	</div>
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center;">
-			<button *ngIf="!nuovoLuogo" class="buttonNavText" (click)="openMapsApp()" ion-button icon-left>
+			<button *ngIf="!nuovoLuogo" class="buttonNavSenzaFont" (click)="openMapsApp()" ion-button icon-left>
 				Take me there
 			</button>
 		</div>
@@ -44,8 +47,8 @@
 			<ion-label color="primary" stacked>Where</ion-label> 
 			<ion-input type="text" placeholder="Place" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
 			<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
-	 		<button *ngIf="nuovoLuogo" (click)="loadMapVed()" clear ion-button item-right style="color: white; font-size:15px"><ion-icon name="search"></ion-icon></button>
-	 		<button *ngIf="nuovoLuogo" (click)="geolocalizza()" clear ion-button item-right style="color: white; font-size:15px">
+	 		<button *ngIf="nuovoLuogo" (click)="loadMapVed()" clear ion-button item-right class="buttonNavSenzaFont" style="color: white; font-size:15px"><ion-icon name="search"></ion-icon></button>
+	 		<button *ngIf="nuovoLuogo" (click)="geolocalizza()" clear ion-button item-right class="buttonNavSenzaFont" style="color: white; font-size:15px">
 				<ion-icon style="font-size: 20px" name="ios-navigate-outline"></ion-icon>
 			</button>
 		</ion-item>
@@ -133,10 +136,10 @@
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center;">
-			<button (click)="back()" class="buttonNavText" ion-button icon-left> 
+			<button (click)="back()" class="buttonNavSenzaFont" ion-button icon-left> 
 				Back
 			</button>
-			<button *ngIf="nuovoLuogo" class="buttonNavText" (click)="salva()" ion-button icon-left>
+			<button *ngIf="nuovoLuogo" class="buttonNavSenzaFont" (click)="salva()" ion-button icon-left>
 				Save
 			</button>
 		</div>

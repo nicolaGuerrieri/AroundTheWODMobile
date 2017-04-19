@@ -11,17 +11,24 @@
     <ion-title>
       {{global.title}}
     </ion-title>
+	<ion-buttons end>
+		<button style="font-size: 30px;" (click)="info()" class="" ion-button>
+			<ion-icon name="information-circle"></ion-icon>
+		</button>
+	</ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding> 
 	<br /><br />
 	<div class="row">
 		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" > 
 		<br /><br />
+		
 		<div class="centraTutto">
-			<ion-input  color="personal3"  style="" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+		Where...<br />
+			<ion-input  color="personal3"  style="" class="centraTutto inputSearch" (touch)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
 		</div>
 		<br />
 		<div style="text-align: center;">

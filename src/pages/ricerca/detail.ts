@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit  } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform   } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, Content  } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { AutocompletePage } from '../home/autocomplete';
@@ -17,7 +17,7 @@ declare var cordova:any;
   providers: [CittaLuogoService]
 })
 export class Detail implements OnInit{
-	
+	@ViewChild(Content) content: Content;
 	public idLuogo;
 	public nuovoLuogo = false;
 	public loader; 
@@ -37,7 +37,9 @@ export class Detail implements OnInit{
 		this._isiOS = plt.is('ios');
  	}
 	
-	
+	scrollToBottom() {
+		this.content.scrollToBottom();
+	}
 	ngOnInit() {
 		
 		this.idLuogo= this.params.get("idLuogo"); 
