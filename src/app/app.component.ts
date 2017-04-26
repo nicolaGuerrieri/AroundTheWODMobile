@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import {Platform, ViewController } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';  
+import { StatusBar, Splashscreen, Device } from 'ionic-native';  
+import { Storage } from '@ionic/storage';
 
  
 
@@ -16,10 +17,13 @@ declare var  cordova:any;
 export class MyApp {
   rootPage = HomePage;
  
-  constructor(platform: Platform) {
+  constructor(platform: Platform, public storage: Storage) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+		this.storage.set('versionAndroid', Device.version).then(() => {
+		  console.log('Name has been set');
+		});
 		StatusBar.styleDefault();
 		Splashscreen.hide();
 		//this.registerBackButtonListener(); 

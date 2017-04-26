@@ -11,7 +11,7 @@ import { Success } from '../pages/dialog/success';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
 import {HttpModule, Http} from "@angular/http";
-
+import { Storage } from '@ionic/storage';
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -53,6 +53,6 @@ const cloudSettings: CloudSettings = {
 	DialogSocial,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage]
 })
 export class AppModule {}

@@ -29085,6 +29085,11 @@ input {
   background-color: #1fc8db !important;
 }
 
+.textNoResults {
+  color: #1fc8db !important;
+  font-size: 20px;
+}
+
 #custom-overlay {
   position: fixed;
   top: 0;
@@ -29354,10 +29359,6 @@ input {
     -webkit-transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   }
-}
-
-input {
-  text-align: center;
 }
 
 input {

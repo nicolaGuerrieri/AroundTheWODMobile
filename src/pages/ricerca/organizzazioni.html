@@ -7,15 +7,18 @@
 </ion-header>
 
 <ion-content padding style="text-align: center;">
-
+ 
+	 <ion-fab  right bottom>
+		<button mini (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
+	</ion-fab>
 	Your search: <br />
 	<ion-chip>
 	  <ion-label>{{citta}}</ion-label>
 	</ion-chip>
 	<br />
 	<br />
-	Friends: <br />
-	<ion-card *ngFor="let item of listaOrganizzazioni" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;" (click)="selectPlace(item._id)">
+	Our friends: <br />
+	<ion-card *ngFor="let item of listaOrganizzazioni" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
 	  <ion-card-content >
 		<ion-card-title>
 		  {{ item.nome }},   {{ item.citta }} <br />  {{ item.tipo }} 
@@ -27,16 +30,21 @@
 		</p>
 	  </ion-card-content>
 	</ion-card>
-	  
-	 
+	<div  class="textNoResults"  *ngIf="!listaOrganizzazioni">  
+		<ion-icon   ios="ios-sad" md="md-sad"></ion-icon>
+		No results found for this place...
+	</div>
 </ion-content>
  <ion-footer class="centraTutto">
   <ion-toolbar style="color: white; font-size: 35px;"  >
 	<ion-title class="centraTutto">Follow us</ion-title>
 	<div class="centraTutto" style="padding-left: 15px;">
-		<ion-icon name="logo-facebook"></ion-icon>
-		<ion-icon name="logo-instagram"></ion-icon>
-		<ion-icon name="logo-google"></ion-icon>
+		<a (click)="global.openSocial('facebook')" >
+			<ion-icon name="logo-facebook"></ion-icon>
+		</a> 
+		<a (click)="global.openSocial('instagram')" >		
+			<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon> 
+		</a> 
 	</div>
   </ion-toolbar>
 </ion-footer>

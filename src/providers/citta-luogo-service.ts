@@ -48,6 +48,7 @@ export class CittaLuogoService {
 		  return new Promise(resolve => {
 				this.http.get(this.preUrl + 'getOrganizzazioni?citta='+ citta).map(res =>res.json()).subscribe(data => {
 				this.data = data.listaLuoghi;
+				console.log(data);
 				resolve(this.data);
 			  },err => console.error(">>" + err),
 				() => console.log('done'));

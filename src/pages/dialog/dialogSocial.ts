@@ -5,7 +5,7 @@ import {SocialSharing} from 'ionic-native';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 import { Login } from '../ricerca/login';
-
+import { Storage } from '@ionic/storage';
 declare var google: any;
 declare var cordova:any;
 @Component({
@@ -28,15 +28,21 @@ export class DialogSocial {
     public message  : string = 'Hey guys, i use AroundTheWOD app...Share and find new location for your WOD... look on site';
 	public image    : string	= 'http://app.nicolaguerrieri.it:3000/images/ket.jpg'; 
 	private _isAndroid: boolean;
+	private androidVersion: any;
 	private _isiOS: boolean; 
 	
 	public from:String;
 		
-	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth, public cittaLuogoService: CittaLuogoService,) {
+	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth, public cittaLuogoService: CittaLuogoService, public storage: Storage) {
 		this.from = this.params.get("from");
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
-	 
+		this.androidVersion = 5;
+		if(this._isAndroid){
+			this.storage.get('versionAndroid').then((va) => {
+				this.androidVersion = va;
+			});
+		}
 	}
 	
 	loginGoogle(){
@@ -51,7 +57,7 @@ export class DialogSocial {
 		this.loader.present();
 		this.cittaLuogoService.loginSocial(data).then(data => {
 			if(data){
-				alert(JSON.stringify(data));	
+				//alert(JSON.stringify(data));	
 				this.loader.dismiss();
 			}
 		});
@@ -86,8 +92,7 @@ export class DialogSocial {
 
 //	https://forum.ionicframework.com/t/ionic-2-ionic-cloud-auth-google-auth-failing-12501/72967/3	
   
-	doShare() { 
-		alert("do share")
+	doShare() {  
 		try{
 			SocialSharing.share(this.message, this.subject, this.image, this.url).then((data) => {
 				 
@@ -100,7 +105,7 @@ export class DialogSocial {
 	}
 	doFacebook() {
 		this.platform.ready().then(() => {
-			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, this.url, 'Prova testo').then((data) =>{
+			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, this.url, 'AroundTheWOD app').then((data) =>{
 			 
 			}).catch((err) =>			{
 			   alert('Was not shared via Facebook');

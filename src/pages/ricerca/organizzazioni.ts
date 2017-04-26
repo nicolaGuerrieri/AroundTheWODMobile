@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform, ActionSheetController} from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, ActionSheetController, Content} from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation, SocialSharing} from 'ionic-native';
@@ -11,7 +11,7 @@ import { Geolocation, SocialSharing} from 'ionic-native';
   providers: [CittaLuogoService]
 })
 export class Organizzazioni {
-	
+	@ViewChild(Content) content: Content;
 	public citta:any;
 	public listaOrganizzazioni:any;
 	public loader;
@@ -31,6 +31,7 @@ export class Organizzazioni {
 		});
 		this.loader.present();
 		this.cittaLuogoService.loadOrganizzazioni(this.citta).then(data => {
+			 
 			if(data != "error"){
 				console.log(data)
 				this.listaOrganizzazioni = data;
@@ -39,6 +40,10 @@ export class Organizzazioni {
 		});
 		
 	}
+	scrollToBottom() {
+		this.content.scrollToBottom();
+	}
+	
 	back(){
 		if(this.loader){
 			this.loader.dismiss();

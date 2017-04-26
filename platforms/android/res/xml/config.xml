@@ -77,13 +77,14 @@
     <preference name="KeepRunning" value="true" />
     <preference name="AndroidLaunchMode" value="singleInstance" />
     <preference name="android-minSdkVersion" value="16" />
-    <preference name="SplashScreenDelay" value="0" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="10" />
     <preference name="ShowSplashScreen" value="false" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="FadeSplashScreenDuration" value="100" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
 </widget>

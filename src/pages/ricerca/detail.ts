@@ -149,8 +149,7 @@ export class Detail implements OnInit{
 		
 		this.cittaLuogoService.loginSocial(social).then(socialData => {
 			let datiSocial = socialData;
-			if(datiSocial){
-				alert(JSON.stringify(datiSocial));
+			if(datiSocial){ 
 				this.inviaDatiServer(socialData, this.loader);
 			}
 		});

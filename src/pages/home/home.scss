@@ -29,6 +29,11 @@ input{
   background-color: color($colors, personal3) !important;
 
 }
+.textNoResults{
+	color:  color($colors, personal3) !important;
+	font-size: 20px;
+
+}
  
 #custom-overlay {
   position: fixed;

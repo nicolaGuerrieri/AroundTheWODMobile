@@ -23,7 +23,7 @@ export class Ricerca {
 	@ViewChild(Content) content: Content;
 	public cittaLuogo: any;
 	public address:any;
-
+	public cercaOrga;
 	public allSearchPlace:any;
 	public loader;
 	@ViewChild('map') mapElement: ElementRef;
@@ -37,13 +37,13 @@ export class Ricerca {
 	};
 	
 	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+		this.cittaLuogo = [];
 		this.citta= params.get("citta"); 
 		this.allSearchPlace = params.get("allSearchPlace");
 		this.loadCity(this.citta);
 		this.address = {
 			place: this.citta
-		};
-	 
+		}; 
 	}
 	
 	presentActionSheet() {
@@ -292,7 +292,7 @@ export class Ricerca {
 		try{
 			if(this.address.place != ""){
 				this.navCtrl.push(Organizzazioni,{
-					citta: this.address.place 
+					citta: this.cercaOrga
 				}, this.navOptions);
 			}else{
 				console.log("bloccato");
@@ -323,7 +323,6 @@ export class Ricerca {
 		try{
 			//troppi if
 			console.log(this.allSearchPlace);
-			console.log("---------");
 			if(this.allSearchPlace && this.allSearchPlace.types){
 							console.log("ma passa di qua");		
 
@@ -350,9 +349,11 @@ export class Ricerca {
 			if(cittaP == null){
 				cittaP = this.loadGeolocalization();
 			}else{
+				this.cercaOrga = cittaP;
 				this.cittaLuogoService.load(cittaP).then(data => {
 					this.cittaLuogo = data;
 					this.loadMapWithPlace(this.cittaLuogo);
+					
 				});
 			}
 		}catch (e) {

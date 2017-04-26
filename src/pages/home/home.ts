@@ -25,7 +25,7 @@ export class HomePage {
 	};
 	constructor( public navCtrl: NavController, public global:Global,  public viewCtrl:ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
-		  place: 'reggio emilia'
+		  place: 'bologna'
 		}; 
 	}
 	info(){ 
