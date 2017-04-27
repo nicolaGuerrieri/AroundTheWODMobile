@@ -151,8 +151,11 @@ export class Detail implements OnInit{
 			let datiSocial = socialData;
 			if(datiSocial){ 
 				this.inviaDatiServer(socialData, this.loader);
+			}else{
+				this.loader.dismiss();
 			}
 		});
+		this.loader.dismiss();
 	}
 	riempiOggetto(data){
 		this.nuovoLuogoObject = {};
@@ -392,6 +395,7 @@ export class Detail implements OnInit{
 	}
 	
 	back(){
+		alert(this.loader);
 		if(this.loader){
 			this.loader.dismiss();
 		}

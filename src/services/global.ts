@@ -10,6 +10,7 @@ export class Global {
    public preUrl:string;
  	constructor(public platform: Platform) {
 		this.language= navigator.language;
+		//alert(this.language);
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
  	

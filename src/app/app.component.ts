@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import {Platform, ViewController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import {Platform, ViewController, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen, Device } from 'ionic-native';  
 import { Storage } from '@ionic/storage';
 
@@ -15,6 +15,7 @@ declare var  cordova:any;
  
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   rootPage = HomePage;
  
   constructor(platform: Platform, public storage: Storage) {
@@ -26,8 +27,14 @@ export class MyApp {
 		});
 		StatusBar.styleDefault();
 		Splashscreen.hide();
-		//this.registerBackButtonListener(); 
-    });
+		platform.registerBackButtonAction(() => {
+			  
+			alert(JSON.stringify(this.nav.getActive()));
+            
+           
+          });
+        });
+    
 
   }
   
