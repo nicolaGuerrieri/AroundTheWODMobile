@@ -28990,6 +28990,10 @@ sub {
   height: 200px;
 }
 
+ion-list {
+  margin-bottom: 1px !important;
+}
+
 .center {
   -webkit-order: 0;
   -ms-flex-order: 0;
@@ -29012,6 +29016,22 @@ sub {
   border-radius: 100px;
 }
 
+.cardR {
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 10px;
+  text-align: left;
+  border: 2px solid #bdbdbd;
+  padding-top: 5px;
+}
+
+.hrS {
+  height: 3px;
+  font-size: 2px;
+  width: 100%;
+  background: #1fc8db !important;
+}
+
 .img-circular3 {
   width: 200px;
   height: 200px;
@@ -29024,7 +29044,7 @@ sub {
   width: auto;
   margin: auto;
   display: block;
-  border-radius: 100px;
+  border-radius: 80px;
 }
 
 .imgDetailLittle {
@@ -29070,8 +29090,18 @@ page-home {
   background-color: #0fb8ad !important;
 }
 
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+  border-bottom-color: transparent !important;
+  border-bottom: 1px solid gray !important;
+  box-shadow: inset 0 -1px 0 0 gray;
+}
+
 input {
   text-align: center;
+}
+
+.genericText {
+  font-size: 18px;
 }
 
 .buttonNav {
@@ -29080,9 +29110,46 @@ input {
   background-color: #1fc8db !important;
 }
 
+ion-input {
+  text-transform: capitalize;
+}
+
+.altreIcona {
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  border-radius: 0px;
+}
+
+.altreIconaLittle {
+  width: 30px;
+  height: 25px;
+  border-radius: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
 .buttonNavSenzaFont {
   color: white !important;
   background-color: #1fc8db !important;
+}
+
+.disabilita {
+  color: white !important;
+  background-color: #0fb8ad !important;
+  font-size: 15px;
+}
+
+.disabilitaBlue {
+  color: white !important;
+  background-color: #1fc8db !important;
+  font-size: 15px;
+}
+
+.buttonNavSenzaFontRound {
+  color: white !important;
+  background-color: #1fc8db !important;
+  font-size: 15px;
 }
 
 .textNoResults {

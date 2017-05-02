@@ -9,7 +9,14 @@ export class Global {
 	public language: any;
    public preUrl:string;
  	constructor(public platform: Platform) {
-		this.language= navigator.language;
+		if(navigator.language){
+			if(navigator.language.indexOf("it") > -1){
+				this.language = "it";
+			}else{
+				this.language= "en";
+			}
+		}
+		
 		//alert(this.language);
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');

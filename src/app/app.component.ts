@@ -27,15 +27,7 @@ export class MyApp {
 		});
 		StatusBar.styleDefault();
 		Splashscreen.hide();
-		platform.registerBackButtonAction(() => {
-			  
-			alert(JSON.stringify(this.nav.getActive()));
-            
-           
-          });
-        });
-    
-
+    });
   }
   
 	registerBackButtonListener() {

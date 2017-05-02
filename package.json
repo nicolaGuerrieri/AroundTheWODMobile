@@ -1,5 +1,5 @@
 {
-  "name": "ionic-hello-world",
+  "name": "AroundTheWODTest",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
@@ -46,5 +46,5 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "aroundTheWODMobile: An Ionic project"
+  "description": "aroundTheWODMobile"
 }

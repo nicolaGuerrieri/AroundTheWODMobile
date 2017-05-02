@@ -14,11 +14,11 @@ export class CittaLuogoService {
 	public data:any;
 	public preUrl = "";
 	public dataLocalizzazione:any;
-	constructor(public http: Http, public platform: Platform, public loading: LoadingController, public googleAuth:GoogleAuth,  public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public http: Http, public platform: Platform, public loading: LoadingController, public googleAuth:GoogleAuth, public facebookAuth:FacebookAuth, public auth:Auth) {
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		}else{
-			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
+			this.preUrl = 'http://app.nicolaguerrieri.it:3002/';
 		}
 	}
 
@@ -28,8 +28,8 @@ export class CittaLuogoService {
 			return Promise.resolve(this.data);
 		}
 
-		  // don't have the data yet
-		  return new Promise(resolve => {
+		// don't have the data yet
+		return new Promise(resolve => {
 				this.http.get(this.preUrl + 'getListaForCity?citta='+ citta).map(res =>res.json()).subscribe(data => {
 				this.data = data.listaLuoghi;
 				resolve(this.data);
@@ -48,6 +48,23 @@ export class CittaLuogoService {
 		  return new Promise(resolve => {
 				this.http.get(this.preUrl + 'getOrganizzazioni?citta='+ citta).map(res =>res.json()).subscribe(data => {
 				this.data = data.listaLuoghi;
+				console.log(data);
+				resolve(this.data);
+			  },err => console.error(">>" + err),
+				() => console.log('done'));
+		  });
+		  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
+	}
+	loadAttivita() {
+		this.data = null;
+		if (this.data) {
+			return Promise.resolve(this.data);
+		}
+
+		  // don't have the data yet
+		  return new Promise(resolve => {
+				this.http.get(this.preUrl + 'attivita').map(res =>res.json()).subscribe(data => {
+				this.data = data.listaAttivita;
 				console.log(data);
 				resolve(this.data);
 			  },err => console.error(">>" + err),
@@ -165,7 +182,7 @@ export class CittaLuogoService {
 						});  
 					}
 				}else{
-					this.dataLocalizzazione ="fsasdfergv554t3fg4tfg1";
+					this.dataLocalizzazione ="daBrowser";
 					resolve(this.dataLocalizzazione);
 				}
 			} catch (e) {

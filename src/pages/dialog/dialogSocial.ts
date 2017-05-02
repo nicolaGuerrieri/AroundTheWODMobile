@@ -40,7 +40,7 @@ export class DialogSocial {
 		this.androidVersion = 5;
 		if(this._isAndroid){
 			this.storage.get('versionAndroid').then((va) => {
-				this.androidVersion = va;
+				this.androidVersion = parseInt(va, 10);
 			});
 		}
 	}
@@ -65,7 +65,7 @@ export class DialogSocial {
 	
 	//f33b26b8
 	dismiss() {
-		this.viewCtrl.dismiss();
+		this.viewCtrl.dismiss("");
 	}
 	doInstagram() { 
 	   this.platform.ready().then(() => {
