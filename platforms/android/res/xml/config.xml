@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.aroundthewodmobile356464" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.ionicframework.aroundthewodmobile356464" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
@@ -49,8 +49,8 @@
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />
     </feature>
-    <name>AroundTheWOD App - TEST</name>
-    <description>An awesome Nic app.</description>
+    <name>AroundThe \nWOD App</name>
+    <description>AroundTheWOD App</description>
     <author email="guerrierinicola@gmail.com" href="http://ionicframework.com/">AroundTheWOD Team</author>
     <content src="index.html" />
     <access origin="*" />

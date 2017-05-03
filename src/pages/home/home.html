@@ -20,12 +20,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding> 
+<ion-content padding>
 	<br /><br />
 	<div class="row">
-		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" > 
+		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" >
 		<br /><br />
-		
+
 		<div class="centraTutto">
 		<div style="text-align: center; font-size: 18px;">Search a city or use your gps location</div><br />
 			<ion-input  color="personal3"  style="" class="centraTutto inputSearch" (press)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
@@ -35,11 +35,11 @@
 			<button (click)="ricerca()" ion-button icon-left class="buttonClass">
 			  <ion-icon name="search"></ion-icon>
 				I want to train
-			</button> <button (click)="geolocalizza()"  ion-button class="buttonClass"><ion-icon class="colorPersonal buttonNav" style="color: white !important;" name="pin"></ion-icon></button> 
+			</button> <button (click)="geolocalizza()"  ion-button class="buttonClass"><ion-icon class="colorPersonal buttonNav" style="color: white !important;" name="pin"></ion-icon></button>
 		</div>
 		<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
 	</div>
-  
+
 </ion-content>
  <ion-footer class="centraTutto">
   <ion-toolbar style="color: white; font-size: 35px;"  >
@@ -47,10 +47,10 @@
 	<div class="centraTutto" style="padding-left: 15px;">
 		<a (click)="global.openSocial('facebook')" >
 			<ion-icon name="logo-facebook"></ion-icon>
-		</a> 
-		<a (click)="global.openSocial('instagram')" >		
-			<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon> 
-		</a> 
-	</div>
+		</a>
+		<a (click)="global.openSocial('instagram')" >
+			<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
+		</a>
+	</div> 
   </ion-toolbar>
 </ion-footer>

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Geolocation } from 'ionic-native';
-import { Platform, LoadingController } from 'ionic-angular'; 
+import { Platform, LoadingController } from 'ionic-angular';
 import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
- 
+
 declare var google: any;
 declare var cordova:any;
 
@@ -18,7 +18,7 @@ export class CittaLuogoService {
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		}else{
-			this.preUrl = 'http://app.nicolaguerrieri.it:3002/';
+			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
 		}
 	}
 
@@ -72,7 +72,7 @@ export class CittaLuogoService {
 		  });
 		  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
 	}
-	
+
 	save(luogo) {
 		if(!luogo){
 			alert("errore luogo service");
@@ -93,7 +93,7 @@ export class CittaLuogoService {
 				  },err => console.error(">>" + err),() => console.log('done'));
 	    });
 	}
-	
+
 	getLuogoForId(idLuogo) {
 		this.data = null;
 		if (this.data) {
@@ -102,14 +102,14 @@ export class CittaLuogoService {
 		  // don't have the data yet
 		return new Promise(resolve => {
 			this.http.get(this.preUrl+'getLuogoById?idLuogo='+idLuogo).map(res =>res.json()).subscribe(data => {
-				
+
 				this.data = data.luogo;
 				resolve(this.data);
 			  },err => console.error(">>" + err),
 				() => console.log('done'));
 		});
 	}
-	
+
 	localizza(loader) {
 	  if (this.dataLocalizzazione) {
 		alert("mica qui");
@@ -121,7 +121,7 @@ export class CittaLuogoService {
 		if (this.platform.is('android')) {
 			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
 				if(!enabled){
-					alert("Please enable GPS localization"); 
+					alert("Please enable GPS localization");
 				    cordova.plugins.diagnostic.switchToLocationSettings();
 					loader.dismiss();
 					return;
@@ -132,10 +132,10 @@ export class CittaLuogoService {
 		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
 			let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-	 
+
 			geocoder.geocode({'latLng': latLng}, function(results, status) {
 		 		if (status == google.maps.GeocoderStatus.OK) {
-					 
+
 					if (results[0]) {
 						this.dataLocalizzazione =results[0];
 						resolve(this.dataLocalizzazione);
@@ -144,28 +144,28 @@ export class CittaLuogoService {
 					}
 				}
 			});
-		
+
 		},(error) => {
 			alert("Please enable GPS localization");
 			resolve("error");
 		});
 	});
-		  
+
 	  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
 	}
-	
+
 	loginSocial(social){
- 
+
 		return new Promise(resolve => {
 			try {
 				if (!this.platform.is('core')) {
 					if(social == 'google'){
-						this.googleAuth.login().then((dataSocial) => { 
+						this.googleAuth.login().then((dataSocial) => {
 							this.dataLocalizzazione = dataSocial;
 							resolve(this.dataLocalizzazione);
 						},(error) => {
 							alert(error);
-						}); 
+						});
 					}else if(social == 'instagram'){
 						this.auth.login('instagram').then((dataSocial) => {
 							this.dataLocalizzazione = dataSocial;
@@ -179,7 +179,7 @@ export class CittaLuogoService {
 							resolve(this.dataLocalizzazione);
 						},(error) => {
 							alert(error);
-						});  
+						});
 					}
 				}else{
 					this.dataLocalizzazione ="daBrowser";
@@ -188,7 +188,7 @@ export class CittaLuogoService {
 			} catch (e) {
 			   alert("error: " + e);
 			}
-		
+
 		});
 	}
 	loadMap(cittaResult){
@@ -198,12 +198,12 @@ export class CittaLuogoService {
 		 }
 		return new Promise(resolve => {
 			try {
-	
+
 				console.log("loadMap " +  cittaResult);
 				let geocoder =  new google.maps.Geocoder();
 				geocoder.geocode({ 'address': cittaResult}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
-					 
+
 					if (results[0]) {
 						this.dataLocalizzazione =results[0];
 						resolve(this.dataLocalizzazione);
@@ -217,7 +217,7 @@ export class CittaLuogoService {
 			} catch (e) {
 			   alert("error: " + e);
 			}
-		
+
 		});
 	}
 }
