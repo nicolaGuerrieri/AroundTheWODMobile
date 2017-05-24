@@ -20,12 +20,12 @@ export class Detail implements OnInit{
 	@ViewChild(Content) content: Content;
 	public idLuogo;
 	public nuovoLuogo = false;
-	public loader; 
+	public loader;
 	public luogoSelezionato;
 	public nuovoLuogoObject:any;
 	private _isAndroid: boolean;
-	private _isiOS: boolean; 
-	
+	private _isiOS: boolean;
+
 	public listaAttivita: any;
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
@@ -33,32 +33,32 @@ export class Detail implements OnInit{
 		animate: true,
 		animation: 'wp-transition'
 	};
-	
+
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.loadAttivita();
-		
+
  	}
-	
-	
+
+
 	loadAttivita(){
 		this.cittaLuogoService.loadAttivita().then(data => {
 			this.listaAttivita = data;
 		});
-		
+
 	}
-	
-	
+
+
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
-	ngOnInit() { 
-		this.idLuogo= this.params.get("idLuogo"); 
+	ngOnInit() {
+		this.idLuogo= this.params.get("idLuogo");
 		if(this.idLuogo != -1){
 			this.nuovoLuogo = false;
 			this.cercaPerId(this.idLuogo);
-			
+
 		}else{
 			this.nuovoLuogo = true;
 			this.nuovoLuogoObject = {};
@@ -75,13 +75,13 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.errore = null;
 			this.nuovoLuogoObject.dal = null;
 			this.nuovoLuogoObject.al = null;
-			this.nuovoLuogoObject.listaAttivita= [];  
+			this.nuovoLuogoObject.listaAttivita= [];
 			this.geolocalizza();
 		}
 	}
-	
-	
-	
+
+
+
 	removeActivity(post){
 		for(var i = 0; i < this.listaAttivita.length; i++) {
 			if(post == this.listaAttivita[i].nome){
@@ -89,12 +89,12 @@ export class Detail implements OnInit{
 			}
 		}
 	}
- 
-	
-	selectActivity(attivita){ 
+
+
+	selectActivity(attivita){
 		//this.removeActivityAll(attivita);
 		//this.nuovoLuogoObject.listaAttivita.push(attivita);
-		
+
 		for(var i = 0; i < this.listaAttivita.length; i++) {
 			if(attivita == this.listaAttivita[i].nome){
 				if(this.listaAttivita[i].selezionato == true){
@@ -105,7 +105,7 @@ export class Detail implements OnInit{
 			}
 		}
 	}
-	 
+
 	cercaPerId(idLuogoParameter){
 		try{
 			if(idLuogoParameter == null){
@@ -113,22 +113,22 @@ export class Detail implements OnInit{
 				return;
 			}else{
 				this.cittaLuogoService.getLuogoForId(idLuogoParameter).then(data => {
-					 
-					this.luogoSelezionato = data; 
+
+					this.luogoSelezionato = data;
 					this.cercaLuogo(this.luogoSelezionato);
-					 
+
 
 				});
 			}
 		}catch (e) {
 		   alert("nic" + e);
 		}
-	
+
 	}
- 
- 
+
+
 	openMapsApp(item) {
-		
+
  		var coords = this.luogoSelezionato.latitudine + "," + this.luogoSelezionato.longitudine;
 		if(this._isiOS) {
 			window.open("http://maps.apple.com/?q=" + coords, '_system');
@@ -142,7 +142,7 @@ export class Detail implements OnInit{
 		return;
 	}
 	//- See more at: http://www.codingandclimbing.co.uk/blog/ionic-2-open-native-maps-application-22#sthash.lc4YYgC7.dpuf
-	
+
 	validaDati(){
 		this.nuovoLuogoObject.errore = null;
 		console.log(this.nuovoLuogoObject.ricerca.trim());
@@ -155,7 +155,7 @@ export class Detail implements OnInit{
 		}else if(this.nuovoLuogoObject.nazione == undefined || this.nuovoLuogoObject.nazione.trim()== "" || this.nuovoLuogoObject.nazione.trim() == undefined){
 			this.nuovoLuogoObject.errore = "Insert nation";
 			return;
-		}else {	
+		}else {
 			var conta = 0;
 			for(var i = 0; i < this.listaAttivita.length; i++) {
 				if(this.listaAttivita[i].selezionato){
@@ -166,17 +166,17 @@ export class Detail implements OnInit{
 				this.nuovoLuogoObject.errore = "Select an activity";
 				return;
 			}
-		}	
+		}
 	}
-	
+
 		//}else if(this.nuovoLuogoObject.descrizione == undefined || this.nuovoLuogoObject.descrizione.trim()== "" || this.nuovoLuogoObject.descrizione.trim() == undefined){
-		//	this.nuovoLuogoObject.errore = "Insert description"; 
+		//	this.nuovoLuogoObject.errore = "Insert description";
 		//	return;
 		//}else if(this.nuovoLuogoObject.attrezzature == undefined || this.nuovoLuogoObject.attrezzature.trim() == "" || this.nuovoLuogoObject.attrezzature.trim() == undefined){
 		//	this.nuovoLuogoObject.errore = "Insert workout equipment ";
 		//	return;
 	salva(){
-		
+
 		this.validaDati();
 		if(this.nuovoLuogoObject.errore){
 			return;
@@ -190,7 +190,7 @@ export class Detail implements OnInit{
 	    });
 		modal.present();
 	}
-	
+
 	loginSocial(social){
 		this.loader = this.loading.create({
 			content: 'Please wait...',
@@ -199,25 +199,24 @@ export class Detail implements OnInit{
 		if(!social){
 			this.loader.dismiss();
 		}
-		
+
 		this.cittaLuogoService.loginSocial(social).then(socialData => {
 			if(!socialData){
 				this.loader.dismiss();
 				return;
 			}
 			let datiSocial = socialData;
-			if(datiSocial){ 
+			if(datiSocial){
 				this.inviaDatiServer(socialData, this.loader);
 			}else{
 				this.loader.dismiss();
 			}
 		});
-		this.loader.dismiss();
 	}
 	riempiOggetto(data){
 		var listaPrec = this.nuovoLuogoObject.listaAttivita;
 		this.nuovoLuogoObject = {};
-		this.nuovoLuogoObject.listaAttivita = listaPrec; 
+		this.nuovoLuogoObject.listaAttivita = listaPrec;
 		if(!data){
 			return;
 		}
@@ -236,42 +235,42 @@ export class Detail implements OnInit{
 		data.address_components.forEach((datoLuogo: any) => {
 			if(datoLuogo.types[0] == 'locality'){
 				this.nuovoLuogoObject.citta = datoLuogo.long_name;
-			} 
+			}
 			if(datoLuogo.types[0] == 'administrative_area_level_3'){
 				this.nuovoLuogoObject.provincia = datoLuogo.long_name;
-			} 
+			}
 			if(datoLuogo.types[0] == 'country'){
 				this.nuovoLuogoObject.nazione = datoLuogo.long_name;
-			} 
+			}
 			if(datoLuogo.types[0] == 'postal_code'){
 				this.nuovoLuogoObject.cap = datoLuogo.long_name;
-			} 
+			}
 			if(datoLuogo.types[0] == 'route'){
 				this.nuovoLuogoObject.via = datoLuogo.long_name;
-			} 
-			
+			}
+
 		});
 	}
 	inviaDatiServer(tokenAuth, loader){
- 
+
 		try{
 			if(!tokenAuth){
 				alert("No token");
 				return;
-			}	
+			}
 			console.log(tokenAuth);
-			this.nuovoLuogoObject.utente = tokenAuth;   
-			 
-		
-			
+			this.nuovoLuogoObject.utente = tokenAuth;
+
+
+
 			this.nuovoLuogoObject.localita = this.nuovoLuogoObject.citta;
-			this.nuovoLuogoObject.fisso = 'true'; 
-			this.nuovoLuogoObject.aperto = 'true'; 
-			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
-			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
+			this.nuovoLuogoObject.fisso = 'true';
+			this.nuovoLuogoObject.aperto = 'true';
+			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca;
+			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca;
 					this.nuovoLuogoObject.listaAttivita = this.listaAttivita;
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
-			 
+
 				if(data.status == 200){
 					//andato bene il salvataggio
 						let modal = this.modalCtrl.create(Success, {"from": "detail"});
@@ -287,7 +286,7 @@ export class Detail implements OnInit{
 		   alert("error: " + e);
 		}
 	}
-	
+
 	ricerca(){
 		if(this.nuovoLuogoObject.citta){
 			this.navCtrl.push(Ricerca,{
@@ -298,18 +297,18 @@ export class Detail implements OnInit{
 			return;
 		}
 	}
-	
+
 	//search del luogo scritto
 	loadMapVed(cittaResult){
 		var localizzaRicerca;
 		let mapOptions;
 		let latLng;
-		
+
 		//	var elem = this.mapElement;
 		this.cittaLuogoService.loadMap(this.nuovoLuogoObject.ricerca).then(data => {
-			 
+
 			this.riempiOggetto(data);
-			localizzaRicerca=  data; 
+			localizzaRicerca=  data;
 			console.log(localizzaRicerca);
 			latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 			mapOptions = {
@@ -318,28 +317,28 @@ export class Detail implements OnInit{
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
 			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-			
+
 			var marker = new google.maps.Marker({
 				position: latLng,
 				map: this.map,
 				title: localizzaRicerca.formatted_address
 			});
-			
+
 			var infowindow = new google.maps.InfoWindow({
 				content: "<span>" + localizzaRicerca.formatted_address + "</span>"
 			});
 			google.maps.event.addListener(marker, 'click', function() {
 			  infowindow.open(this.map,marker);
 			});
-			
+
 		});
 	}
-	
-	
-	
+
+
+
 	//search del luogo scritto
 	loadMap(cittaResult){
-	
+
 		if(cittaResult == null){
 			cittaResult= this.nuovoLuogoObject.ricerca;
 		}
@@ -347,15 +346,15 @@ export class Detail implements OnInit{
 			var localizzaRicerca;
 			let mapOptions;
 			let latLng;
-			
+
 			console.log("loadMap " +  cittaResult);
 
 				var elem = this.mapElement;
 				let geocoder =  new google.maps.Geocoder();
 				geocoder.geocode({ 'address': cittaResult}, function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
-						
-						localizzaRicerca=  results[0]; 
+
+						localizzaRicerca=  results[0];
 						latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 						mapOptions = {
 						  center: latLng,
@@ -363,20 +362,20 @@ export class Detail implements OnInit{
 						  mapTypeId: google.maps.MapTypeId.ROADMAP
 						}
 						this.map = new google.maps.Map(elem.nativeElement, mapOptions);
-						
+
 						var marker = new google.maps.Marker({
 							position: latLng,
 							map: this.map,
 							title: localizzaRicerca.formatted_address
 						});
-						
+
 						var infowindow = new google.maps.InfoWindow({
 							content: "<span>" + localizzaRicerca.formatted_address + "</span>"
 						});
 						google.maps.event.addListener(marker, 'click', function() {
 						  infowindow.open(this.map,marker);
 						});
-						
+
 					}
 				});
 
@@ -385,10 +384,10 @@ export class Detail implements OnInit{
 		   alert("error: " + e);
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	//localizzazione posizione
 	geolocalizza(){
 		this.loader = this.loading.create({
@@ -397,7 +396,7 @@ export class Detail implements OnInit{
 		this.loader.present();
 		this.cittaLuogoService.localizza(this.loader).then(data => {
 			if(data != "error"){
-				this.riempiOggetto(data);	
+				this.riempiOggetto(data);
 				this.loadMap(null);
 			}
 			this.loader.dismiss();
@@ -412,8 +411,8 @@ export class Detail implements OnInit{
 			geocoder = new google.maps.Geocoder();
 			var elem = this.mapElement;
 			let latLng = new google.maps.LatLng(luogo.latitudine, luogo.longitudine);
-		
-		
+
+
 			geocoder.geocode({'latLng': latLng}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					if (results[0]) {
@@ -426,23 +425,23 @@ export class Detail implements OnInit{
 					alert("Geocoder failed due to: " + status);
 				}
 			});
-			
-			
+
+
 			let mapOptions = {
 				center: latLng,
 				zoom: 15,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
-	 
+
 			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-			
-			
+
+
 			var marker = new google.maps.Marker({
 				position: latLng,
 				map: this.map,
 				title: luogo.nome
 			});
-			latLng = null;	
+			latLng = null;
 			var infowindow = new google.maps.InfoWindow({
 				content: "<span>" + luogo.nome + "</span>"
 			});
@@ -453,9 +452,9 @@ export class Detail implements OnInit{
 		   alert("nic" + e);
 		}
 	}
-	
+
 	back(){
-		
+
 		if(this.loader){
 			this.loader.dismiss();
 		}

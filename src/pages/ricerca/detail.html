@@ -3,7 +3,7 @@
     <ion-title>
       <span *ngIf="luogoSelezionato && !nuovoLuogo">Detail</span><span *ngIf="nuovoLuogo">Insert new place</span>
     </ion-title>
- 
+
 	<ion-buttons end>
 
 <!--		<button *ngIf="!nuovoLuogo" (click)="openMapsApp()"  ion-button>
@@ -15,11 +15,11 @@
 
 <ion-content padding style="text-align: center">
 	<ion-chip *ngIf="luogoSelezionato && !nuovoLuogo">
-	  <ion-label *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.ricerca}}</ion-label>
+	  <ion-label style="width: 90%;" *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.ricerca}}</ion-label>
 	</ion-chip>
 	<br />
 	<br />
-	<div #map id="map"></div>  
+	<div #map id="map"></div>
 
 	 <ion-fab right bottom>
 		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
@@ -39,9 +39,9 @@
 	</div><br />
 	<div class="row" *ngIf="nuovoLuogo">
 		<span class="genericText">Select what can I do: </span><br />
-		
+
 		<button *ngFor="let item of listaAttivita" (click)="selectActivity(item.nome)"  [ngClass]="{ 'disabilita': item.selezionato, 'buttonNavSenzaFontRound': !item.selezionato}" ion-button icon-only>
-			<ion-icon *ngIf="!item.img"  name="{{ item.nome }}"></ion-icon> 
+			<ion-icon *ngIf="!item.img"  name="{{ item.nome }}"></ion-icon>
 			<img *ngIf="item.img" src="{{global.preUrl}}/images/{{item.img}}"  style="" alt="" class="imgDetail altreIcona">
 		</button>
 	</div><br />
@@ -49,13 +49,13 @@
 		<span class="genericText">What i can do: </span><br />
 		<span  *ngFor="let item of luogoSelezionato.listaAttivita" >
 			<button class="disabilitaBlue" ion-button icon-only *ngIf="item.selezionato">
-				
+
 				<ion-icon *ngIf="!item.img && item.selezionato" name="{{ item.nome }}"></ion-icon>
 				<img *ngIf="item.img && item.selezionato" src="{{global.preUrl}}/images/{{item.img}}"  style="" alt="" class="imgDetail altreIcona">
 			</button>
 		</span>
 	</div><br />
-	
+
 
 	<!-- se selezionato scorro la lista e prendo solo i nomi e mostro disabilitati, se nuovo faccio vedere tutti, faccio selezionare-->
 	<div class="row">
@@ -63,11 +63,11 @@
 			<div class="row text-center" *ngIf="nuovoLuogoObject.errore" >
 				{{nuovoLuogoObject.errore}}
 			</div>
-		</div>	
+		</div>
 	</div>
 	<ion-list *ngIf="nuovoLuogo">
-		<ion-item> 
-			
+		<ion-item>
+
 			<ion-input type="text" placeholder="Place" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
 		<!--	<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>-->
 	 		<button *ngIf="nuovoLuogo" (click)="loadMapVed()" clear ion-button item-right class="buttonNavSenzaFont" style="color: white; font-size:15px"><ion-icon name="search"></ion-icon></button>
@@ -87,7 +87,7 @@
 	<br />
 	<br />
 	<ion-list>
-		 <ion-item> 
+		 <ion-item>
 			<ion-input type="text" placeholder="District" [(ngModel)]="nuovoLuogoObject.provincia"    *ngIf="nuovoLuogo"></ion-input>
 			<ion-input type="text" readonly placeholder="District"     [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
@@ -95,7 +95,7 @@
 	<br />
 	<br />
 	<ion-list>
-		<ion-item class="nowrap"> 
+		<ion-item class="nowrap">
 			<ion-input type="text" [(ngModel)]="nuovoLuogoObject.nazione"  placeholder="Nation"   *ngIf="nuovoLuogo"></ion-input>
 			<ion-input type="text" readonly placeholder="Nation"    [(ngModel)]="luogoSelezionato.nazione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
@@ -103,7 +103,7 @@
 	<br />
 	<br />
 	<ion-list>
-		<ion-item> 
+		<ion-item>
 			<ion-input type="text" placeholder="Street" [(ngModel)]="nuovoLuogoObject.via"   *ngIf="nuovoLuogo"></ion-input>
 		<ion-input type="text" readonly placeholder="Street"    [(ngModel)]="luogoSelezionato.via" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
@@ -111,7 +111,7 @@
 	<br />
 	<br />
 	<ion-list>
-		<ion-item> 
+		<ion-item>
 		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.cap"  placeholder="Cap"   *ngIf="nuovoLuogo"></ion-input>
 		<ion-input type="text" readonly placeholder="Cap"   [(ngModel)]="luogoSelezionato.cap" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
@@ -151,7 +151,7 @@
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center;">
-			<button (click)="back()" class="buttonNavSenzaFont" ion-button icon-left> 
+			<button (click)="back()" class="buttonNavSenzaFont" ion-button icon-left>
 				Back
 			</button>
 			<button *ngIf="nuovoLuogo" class="buttonNavSenzaFont" (click)="salva()" ion-button icon-left>
@@ -166,10 +166,10 @@
 	<div class="centraTutto" style="padding-left: 15px;">
 		<a (click)="global.openSocial('facebook')" >
 			<ion-icon name="logo-facebook"></ion-icon>
-		</a> 
-		<a (click)="global.openSocial('instagram')" >		
-			<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon> 
-		</a> 
+		</a>
+		<a (click)="global.openSocial('instagram')" >
+			<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
+		</a>
 	</div>
   </ion-toolbar>
 </ion-footer>
