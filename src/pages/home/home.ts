@@ -25,7 +25,7 @@ export class HomePage {
 	};
 	constructor( public navCtrl: NavController, public global:Global,  public viewCtrl:ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
-		  place: 'bologna'
+		  place: ''
 		}; 
 	}
 	info(){ 
@@ -37,7 +37,7 @@ export class HomePage {
 		this.viewCtrl.dismiss();
 	}
 	ionViewDidLoad() {
-		setTimeout(() => this.splash = false, 4000);
+		setTimeout(() => this.splash = false, 1000);
 	}
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);
