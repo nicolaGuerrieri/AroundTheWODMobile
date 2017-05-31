@@ -26,23 +26,23 @@ export class HomePage {
 	constructor( public navCtrl: NavController, public global:Global,  public viewCtrl:ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 		  place: ''
-		}; 
+		};
 	}
-	info(){ 
+	info(){
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "info"});
 		modal.present();
 	}
-	
+
 	dismiss() {
 		this.viewCtrl.dismiss();
 	}
 	ionViewDidLoad() {
-		setTimeout(() => this.splash = false, 1000);
+		setTimeout(() => this.splash = false, 4000);
 	}
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);
 		let me = this;
-		modal.onDidDismiss(data => { 
+		modal.onDidDismiss(data => {
 			if(data != null){
 				this.allSearchPlace =data;
 				this.address.place = data.description;
@@ -56,7 +56,7 @@ export class HomePage {
 	showAddressModal2 () {
 	let modal = this.modalCtrl.create(Success, {"from": "login"});
 		modal.onDidDismiss(data => {
-		    
+
 	    });
 		modal.present();
 	}
@@ -82,9 +82,9 @@ export class HomePage {
 		   alert("error" + e);
 		}
 	}
-	
+
 	chiamaLocalizzazione(loader){
-	
+
 		this.cittaLuogoService.localizza(loader).then(data => {
 			if(data.address_components[2]){
 				this.address.place = data.address_components[2].long_name;

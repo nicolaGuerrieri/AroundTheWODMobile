@@ -67,9 +67,10 @@
 	</div>
 	<ion-list *ngIf="nuovoLuogo">
 		<ion-item>
+   <ion-input  color="personal3"  style="" class="centraTutto" *ngIf="nuovoLuogo" (press)="showAddressModal()" [(ngModel)]="nuovoLuogoObject.ricerca" type="text" placeholder="Pick a place"></ion-input>
 
-			<ion-input type="text" placeholder="Place" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
-		<!--	<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>-->
+				  <!-- 	<ion-input type="text" placeholder="Place" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
+	<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>-->
 	 		<button *ngIf="nuovoLuogo" (click)="loadMapVed()" clear ion-button item-right class="buttonNavSenzaFont" style="color: white; font-size:15px"><ion-icon name="search"></ion-icon></button>
 	 		<button *ngIf="nuovoLuogo" (click)="geolocalizza()" clear ion-button item-right class="buttonNavSenzaFont" style="color: white; font-size:15px">
 				<ion-icon style="font-size: 20px" name="ios-navigate-outline"></ion-icon>

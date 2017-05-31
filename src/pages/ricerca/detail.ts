@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit  } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform, Content  } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, Content, ViewController  } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { AutocompletePage } from '../home/autocomplete';
@@ -34,7 +34,7 @@ export class Detail implements OnInit{
 		animation: 'wp-transition'
 	};
 
-	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public navCtrl: NavController, public viewCtrl:ViewController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.loadAttivita();
@@ -54,11 +54,15 @@ export class Detail implements OnInit{
 		this.content.scrollToBottom();
 	}
 	ngOnInit() {
+    this.loader = this.loading.create({
+      content: 'Please wait...',
+    });
+    this.loader.present();
 		this.idLuogo= this.params.get("idLuogo");
 		if(this.idLuogo != -1){
 			this.nuovoLuogo = false;
 			this.cercaPerId(this.idLuogo);
-
+      this.loader.dismiss();
 		}else{
 			this.nuovoLuogo = true;
 			this.nuovoLuogoObject = {};
@@ -77,6 +81,7 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.al = null;
 			this.nuovoLuogoObject.listaAttivita= [];
 			this.geolocalizza();
+      this.loader.dismiss();
 		}
 	}
 
@@ -309,7 +314,6 @@ export class Detail implements OnInit{
 
 			this.riempiOggetto(data);
 			localizzaRicerca=  data;
-			console.log(localizzaRicerca);
 			latLng = new google.maps.LatLng(localizzaRicerca.geometry.location.lat(), localizzaRicerca.geometry.location.lng());
 			mapOptions = {
 			  center: latLng,
@@ -398,7 +402,9 @@ export class Detail implements OnInit{
 			if(data != "error"){
 				this.riempiOggetto(data);
 				this.loadMap(null);
-			}
+			}else{
+          this.geolocalizza();
+      }
 			this.loader.dismiss();
 		});
 	}
@@ -454,11 +460,28 @@ export class Detail implements OnInit{
 	}
 
 	back(){
-
 		if(this.loader){
 			this.loader.dismiss();
 		}
 	    this.navCtrl.pop();
 	}
+
+  showAddressModal () {
+    let modal = this.modalCtrl.create(AutocompletePage);
+    let me = this;
+    modal.onDidDismiss(data => {
+      if(data != null){
+        this.nuovoLuogoObject.ricerca = data.description;
+        this.loadMapVed(this.nuovoLuogoObject.ricerca);
+      }else{
+        return;
+      }
+    });
+    modal.present();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 }
 //https://www.raymondcamden.com/2016/11/17/a-social-example-of-ionic-auth
