@@ -139,13 +139,13 @@ export class Ricerca {
 		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
 		console.log(position);
-		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); 
 
 		geocoder.geocode({'latLng': latLng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
 					var add= results[0].address_components;
+          console.log("add 3");console.log(add[3]);
 					let city=add[3];
 				} else  {
 					alert("address not found");
@@ -339,7 +339,7 @@ export class Ricerca {
 				console.log("ma passa di qua");
 
 				if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
-					console.log("ma passa di qua");
+					console.log("ma passa di qua 1");
 					if(this.allSearchPlace.terms){
 						if(this.allSearchPlace.types[0] == 'street_address'){
 							//ho anche il civico al numero [1]
@@ -349,8 +349,14 @@ export class Ricerca {
 						}
 					}else{
 						if(this.allSearchPlace.address_components){
-							console.log("certo");
-							cittaP = this.allSearchPlace.address_components[2].long_name;
+              if(this.allSearchPlace.address_components[1].types[0] =="route"){
+                cittaP = this.allSearchPlace.address_components[1].long_name;
+                console.log(cittaP);
+                console.log("via ..");
+              }else{
+  							console.log("certo");
+  							cittaP = this.allSearchPlace.address_components[2].long_name;
+              }
 						}
 					}
 				}else{
