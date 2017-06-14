@@ -96,7 +96,6 @@ export class HomePage {
 		});
 	}
 	ricerca(){
-    console.log(this.allSearchPlace)
 		if(this.address.place != ""){
 			this.navCtrl.push(Ricerca,{
 				citta: this.address.place,

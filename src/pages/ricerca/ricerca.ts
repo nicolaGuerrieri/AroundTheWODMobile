@@ -43,10 +43,12 @@ export class Ricerca {
 		this.cittaLuogo = [];
 		this.citta= params.get("citta");
 		this.allSearchPlace = params.get("allSearchPlace");
+    this.address = {
+      citta: this.citta,
+      place: this.citta
+    };
 		this.loadCity(this.citta);
-		this.address = {
-			place: this.citta
-		};
+
 
 	}
 	loadAttivita(){
@@ -60,7 +62,7 @@ export class Ricerca {
 		  buttons: [
 			//{			  text: 'Add your new place',			  role: 'addPlace',			  handler: () => {				this.addPlace();			  }			},
 			{
-			  text: 'Search your place',
+			  text: 'Change your search',
 			  handler: () => {
 				this.showAddressModalR();
 			  }
@@ -77,7 +79,7 @@ export class Ricerca {
 				this.share();
 			  }
 			},{
-			  text: 'Friends',
+			  text: 'AroundTheWOD Community',
 			  role: 'Friends',
 			  handler: () => {
 				this.organizzazioni();
@@ -139,13 +141,12 @@ export class Ricerca {
 		geocoder = new google.maps.Geocoder();
 		Geolocation.getCurrentPosition().then((position) => {
 		console.log(position);
-		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); 
+		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
 		geocoder.geocode({'latLng': latLng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
 					var add= results[0].address_components;
-          console.log("add 3");console.log(add[3]);
 					let city=add[3];
 				} else  {
 					alert("address not found");
@@ -185,6 +186,7 @@ export class Ricerca {
 				}else if(data.address_components[2]){
 					this.address.place = data.address_components[2].long_name;
 				}
+
 				console.log(data)
 				this.allSearchPlace = data;
 				this.ricerca();
@@ -249,17 +251,18 @@ export class Ricerca {
 							google.maps.event.addListener(marker, 'click', function() {
 							  infowindow.open(this.map, marker);
 							});
-
+              if(this.loader){
+                 this.loader.dismiss();
+              }
 						});
 					}
-
-
 				}
 			});
-      if(this.loader){
-         this.loader.dismiss();
-      }
+
 		} catch (e) {
+      if(this.loader){
+        this.loader.dismiss();
+      }
 		   alert("error: " + e);
 		}
 	}
@@ -327,16 +330,53 @@ export class Ricerca {
 		}
 	}
 
-	loadCity(cittaP){
+  	loadCity(cittaP){
+  		try{
+        this.loader = this.loading.create({
+          content: 'Please wait...',
+        });
+        this.loader.present();
+        console.log(this.allSearchPlace)
+        if(this.allSearchPlace.address_components){
+          this.address.place = "";
+          for(var i = 0; i < this.allSearchPlace.address_components.length; i++){
+            if(this.allSearchPlace.address_components[i].types[0] == "street_number"){
+              this.address.place += this.allSearchPlace.address_components[i].long_name + ", ";
+            }
+            if(this.allSearchPlace.address_components[i].types[0] == "route"){
+              this.address.place += this.allSearchPlace.address_components[i].long_name + ", ";
+            }
+            if(this.allSearchPlace.address_components[i].types[0] == "locality"){
+              this.address.citta = this.allSearchPlace.address_components[i].long_name;
+              this.address.place += this.allSearchPlace.address_components[i].long_name + ", ";
+
+            }
+          }
+
+        }else{
+          alert("error: " + this.allSearchPlace);
+        }
+
+        this.cittaLuogoService.load(this.address.citta).then(data => {
+          this.cittaLuogo = data;
+          this.address.place = cittaP;
+          this.loadMapWithPlace(this.cittaLuogo);
+          if(this.loader){
+            this.loader.dismiss();
+           }
+        });
+      }catch (e) {
+  		   alert("error: " + e);
+  		}
+      }
+	loadCity2(cittaP){
 		try{
       this.loader = this.loading.create({
         content: 'Please wait...',
       });
       this.loader.present();
-			//troppi if
-			console.log(this.allSearchPlace);
 			if(this.allSearchPlace && this.allSearchPlace.types){
-				console.log("ma passa di qua");
+				console.log("1");
 
 				if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
 					console.log("ma passa di qua 1");
@@ -344,18 +384,32 @@ export class Ricerca {
 						if(this.allSearchPlace.types[0] == 'street_address'){
 							//ho anche il civico al numero [1]
 							cittaP = this.allSearchPlace.terms[2].value;
+              console.log("citta 1");
+              console.log(cittaP);
 						}else{
 							cittaP = this.allSearchPlace.terms[1].value;
+              console.log("citta 2");
+              console.log(cittaP);
 						}
 					}else{
 						if(this.allSearchPlace.address_components){
-              if(this.allSearchPlace.address_components[1].types[0] =="route"){
-                cittaP = this.allSearchPlace.address_components[1].long_name;
-                console.log(cittaP);
-                console.log("via ..");
-              }else{
-  							console.log("certo");
-  							cittaP = this.allSearchPlace.address_components[2].long_name;
+              console.log("citta 3");
+              console.log(cittaP);
+
+              for(var i = 0; i < this.allSearchPlace.address_components.length; i++){
+                if(this.allSearchPlace.address_components[i].types[0] == "locality"){
+                  this.address.citta = this.allSearchPlace.address_components[i].long_name;
+                }
+              }
+              if (this.allSearchPlace.address_components[1].types[0] == "route") {
+
+                  cittaP = this.allSearchPlace.address_components[1].long_name + ", " +this.allSearchPlace.address_components[2].long_name;
+                   console.log(cittaP);
+                   console.log("via ..");
+
+              }else {
+                console.log("certo");
+                cittaP = this.allSearchPlace.address_components[2].long_name;
               }
 						}
 					}
@@ -368,10 +422,13 @@ export class Ricerca {
 				cittaP = this.loadGeolocalization();
 			}else{
 				this.cercaOrga = cittaP;
-				this.cittaLuogoService.load(cittaP).then(data => {
+				this.cittaLuogoService.load(this.address.citta).then(data => {
 					this.cittaLuogo = data;
+          this.address.place = cittaP;
 					this.loadMapWithPlace(this.cittaLuogo);
-
+          if(this.loader){
+      			this.loader.dismiss();
+      	   }
 				});
 			}
 		}catch (e) {
@@ -383,7 +440,7 @@ export class Ricerca {
 	back(){
 		if(this.loader){
 			this.loader.dismiss();
-	    }
+	   }
 		this.navCtrl.popToRoot();
 	}
 }

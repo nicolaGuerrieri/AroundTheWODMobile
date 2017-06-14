@@ -122,9 +122,9 @@ export class CittaLuogoService {
 			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
 				if(!enabled){
 					alert("Please enable GPS localization");
-				  cordova.plugins.diagnostic.switchToLocationSettings();
+				    cordova.plugins.diagnostic.switchToLocationSettings();
 					loader.dismiss();
-					resolve("error");
+					return;
 				}
 			});
 		}
