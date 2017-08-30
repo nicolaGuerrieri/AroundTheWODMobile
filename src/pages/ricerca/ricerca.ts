@@ -124,7 +124,10 @@ export class Ricerca {
 
 	ngAfterViewInit() {
 		try {
-		   this.loadMapWithPlace(null);
+        if(this.address){
+        //  this.address.place = null;
+        }
+		   //this.loadMapWithPlace(null);
 		}
 		catch (e) {
 		  alert("error" + e);
@@ -189,7 +192,7 @@ export class Ricerca {
 
 				console.log(data)
 				this.allSearchPlace = data;
-				this.ricerca();
+				this.ricerca(true);
 			}
       if(this.loader){
 			   this.loader.dismiss();
@@ -266,24 +269,44 @@ export class Ricerca {
 		   alert("error: " + e);
 		}
 	}
-
+  ricerca(flagPresent){
+    if(flagPresent){
+      this.navCtrl.push(Ricerca,{
+        citta: this.address.place,
+        allSearchPlace: this.allSearchPlace
+      }, this.navOptions);
+    }else{
+  		if(this.address.place != ""){
+        this.cittaLuogoService.localizzaByNome(this.address.place).then(data => {
+          this.navCtrl.push(Ricerca,{
+    				citta: this.address.place,
+    				allSearchPlace: data
+    			}, this.navOptions);
+        });
+  		}else{
+  			console.log("bloccato");
+  			return;
+  		}
+    }
+	}
 
 	showAddressModalR () {
 		let modal = this.modalCtrl.create(AutocompletePage);
 		let me = this;
 		modal.onDidDismiss(data => {
-			if(data != null){
-				console.log(data);
+			if(data != null) {
+				console.log("showAddressModalR " + data);
 				this.address.place = data.description;
-			}else{
+			} else{
 				return;
 			}
 			this.allSearchPlace = data;
-			this.ricerca();
+			this.ricerca(false);
 		});
 		modal.present();
+    
 	}
-	ricerca(){
+	ricerca2(){
 		try{
 			if(this.address.place != ""){
 				this.navCtrl.push(Ricerca,{
@@ -303,7 +326,7 @@ export class Ricerca {
 		try{
 			if(this.address.place != ""){
 				this.navCtrl.push(Organizzazioni,{
-					citta: this.cercaOrga
+					citta: this.address.citta
 				}, this.navOptions);
 			}else{
 				console.log("bloccato");
@@ -336,7 +359,8 @@ export class Ricerca {
           content: 'Please wait...',
         });
         this.loader.present();
-        console.log(this.allSearchPlace)
+        console.log(this.allSearchPlace);
+          this.address.place = "";
         if(this.allSearchPlace.address_components){
           this.address.place = "";
           for(var i = 0; i < this.allSearchPlace.address_components.length; i++){
@@ -353,13 +377,11 @@ export class Ricerca {
             }
           }
 
-        }else{
-          alert("error: " + this.allSearchPlace);
         }
+
 
         this.cittaLuogoService.load(this.address.citta).then(data => {
           this.cittaLuogo = data;
-          this.address.place = cittaP;
           this.loadMapWithPlace(this.cittaLuogo);
           if(this.loader){
             this.loader.dismiss();
@@ -368,73 +390,8 @@ export class Ricerca {
       }catch (e) {
   		   alert("error: " + e);
   		}
-      }
-	loadCity2(cittaP){
-		try{
-      this.loader = this.loading.create({
-        content: 'Please wait...',
-      });
-      this.loader.present();
-			if(this.allSearchPlace && this.allSearchPlace.types){
-				console.log("1");
+    }
 
-				if(this.allSearchPlace.types[0] != 'locality' && this.allSearchPlace.types[0] != 'administrative_area_level_2'){
-					console.log("ma passa di qua 1");
-					if(this.allSearchPlace.terms){
-						if(this.allSearchPlace.types[0] == 'street_address'){
-							//ho anche il civico al numero [1]
-							cittaP = this.allSearchPlace.terms[2].value;
-              console.log("citta 1");
-              console.log(cittaP);
-						}else{
-							cittaP = this.allSearchPlace.terms[1].value;
-              console.log("citta 2");
-              console.log(cittaP);
-						}
-					}else{
-						if(this.allSearchPlace.address_components){
-              console.log("citta 3");
-              console.log(cittaP);
-
-              for(var i = 0; i < this.allSearchPlace.address_components.length; i++){
-                if(this.allSearchPlace.address_components[i].types[0] == "locality"){
-                  this.address.citta = this.allSearchPlace.address_components[i].long_name;
-                }
-              }
-              if (this.allSearchPlace.address_components[1].types[0] == "route") {
-
-                  cittaP = this.allSearchPlace.address_components[1].long_name + ", " +this.allSearchPlace.address_components[2].long_name;
-                   console.log(cittaP);
-                   console.log("via ..");
-
-              }else {
-                console.log("certo");
-                cittaP = this.allSearchPlace.address_components[2].long_name;
-              }
-						}
-					}
-				}else{
-					cittaP = cittaP.split(",")[0];
-					console.log(cittaP + "certo");
-				}
-			}
-			if(cittaP == null){
-				cittaP = this.loadGeolocalization();
-			}else{
-				this.cercaOrga = cittaP;
-				this.cittaLuogoService.load(this.address.citta).then(data => {
-					this.cittaLuogo = data;
-          this.address.place = cittaP;
-					this.loadMapWithPlace(this.cittaLuogo);
-          if(this.loader){
-      			this.loader.dismiss();
-      	   }
-				});
-			}
-		}catch (e) {
-		   alert("error: " + e);
-		}
-	}
 
 
 	back(){

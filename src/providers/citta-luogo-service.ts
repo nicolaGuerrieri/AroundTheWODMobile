@@ -21,6 +21,7 @@ export class CittaLuogoService {
 			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
 		}
 	}
+//https://apps.ionic.io/login
 
 	load(citta) {
 		this.data = null;
@@ -110,11 +111,38 @@ export class CittaLuogoService {
 		});
 	}
 
-	localizza(loader) {
+	localizzaByNome(ricerca) {
 	  if (this.dataLocalizzazione) {
+			alert("mica qui");
+			return Promise.resolve(this.dataLocalizzazione);
+	  }
+
+		return new Promise(resolve => {
+
+
+		var geocoder =  new google.maps.Geocoder();
+		if(ricerca != ""){
+	    geocoder.geocode( { 'address': ricerca}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+					this.dataLocalizzazione =results[0];
+					resolve(this.dataLocalizzazione);
+				}
+	    },(error) => {
+				alert("Error localization");
+				resolve("error");
+			});
+		}
+	});
+
+	  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
+	}
+
+
+	localizza(loader) {
+		if (this.dataLocalizzazione) {
 		alert("mica qui");
 		return Promise.resolve(this.dataLocalizzazione);
-	  }
+		}
 
 	return new Promise(resolve => {
 
@@ -122,7 +150,7 @@ export class CittaLuogoService {
 			cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
 				if(!enabled){
 					alert("Please enable GPS localization");
-				    cordova.plugins.diagnostic.switchToLocationSettings();
+						cordova.plugins.diagnostic.switchToLocationSettings();
 					loader.dismiss();
 					return;
 				}
@@ -134,7 +162,7 @@ export class CittaLuogoService {
 			let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
 			geocoder.geocode({'latLng': latLng}, function(results, status) {
-		 		if (status == google.maps.GeocoderStatus.OK) {
+				if (status == google.maps.GeocoderStatus.OK) {
 
 					if (results[0]) {
 						this.dataLocalizzazione =results[0];
@@ -151,7 +179,7 @@ export class CittaLuogoService {
 		});
 	});
 
-	  //http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
+		//http://pointdeveloper.com/how-to-bypass-cors-errors-on-chrome-and-firefox-for-testing/
 	}
 
 	loginSocial(social){

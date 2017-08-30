@@ -12,9 +12,9 @@ export class AutocompletePage {
   autocomplete;
   service = new google.maps.places.AutocompleteService();
   private _isAndroid: boolean;
-  private _isiOS: boolean; 
+  private _isiOS: boolean;
   @ViewChild('citta') searchbar:Searchbar;
-  
+
   constructor (public viewCtrl: ViewController, private zone: NgZone, public platform: Platform,) {
     this.autocompleteItems = [];
     this.autocomplete = {
@@ -23,7 +23,7 @@ export class AutocompletePage {
     this._isAndroid = platform.is('android');
     this._isiOS = platform.is('ios');
   }
-	
+
   dismiss() {
     this.viewCtrl.dismiss();
   }
@@ -34,8 +34,8 @@ export class AutocompletePage {
   chooseItem(item: any) {
     this.viewCtrl.dismiss(item);
   }
-  
-  
+
+
   updateSearch() {
     if (this.autocomplete.query == '') {
       this.autocompleteItems = [];
@@ -43,7 +43,7 @@ export class AutocompletePage {
     }
     let me = this;
     this.service.getPlacePredictions({ input: this.autocomplete.query}, function (predictions, status) {
-      me.autocompleteItems = []; 
+      me.autocompleteItems = [];
       me.zone.run(function () {
 		if(predictions){
 			predictions.forEach(function (prediction) {

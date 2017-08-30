@@ -46,7 +46,7 @@ export class HomePage {
 			if(data != null){
 				this.allSearchPlace =data;
 				this.address.place = data.description;
-				this.ricerca();
+				this.ricerca(false);
 			}else{
 				return;
 			}
@@ -71,7 +71,7 @@ export class HomePage {
 					if(data.address_components[2]){
 						this.address.place = data.address_components[2].long_name;
 						this.allSearchPlace = data;
-						this.ricerca();
+						this.ricerca(true);
 					}
 				}else{
 					alert("No data found");
@@ -83,27 +83,25 @@ export class HomePage {
 		}
 	}
 
-	chiamaLocalizzazione(loader){
 
-		this.cittaLuogoService.localizza(loader).then(data => {
-			if(data.address_components[2]){
-				this.address.place = data.address_components[2].long_name;
-				this.ricerca();
-				loader.dismiss();
-			}else{
-				alert("No data found");
-			}
-		});
-	}
-	ricerca(){
-		if(this.address.place != ""){
-			this.navCtrl.push(Ricerca,{
-				citta: this.address.place,
-				allSearchPlace: this.allSearchPlace
-			}, this.navOptions);
-		}else{
-			console.log("bloccato");
-			return;
-		}
+	ricerca(flagPresent){
+    if(flagPresent){
+      this.navCtrl.push(Ricerca,{
+        citta: this.address.place,
+        allSearchPlace: this.allSearchPlace
+      }, this.navOptions);
+    }else{
+  		if(this.address.place != ""){
+        this.cittaLuogoService.localizzaByNome(this.address.place).then(data => {
+          this.navCtrl.push(Ricerca,{
+    				citta: this.address.place,
+    				allSearchPlace: data
+    			}, this.navOptions);
+        });
+  		}else{
+  			console.log("bloccato");
+  			return;
+  		}
+    }
 	}
 }

@@ -4,7 +4,7 @@ import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { Geolocation, SocialSharing} from 'ionic-native';
 
- 
+
 @Component({
   selector: 'organizzazioni',
   templateUrl: 'organizzazioni.html',
@@ -19,31 +19,32 @@ export class Organizzazioni {
 		animate: true,
 		animation: 'wp-transition'
 	};
-	
+
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform) {
-		this.citta= params.get("citta"); 
-		this.caricaOrganizzazioni(this.citta);	 
+		this.citta= params.get("citta");
+		this.caricaOrganizzazioni(this.citta);
+
 	}
-	
-	caricaOrganizzazioni(citta){
+
+	caricaOrganizzazioni(citta){ 
 		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
 		this.loader.present();
 		this.cittaLuogoService.loadOrganizzazioni(this.citta).then(data => {
-			 
+
 			if(data != "error"){
 				console.log(data)
 				this.listaOrganizzazioni = data;
 			}
 			this.loader.dismiss();
 		});
-		
+
 	}
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
-	
+
 	back(){
 		if(this.loader){
 			this.loader.dismiss();
