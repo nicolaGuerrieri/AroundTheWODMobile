@@ -12,6 +12,7 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
 import {HttpModule, Http} from "@angular/http";
 import { Storage } from '@ionic/storage';
+import { Toast }   from 'ionic-native';
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -39,8 +40,8 @@ const cloudSettings: CloudSettings = {
 	Success
   ],
   imports: [
-    IonicModule.forRoot(MyApp), 
-	 CloudModule.forRoot(cloudSettings) 
+    IonicModule.forRoot(MyApp),
+	 CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,6 +54,6 @@ const cloudSettings: CloudSettings = {
 	DialogSocial,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage, Toast]
 })
 export class AppModule {}

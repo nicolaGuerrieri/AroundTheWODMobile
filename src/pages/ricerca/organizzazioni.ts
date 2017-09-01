@@ -23,10 +23,9 @@ export class Organizzazioni {
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform) {
 		this.citta= params.get("citta");
 		this.caricaOrganizzazioni(this.citta);
-
 	}
 
-	caricaOrganizzazioni(citta){ 
+	caricaOrganizzazioni(citta){
 		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});

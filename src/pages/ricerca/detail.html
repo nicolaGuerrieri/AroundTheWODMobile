@@ -121,8 +121,8 @@
 	<br />
 	<ion-list>
 		<ion-item>
-		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.descrizione"   placeholder="Description"     *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="Description"   [(ngModel)]="luogoSelezionato.descrizione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.descrizione"   placeholder="Info"     *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="Info"   [(ngModel)]="luogoSelezionato.descrizione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
@@ -133,14 +133,14 @@
 			<ion-input type="text" readonly placeholder="Workout equipment"   [(ngModel)]="luogoSelezionato.attrezzature" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
-	<br />
+<!--	<br />
 	<br />
 	<ion-list>
 		<ion-item>
 		<ion-input type="text" placeholder="Time"    [(ngModel)]="nuovoLuogoObject.orari"  *ngIf="nuovoLuogo"></ion-input>
 		<ion-input type="text" readonly placeholder="time"   [(ngModel)]="luogoSelezionato.orari" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
-	</ion-list>
+	</ion-list>-->
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center; font-size: 20px; color: red;" *ngIf="nuovoLuogoObject" >

@@ -47,6 +47,9 @@
         },
         "cordova-plugin-googleplus": {
             "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
         }
     },
     "dependent_plugins": {

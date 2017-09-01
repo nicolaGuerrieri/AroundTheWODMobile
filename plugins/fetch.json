@@ -115,5 +115,13 @@
         "variables": {
             "REVERSED_CLIENT_ID": "com.googleusercontent.apps.923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm"
         }
+    },
+    "cordova-plugin-x-toast": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-toast@~2.6.0"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

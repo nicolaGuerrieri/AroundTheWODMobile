@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit  } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform, Content, ViewController  } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, Content, ViewController, ToastController   } from 'ionic-angular';
 import {Global} from '../../services/global';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import { AutocompletePage } from '../home/autocomplete';
@@ -8,9 +8,10 @@ import { DialogSocial } from '../dialog/dialogSocial';
 import { Success } from '../dialog/success';
 import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
+
 declare var google: any;
 declare var cordova:any;
-
+declare var window: any;
 @Component({
   selector: 'detail',
   templateUrl: 'detail.html',
@@ -34,11 +35,10 @@ export class Detail implements OnInit{
 		animation: 'wp-transition'
 	};
 
-	constructor(public navCtrl: NavController, public viewCtrl:ViewController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public navCtrl: NavController, private toastCtrl: ToastController, public viewCtrl:ViewController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.loadAttivita();
-
  	}
 
 
@@ -100,17 +100,24 @@ export class Detail implements OnInit{
 		//this.removeActivityAll(attivita);
 		//this.nuovoLuogoObject.listaAttivita.push(attivita);
 
+
 		for(var i = 0; i < this.listaAttivita.length; i++) {
 			if(attivita == this.listaAttivita[i].nome){
 				if(this.listaAttivita[i].selezionato == true){
 					this.listaAttivita[i].selezionato = false;
 				}else{
 					this.listaAttivita[i].selezionato = true;
+          let toast = this.toastCtrl.create({
+             message: this.listaAttivita[i].mostra,
+             duration: 3000,
+             position: 'center'
+           });
+          toast.present();
 				}
 			}
 		}
 	}
-
+//https://forum.ionicframework.com/t/how-to-speed-up-my-app/94271/19
 	cercaPerId(idLuogoParameter){
 		try{
 			if(idLuogoParameter == null){
