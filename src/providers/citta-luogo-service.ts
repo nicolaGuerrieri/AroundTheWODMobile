@@ -172,7 +172,7 @@ export class CittaLuogoService {
 					}
 				}
 			});
-
+			loader.dismiss();
 		},(error) => {
 			alert("Please enable GPS localization");
 			resolve("error");

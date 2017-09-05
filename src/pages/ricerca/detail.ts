@@ -95,6 +95,14 @@ export class Detail implements OnInit{
 		}
 	}
 
+  showDescriptionIconSport(description){
+    let toast = this.toastCtrl.create({
+       message: description,
+       duration: 3000,
+       position: 'center'
+     });
+    toast.present();
+  }
 
 	selectActivity(attivita){
 		//this.removeActivityAll(attivita);
@@ -128,8 +136,6 @@ export class Detail implements OnInit{
 
 					this.luogoSelezionato = data;
 					this.cercaLuogo(this.luogoSelezionato);
-
-
 				});
 			}
 		}catch (e) {
@@ -280,7 +286,7 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.aperto = 'true';
 			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca;
 			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca;
-					this.nuovoLuogoObject.listaAttivita = this.listaAttivita;
+			this.nuovoLuogoObject.listaAttivita = this.listaAttivita;
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
 
 				if(data.status == 200){
@@ -401,6 +407,10 @@ export class Detail implements OnInit{
 
 	//localizzazione posizione
 	geolocalizza(){
+
+    if(this.loader){
+
+    }
 		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
@@ -445,7 +455,9 @@ export class Detail implements OnInit{
 				zoom: 15,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
-
+      if(this.loader){
+        this.loader.dismiss();
+      }
 			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
 
