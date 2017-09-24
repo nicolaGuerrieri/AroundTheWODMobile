@@ -395,7 +395,10 @@ export class Detail implements OnInit{
 
 					}
 				});
-
+        alert("arriva")
+        if(this.loader != null){
+          this.loader.dismiss();
+        }
 
      	} catch (e) {
 		   alert("error: " + e);
@@ -419,10 +422,12 @@ export class Detail implements OnInit{
 			if(data != "error"){
 				this.riempiOggetto(data);
 				this.loadMap(null);
+        if(this.loader != null){
+          this.loader.dismiss();
+        }
 			}else{
           this.geolocalizza();
       }
-			this.loader.dismiss();
 		});
 	}
 	//carica la mappa in base al risultato da db

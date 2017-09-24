@@ -52,7 +52,7 @@
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />
     </feature>
-    <name>AroundThe \nWOD App</name>
+    <name>AroundThe OD App</name>
     <description>AroundTheWOD App</description>
     <author email="guerrierinicola@gmail.com" href="http://ionicframework.com/">AroundTheWOD Team</author>
     <content src="index.html" />
@@ -61,7 +61,7 @@
     <allow-navigation href="http://app.nicolaguerrieri.it:3000/" />
     <allow-navigation href="http://10.10.1.173:8100" />
     <allow-intent href="http://maps.googleapis.com" />
-    <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <allow-intent href="market:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -70,12 +70,12 @@
     <allow-intent href="geo:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="https://maps.googleapis.com" />
-    <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />
-    <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png" />
-    <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png" />
-    <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
-    <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png" />
-    <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
+    <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
+    <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
+    <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
+    <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
+    <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="KeepRunning" value="true" />
     <preference name="AndroidLaunchMode" value="singleInstance" />

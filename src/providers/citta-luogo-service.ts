@@ -140,8 +140,8 @@ export class CittaLuogoService {
 
 	localizza(loader) {
 		if (this.dataLocalizzazione) {
-		alert("mica qui");
-		return Promise.resolve(this.dataLocalizzazione);
+				alert("mica qui");
+				return Promise.resolve(this.dataLocalizzazione);
 		}
 
 	return new Promise(resolve => {
@@ -151,7 +151,7 @@ export class CittaLuogoService {
 				if(!enabled){
 					alert("Please enable GPS localization");
 						cordova.plugins.diagnostic.switchToLocationSettings();
-					loader.dismiss();
+						loader.dismiss();
 					return;
 				}
 			});
@@ -172,7 +172,6 @@ export class CittaLuogoService {
 					}
 				}
 			});
-			loader.dismiss();
 		},(error) => {
 			alert("Please enable GPS localization");
 			resolve("error");
