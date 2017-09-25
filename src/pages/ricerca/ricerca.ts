@@ -304,7 +304,7 @@ export class Ricerca {
 			this.ricerca(false);
 		});
 		modal.present();
-    
+
 	}
 	ricerca2(){
 		try{

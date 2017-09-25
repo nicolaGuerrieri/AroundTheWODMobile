@@ -305,15 +305,14 @@ export class Detail implements OnInit{
 		}
 	}
 
-	ricerca(){
-		if(this.nuovoLuogoObject.citta){
-			this.navCtrl.push(Ricerca,{
-				citta: this.nuovoLuogoObject.citta
+
+  ricerca(){
+    this.cittaLuogoService.localizzaByNome(this.nuovoLuogoObject.place).then(data => {
+      this.navCtrl.push(Ricerca,{
+				citta: this.nuovoLuogoObject.citta,
+				allSearchPlace: data
 			}, this.navOptions);
-		}else{
-			console.log("bloccato");
-			return;
-		}
+    });
 	}
 
 	//search del luogo scritto
@@ -408,9 +407,7 @@ export class Detail implements OnInit{
 	//localizzazione posizione
 	geolocalizza(){
 
-    if(this.loader){
 
-    }
 		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
@@ -419,6 +416,9 @@ export class Detail implements OnInit{
 			if(data != "error"){
 				this.riempiOggetto(data);
 				this.loadMap(null);
+        if(this.loader){
+          this.loader.dismiss();
+        }
 			}else{
           this.geolocalizza();
       }

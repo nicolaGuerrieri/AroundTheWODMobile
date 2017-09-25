@@ -151,7 +151,9 @@ export class CittaLuogoService {
 				if(!enabled){
 					alert("Please enable GPS localization");
 						cordova.plugins.diagnostic.switchToLocationSettings();
-					loader.dismiss();
+					if(loader){
+							loader.dismiss();
+					}
 					return;
 				}
 			});
@@ -172,7 +174,8 @@ export class CittaLuogoService {
 					}
 				}
 			});
-			loader.dismiss();
+
+
 		},(error) => {
 			alert("Please enable GPS localization");
 			resolve("error");
