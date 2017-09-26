@@ -14,7 +14,8 @@ export class CittaLuogoService {
 	public data:any;
 	public preUrl = "";
 	public dataLocalizzazione:any;
-	constructor(public http: Http, public platform: Platform, public loading: LoadingController, public googleAuth:GoogleAuth, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public http: Http, public platform: Platform, public loading: LoadingController, public googleAuth:GoogleAuth, public facebookAuth:
+FacebookAuth, public auth:Auth) {
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		}else{
@@ -110,7 +111,39 @@ export class CittaLuogoService {
 				() => console.log('done'));
 		});
 	}
+	
+	
+	getLuogoForIdOrganizzazione(idOrganizzazione) {
+		this.data = null;
+		if (this.data) {
+			return Promise.resolve(this.data);
+		}
+		  // don't have the data yet
+			return new Promise(resolve => {
+			this.http.get(this.preUrl+'getRaccordo?idOrganizzazione='+idOrganizzazione).map(res =>res.json()).subscribe(data => {
 
+				this.data = data.luogo;
+				resolve(this.data);
+			  },err => console.error(">>" + err),
+				() => console.log('done'));
+		});
+	}
+	
+	getLuogoForIdLuogo(idLuogo) {
+		this.data = null;
+		if (this.data) {
+			return Promise.resolve(this.data);
+		}
+		  // don't have the data yet
+			return new Promise(resolve => {
+			this.http.get(this.preUrl+'getRaccordoByLuogo?idLuogo='+idLuogo).map(res =>res.json()).subscribe(data => {
+
+				this.data = data.luogo;
+				resolve(this.data);
+			  },err => console.error(">>" + err),
+				() => console.log('done'));
+		});
+	}
 	localizzaByNome(ricerca) {
 	  if (this.dataLocalizzazione) {
 			alert("mica qui");
@@ -140,8 +173,8 @@ export class CittaLuogoService {
 
 	localizza(loader) {
 		if (this.dataLocalizzazione) {
-		alert("mica qui");
-		return Promise.resolve(this.dataLocalizzazione);
+				alert("mica qui");
+				return Promise.resolve(this.dataLocalizzazione);
 		}
 
 	return new Promise(resolve => {
@@ -151,10 +184,10 @@ export class CittaLuogoService {
 				if(!enabled){
 					alert("Please enable GPS localization");
 						cordova.plugins.diagnostic.switchToLocationSettings();
-					if(loader){
+ 					if(loader){
 							loader.dismiss();
-					}
-					return;
+					} 
+ 					return;
 				}
 			});
 		}
@@ -174,7 +207,6 @@ export class CittaLuogoService {
 					}
 				}
 			});
-
 
 		},(error) => {
 			alert("Please enable GPS localization");

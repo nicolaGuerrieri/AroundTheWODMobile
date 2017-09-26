@@ -14,6 +14,7 @@ export class Organizzazioni {
 	@ViewChild(Content) content: Content;
 	public citta:any;
 	public listaOrganizzazioni:any;
+	public listaRaccordo:any;
 	public loader;
 	navOptions = {
 		animate: true,
@@ -39,6 +40,21 @@ export class Organizzazioni {
 			this.loader.dismiss();
 		});
 
+	}
+	
+	selectOrg(idOrg){
+		this.loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		this.loader.present();
+		this.cittaLuogoService.getLuogoForIdOrganizzazione(idOrg).then(data => {
+
+			if(data != "error"){
+				console.log(data)
+				this.listaRaccordo = data;
+			}
+			this.loader.dismiss();
+		});
 	}
 	scrollToBottom() {
 		this.content.scrollToBottom();

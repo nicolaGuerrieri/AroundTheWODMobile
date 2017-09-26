@@ -18,7 +18,7 @@
 	<br />
 	<br />
 	Our friends: <br />
-	<ion-card *ngFor="let item of listaOrganizzazioni" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
+	<ion-card *ngFor="let item of listaOrganizzazioni" (click)="selectOrg(item._id)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
 	  <ion-card-content >
 		<ion-card-title>
 		  {{ item.nome }},   {{ item.citta }} <br />  {{ item.tipo }}
@@ -36,6 +36,19 @@
 		</p>
 	  </ion-card-content>
 	</ion-card>
+	
+	<ion-card *ngFor="let item of listaRaccordo" (click)="selectOrg(item._id)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
+	  <ion-card-content >
+		<ion-card-title>
+		  {{ item.id }} 
+		  </ion-card-title>
+		<p>
+			 
+		</p>
+	  </ion-card-content>
+	</ion-card>
+	
+	
 	<div  class="textNoResults"  *ngIf="!listaOrganizzazioni">
 		<ion-icon   ios="ios-sad" md="md-sad"></ion-icon>
 		No results found for this place...
