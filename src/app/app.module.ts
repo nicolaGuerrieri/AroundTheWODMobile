@@ -7,6 +7,7 @@ import { Ricerca } from '../pages/ricerca/ricerca';
 import { Organizzazioni } from '../pages/ricerca/organizzazioni';
 import { Detail } from '../pages/ricerca/detail';
 import { DialogSocial } from '../pages/dialog/dialogSocial';
+import { DettaglioOrganizzazioni } from '../pages/ricerca/DettaglioOrganizzazioni';
 import { Success } from '../pages/dialog/success';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
@@ -34,7 +35,8 @@ const cloudSettings: CloudSettings = {
     HomePage,
 	Ricerca,
 	AutocompletePage,
-	Organizzazioni,
+  Organizzazioni,
+  DettaglioOrganizzazioni,
 	Detail,
 	DialogSocial,
 	Success
@@ -49,7 +51,8 @@ const cloudSettings: CloudSettings = {
     HomePage,
 	Ricerca,
 	AutocompletePage,
-	Detail,
+  Detail,
+  DettaglioOrganizzazioni,
 	Organizzazioni,
 	DialogSocial,
 	Success

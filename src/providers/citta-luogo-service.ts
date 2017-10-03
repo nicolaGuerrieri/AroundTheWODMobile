@@ -122,7 +122,7 @@ FacebookAuth, public auth:Auth) {
 			return new Promise(resolve => {
 			this.http.get(this.preUrl+'getRaccordo?idOrganizzazione='+idOrganizzazione).map(res =>res.json()).subscribe(data => {
 
-				this.data = data.luogo;
+				this.data = data;
 				resolve(this.data);
 			  },err => console.error(">>" + err),
 				() => console.log('done'));
@@ -138,7 +138,7 @@ FacebookAuth, public auth:Auth) {
 			return new Promise(resolve => {
 			this.http.get(this.preUrl+'getRaccordoByLuogo?idLuogo='+idLuogo).map(res =>res.json()).subscribe(data => {
 
-				this.data = data.luogo;
+				this.data = data;
 				resolve(this.data);
 			  },err => console.error(">>" + err),
 				() => console.log('done'));
