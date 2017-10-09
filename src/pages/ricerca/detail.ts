@@ -62,7 +62,6 @@ export class Detail implements OnInit{
 		if(this.idLuogo != -1){
 			this.nuovoLuogo = false;
 			this.cercaPerId(this.idLuogo);
-      this.loader.dismiss();
 		}else{
 			this.nuovoLuogo = true;
 			this.nuovoLuogoObject = {};
@@ -81,7 +80,6 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.al = null;
 			this.nuovoLuogoObject.listaAttivita= [];
 			this.geolocalizza();
-      this.loader.dismiss();
 		}
 	}
 
@@ -409,19 +407,11 @@ export class Detail implements OnInit{
 
 	//localizzazione posizione
 	geolocalizza(){
-
-
-		this.loader = this.loading.create({
-			content: 'Please wait...',
-		});
-		this.loader.present();
 		this.cittaLuogoService.localizza(this.loader).then(data => {
 			if(data != "error"){
 				this.riempiOggetto(data);
 				this.loadMap(null);
-         if(this.loader != null){
-          this.loader.dismiss();
-        }
+
 			}else{
           this.geolocalizza();
       }

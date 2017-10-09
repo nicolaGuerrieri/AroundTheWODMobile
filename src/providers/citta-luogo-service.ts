@@ -111,8 +111,8 @@ FacebookAuth, public auth:Auth) {
 				() => console.log('done'));
 		});
 	}
-	
-	
+
+
 	getLuogoForIdOrganizzazione(idOrganizzazione) {
 		this.data = null;
 		if (this.data) {
@@ -128,7 +128,7 @@ FacebookAuth, public auth:Auth) {
 				() => console.log('done'));
 		});
 	}
-	
+
 	getLuogoForIdLuogo(idLuogo) {
 		this.data = null;
 		if (this.data) {
@@ -184,9 +184,6 @@ FacebookAuth, public auth:Auth) {
 				if(!enabled){
 					alert("Please enable GPS localization");
 						cordova.plugins.diagnostic.switchToLocationSettings();
- 					if(loader){
-							loader.dismiss();
-					} 
  					return;
 				}
 			});

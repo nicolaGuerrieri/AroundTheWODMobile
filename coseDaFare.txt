@@ -1,6 +1,6 @@
-"# AroundTheWODMobile" 
+"# AroundTheWODMobile"
 
-Io 
+Io
 - Attaccare nuovo logo
 - attaccare pagine link social
 -  descizione app
@@ -15,7 +15,7 @@ Io
 - prevedere un'immagine
 
 
-Riccardo 
+Riccardo
 - fare pagine social
 - immagini richieste
 - descrizioni da mettere sul sito e app
@@ -29,4 +29,6 @@ Spese
 - 100 server nuovo più cazzuto + dominio
 - 50 MAGLIETTE
 - 500 tra volantini e qualche evento
-	
+
+problema build e emulate ios
+https://stackoverflow.com/questions/46328873/error-run-on-ios-emulator-after-update-to-ios-11-ionic-3
