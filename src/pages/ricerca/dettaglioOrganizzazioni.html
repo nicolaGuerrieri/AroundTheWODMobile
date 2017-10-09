@@ -1,0 +1,86 @@
+<ion-header class="colorPersonal">
+	<ion-navbar>
+		<ion-title>
+			{{global.title}}
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding style="text-align: center;">
+
+	<ion-fab right bottom>
+		<button mini (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
+	</ion-fab>
+
+	Member friends: <br />
+	<ion-card tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
+		<ion-card-content>
+			<ion-card-title>
+				{{ item.nome }}, {{ item.citta }} <br /> {{ item.tipo }}
+			</ion-card-title>
+			<p>
+				{{ item.descrizione }} <br /> Where: {{ item.dove }} <br /> {{ item.telefono }}<br />
+				<a *ngIf="item.url_social" href="{{ item.url_social }}">
+					<ion-icon name="logo-facebook" color="personal3" style="font-size: 50px;"></ion-icon>
+				</a>
+				<a *ngIf="item.url_social_instagram" href="{{ item.url_social_instagram }}">
+					<ion-icon name="logo-instagram" color="personal3" style="font-size: 50px;"></ion-icon>
+				</a>
+			</p>
+		</ion-card-content>
+	</ion-card>
+	<br />
+	<br /> Where:
+	<br />
+	<ion-card *ngFor="let item of luoghiOrganizzazione" tappable style="" class="cardR" (click)="selectPlace(item._id)">
+		<!-- <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>-->
+
+		<ion-card-content>
+
+			<ion-card-title>
+				{{ item.nome }} {{ item.citta }}
+			</ion-card-title>
+			<h2><b>{{ item.provincia }} {{ item.nazione }}</b></h2>
+			<p>
+				{{ item.descrizione }} <br /> {{ item.orario }} {{ item.punto_risotro }} {{ item.via }}{{ item.sempreAperto }} {{ item.ricerca
+				}}
+			</p>
+			<div class="row">
+				<span *ngFor="let itemm of item.listaAttivita">
+				 <button *ngIf="itemm.selezionato" class="buttonNavSenzaFontRound" style="font-size:10px" ion-button icon-only>
+					 <ion-icon *ngIf="!itemm.img"  name="{{ itemm.nome }}"></ion-icon> 
+					 <img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"  style="" alt="" class="imgDetail altreIconaLittle">
+				 </button>
+			 </span>
+			</div><br />
+		</ion-card-content>
+		<ion-row no-padding>
+			<ion-col>
+
+			</ion-col>
+			<ion-col text-center>
+
+			</ion-col>
+			<ion-col text-right>
+				<button ion-button style="background-color: white; font-size:17px; font-weight: bold;" clear small color="personal3" icon-left>
+				 <ion-icon name='share-alt'></ion-icon>
+				 Detail
+			 </button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+</ion-content>
+<ion-footer class="centraTutto">
+	<ion-toolbar style="color: white; font-size: 35px;">
+		<ion-title class="centraTutto">Follow us</ion-title>
+		<div class="centraTutto" style="padding-left: 15px;">
+			<a (click)="global.openSocial('facebook')">
+				<ion-icon name="logo-facebook"></ion-icon>
+			</a>
+			<a (click)="global.openSocial('instagram')">
+				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
+			</a>
+		</div>
+	</ion-toolbar>
+</ion-footer>
