@@ -159,11 +159,7 @@ FacebookAuth, public auth:Auth) {
 		});
 	}
 	localizzaByNome(ricerca) {
-	  if (this.dataLocalizzazione) {
-			alert("mica qui");
-			return Promise.resolve(this.dataLocalizzazione);
-	  }
-
+	  
 		return new Promise(resolve => {
 
 

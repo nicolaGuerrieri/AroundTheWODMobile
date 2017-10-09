@@ -336,13 +336,14 @@ export class Detail implements OnInit {
 
 
 	ricerca() {
-		this.cittaLuogoService.localizzaByNome(this.nuovoLuogoObject.place).then(data => {
+		this.cittaLuogoService.localizzaByNome(this.nuovoLuogoObject.citta).then(data => {
 			this.navCtrl.push(Ricerca, {
 				citta: this.nuovoLuogoObject.citta,
 				allSearchPlace: data
 			}, this.navOptions);
 		});
 	}
+	
 
 	//search del luogo scritto
 	loadMapVed(cittaResult) {
@@ -437,34 +438,21 @@ export class Detail implements OnInit {
 
 
 	//localizzazione posizione
-<<<<<<< HEAD
-	geolocalizza(){
-=======
-	geolocalizza() {
-
-
+geolocalizza(){
 		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
 		this.loader.present();
->>>>>>> 9b3762b6a08a4b24e628c2a454ffc32703e22454
 		this.cittaLuogoService.localizza(this.loader).then(data => {
 			if (data != "error") {
 				this.riempiOggetto(data);
 				this.loadMap(null);
-<<<<<<< HEAD
-
-			}else{
-          this.geolocalizza();
-      }
-=======
 				if (this.loader != null) {
 					this.loader.dismiss();
 				}
 			} else {
 				this.geolocalizza();
 			}
->>>>>>> 9b3762b6a08a4b24e628c2a454ffc32703e22454
 		});
 	}
 	//carica la mappa in base al risultato da db

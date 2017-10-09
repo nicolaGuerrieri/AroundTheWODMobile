@@ -9,7 +9,7 @@
 <ion-header class="colorPersonal"  >
   <ion-navbar>
     <ion-title>
-      {{global.title}}
+      {{global.title}} aaaaa
     </ion-title>
 	<ion-buttons end>
 		<button style="font-size: 30px;" (click)="info()" class="" ion-button>
@@ -28,7 +28,9 @@
 
 		<div class="centraTutto">
 		<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div><br />
-			<ion-input  color="personal3"  style="" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
+
+    <ion-input *ngIf="!global._isiOS" color="personal3"  style="" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
+    <ion-input *ngIf="global._isiOS" color="personal3"  style="" class="centraTutto inputSearch"  [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
 		</div>
 		<br />
 		<div style="text-align: center;">
