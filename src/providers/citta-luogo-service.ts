@@ -128,7 +128,21 @@ FacebookAuth, public auth:Auth) {
 				() => console.log('done'));
 		});
 	}
-	
+	getOrgById(idOrganizzazione) {
+		this.data = null;
+		if (this.data) {
+			return Promise.resolve(this.data);
+		}
+		  // don't have the data yet
+			return new Promise(resolve => {
+			this.http.get(this.preUrl+'getOrganizzazione?idOrganizzazione='+idOrganizzazione).map(res =>res.json()).subscribe(data => {
+
+				this.data = data;
+				resolve(this.data);
+			  },err => console.error(">>" + err),
+				() => console.log('done'));
+		});
+	}	
 	getLuogoForIdLuogo(idLuogo) {
 		this.data = null;
 		if (this.data) {

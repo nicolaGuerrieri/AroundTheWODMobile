@@ -23,11 +23,11 @@ export class DettaglioOrganizzazioni {
 
 	constructor(public navCtrl: NavController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.luoghiOrganizzazione = params.get("luoghiOrganizzazione");
-		this.item = params.get("organizzazione"); 
+		this.item = params.get("organizzazione");
 	}
 
-	selectPlace(idPlace){
-		this.navCtrl.push(Detail,{
+	selectPlace(idPlace) {
+		this.navCtrl.push(Detail, {
 			idLuogo: idPlace
 		}, this.navOptions);
 	}

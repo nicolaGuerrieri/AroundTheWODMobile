@@ -7,7 +7,7 @@ import { Ricerca } from '../pages/ricerca/ricerca';
 import { Organizzazioni } from '../pages/ricerca/organizzazioni';
 import { Detail } from '../pages/ricerca/detail';
 import { DialogSocial } from '../pages/dialog/dialogSocial';
-import { DettaglioOrganizzazioni } from '../pages/ricerca/DettaglioOrganizzazioni';
+import { DettaglioOrganizzazioni } from '../pages/ricerca/dettaglioOrganizzazioni';
 import { Success } from '../pages/dialog/success';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';

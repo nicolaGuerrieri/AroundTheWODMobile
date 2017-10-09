@@ -150,6 +150,25 @@
 		</div>
 	</div>
 	<br />
+	<ion-card *ngFor="let item of listaRaccordo" (click)="goDetail(item.organizzazione)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
+		<ion-card-content>
+			<ion-card-title>
+				{{ item.organizzazione.nome }}, {{ item.organizzazione.citta }} <br /> {{ item.organizzazione.tipo }}
+			</ion-card-title>
+			<p>
+				{{ item.organizzazione.descrizione }} <br /> Where: {{ item.organizzazione.dove }} <br /> {{ item.organizzazione.telefono }}<br />
+				<a *ngIf="item.organizzazione.url_social" href="{{ item.organizzazione.url_social }}">
+					<ion-icon name="logo-facebook" color="personal3" style="font-size: 50px;"></ion-icon>
+				</a>
+				<a *ngIf="item.organizzazione.url_social_instagram" href="{{ item.organizzazione.url_social_instagram }}">
+					<ion-icon name="logo-instagram" color="personal3" style="font-size: 50px;"></ion-icon>
+				</a>
+			</p>
+		</ion-card-content>
+	</ion-card>
+	<br />
+
+
 	<div class="row">
 		<div class="col" style="text-align: center;">
 			<button (click)="back()" class="buttonNavSenzaFont" ion-button icon-left>

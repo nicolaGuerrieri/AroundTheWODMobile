@@ -4,7 +4,7 @@ import { Global } from '../../services/global';
 import { CittaLuogoService } from '../../providers/citta-luogo-service';
 import { Geolocation, SocialSharing } from 'ionic-native';
 import { Detail } from '../ricerca/detail';
-import { DettaglioOrganizzazioni } from '../ricerca/DettaglioOrganizzazioni';
+import { DettaglioOrganizzazioni } from '../ricerca/dettaglioOrganizzazioni';
 
 
 @Component({
