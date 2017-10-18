@@ -3,7 +3,7 @@
 <ion-header  class="colorPersonal">
   <ion-toolbar>
     <ion-title *ngIf="!_isiOS">Enter address</ion-title> 
-    <ion-searchbar [(ngModel)]="autocomplete.query" #citta [showCancelButton]="true" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="autocomplete.query" #citta [showCancelButton]="true" autofocus (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

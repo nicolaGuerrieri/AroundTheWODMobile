@@ -94,6 +94,7 @@ export class Detail implements OnInit {
 		this.listaRaccordo = [];
 		this.loader.present();
 		this.cittaLuogoService.getLuogoForIdLuogo(idLuogo).then(data => {
+			console.log(data)
 			if (data) {
 				if (data != "error") {
 					data.listaLuoghi.forEach(element => {
@@ -424,7 +425,6 @@ export class Detail implements OnInit {
 
 				}
 			});
-			alert("arriva")
 			if (this.loader != null) {
 				this.loader.dismiss();
 			}

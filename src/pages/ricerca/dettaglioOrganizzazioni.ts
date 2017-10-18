@@ -24,6 +24,9 @@ export class DettaglioOrganizzazioni {
 	constructor(public navCtrl: NavController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.luoghiOrganizzazione = params.get("luoghiOrganizzazione");
 		this.item = params.get("organizzazione");
+		alert(this.luoghiOrganizzazione)
+		console.log(this.luoghiOrganizzazione)
+		console.log(">>>>>>>>>>>")
 		if (this.luoghiOrganizzazione == null) {
 			this.caricaLuoghiPerOrg(this.item);
 		}

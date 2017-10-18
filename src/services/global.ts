@@ -20,7 +20,6 @@ export class Global {
 		//alert(this.language);
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
- 	alert(this._isiOS)
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		}else{
