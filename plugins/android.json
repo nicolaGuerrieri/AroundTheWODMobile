@@ -53,11 +53,10 @@
     },
     "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "io.ionic.starter"
-    }
-  },
-  "dependent_plugins": {
+    },
     "cordova-plugin-compat": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
-  }
+  },
+  "dependent_plugins": {}
 }
