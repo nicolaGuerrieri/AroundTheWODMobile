@@ -3,8 +3,7 @@ import { NavController, NavParams, ModalController, LoadingController, Platform,
 import {Global} from '../../services/global';
 import {SocialSharing} from 'ionic-native';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
-import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
-import { Login } from '../ricerca/login';
+import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular'; 
 import { Storage } from '@ionic/storage';
 declare var google: any;
 declare var cordova:any;

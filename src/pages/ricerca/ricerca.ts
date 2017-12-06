@@ -8,7 +8,6 @@ import { Detail } from '../ricerca/detail';
 import { Organizzazioni } from '../ricerca/organizzazioni';
 import { DialogSocial } from '../dialog/dialogSocial';
 import { FacebookAuth, User, Auth } from '@ionic/cloud-angular';
-import { Login } from '../ricerca/login';
 
 declare var google: any;
 declare var cordova:any;
@@ -102,8 +101,7 @@ export class Ricerca {
 		}, this.navOptions);
 	}
 
-	doShare() {
-		var full_name;
+	doShare() { 
 		try{
 			console.log('do FB');
 			//this.facebookAuth.login().then(() => {
@@ -113,6 +111,7 @@ export class Ricerca {
 			SocialSharing.share(this.message, null, null, this.url).then((data) => {
 				alert(data);
 			}).catch(() => {
+			  // Error!
 			  // Error!
 			});
 
@@ -291,8 +290,7 @@ export class Ricerca {
 	}
 
 	showAddressModalR () {
-		let modal = this.modalCtrl.create(AutocompletePage);
-		let me = this;
+		let modal = this.modalCtrl.create(AutocompletePage); 
 		modal.onDidDismiss(data => {
 			if(data != null) {
 				console.log("showAddressModalR " + data);

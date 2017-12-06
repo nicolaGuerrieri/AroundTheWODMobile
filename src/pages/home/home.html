@@ -9,7 +9,7 @@
 <ion-header class="colorPersonal"  >
   <ion-navbar>
     <ion-title>
-      {{global.title}} aaaaa
+      {{global.title}}
     </ion-title>
 	<ion-buttons end>
 		<button style="font-size: 30px;" (click)="info()" class="" ion-button>
@@ -21,6 +21,8 @@
 </ion-header>
 
 <ion-content padding>
+
+		<button ion-button full (click)="loginWithFB()">Login!</button>
 	<br /><br />
 	<div class="row">
 		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" >
@@ -29,8 +31,8 @@
 		<div class="centraTutto">
 		<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div><br />
 
-    <ion-input *ngIf="!global._isiOS" color="personal3"  style="" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
-    <ion-input *ngIf="global._isiOS" color="personal3"  style="" class="centraTutto inputSearch"  [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
+    <ion-input *ngIf="!global._isiOS" color="personal3"   class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
+    <ion-input *ngIf="global._isiOS" color="personal3"  class="centraTutto inputSearch"  [(ngModel)]="address.place" type="text" placeholder="Pick a city"></ion-input>
 		</div>
 		<br />
 		<div style="text-align: center;">

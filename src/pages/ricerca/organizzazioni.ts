@@ -1,9 +1,7 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform, ActionSheetController, Content } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ModalController, LoadingController, Platform, Content } from 'ionic-angular';
 import { Global } from '../../services/global';
-import { CittaLuogoService } from '../../providers/citta-luogo-service';
-import { Geolocation, SocialSharing } from 'ionic-native';
-import { Detail } from '../ricerca/detail';
+import { CittaLuogoService } from '../../providers/citta-luogo-service';  
 import { DettaglioOrganizzazioni } from '../ricerca/dettaglioOrganizzazioni';
 
 
