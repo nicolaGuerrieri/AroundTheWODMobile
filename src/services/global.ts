@@ -20,12 +20,14 @@ export class Global {
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
 		if (this.platform.is('core')) {
-			this.preUrl = 'provaV2/';
+			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
+			
+			//this.preUrl = 'provaV2/';
 		}else{
 			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
 		}
 	}
-
+ 
 	openSocial(social){
 		if(social == 'facebook'){
 			window.open('https://www.facebook.com/aroundthewodapp/?ref=aymt_homepage_panel');
