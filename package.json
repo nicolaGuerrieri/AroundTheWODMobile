@@ -44,7 +44,7 @@
     "zone.js": "0.6.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "1.0.0",
+    "@ionic/app-scripts": "1.1.4",
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
@@ -71,7 +71,8 @@
       "cordova-plugin-compat": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

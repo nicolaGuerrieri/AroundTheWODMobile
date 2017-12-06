@@ -3,8 +3,7 @@ import { Platform  } from 'ionic-angular';
 @Injectable()
 export class Global {
 	public title:string = "AroundTheWOD App";
-	private _isAndroid: boolean;
-	private androidVersion: any;
+	private _isAndroid: boolean; 
 	private _isiOS: boolean;
 	public language: any;
    public preUrl:string;

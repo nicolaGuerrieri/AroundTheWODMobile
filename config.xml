@@ -87,4 +87,5 @@
         <variable name="APP_NAME" value="aroundTheWodMobile" />
     </plugin>
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
+    <engine name="browser" spec="~5.0.1" />
 </widget>
