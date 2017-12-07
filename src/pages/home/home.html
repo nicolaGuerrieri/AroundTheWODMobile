@@ -23,7 +23,12 @@
 <ion-content padding>
 
 		<button ion-button full (click)="loginWithFB()">Login!</button>
-	<br /><br />
+		<ion-card *ngIf="userData">
+			<ion-card-header>
+				{{userData.username}}
+			</ion-card-header>
+		</ion-card>
+				<br /><br />
 	<div class="row">
 		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" >
 		<br /><br />

@@ -149,7 +149,7 @@ export class Ricerca {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
 					var add= results[0].address_components;
-					let city=add[3];
+					//let city=add[3];
 				} else  {
 					alert("address not found");
 				}

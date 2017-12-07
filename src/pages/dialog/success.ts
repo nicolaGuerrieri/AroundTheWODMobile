@@ -1,8 +1,6 @@
-import { Component, ElementRef  } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, ViewController} from 'ionic-angular';
-import {Global} from '../../services/global'; 
-import {SocialSharing} from 'ionic-native'; 
-import { Login } from '../ricerca/login';
+import {Global} from '../../services/global';  
 
 declare var google: any;
 declare var cordova:any;
