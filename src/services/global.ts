@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Platform  } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 @Injectable()
 export class Global {
-	public title:string = "AroundTheWOD App";
-	private _isAndroid: boolean; 
+	public title: string = "AroundTheWOD App";
+	private _isAndroid: boolean;
 	private _isiOS: boolean;
 	public language: any;
-   public preUrl:string;
- 	constructor(public platform: Platform) {
-		if(navigator.language){
-			if(navigator.language.indexOf("it") > -1){
+	public preUrl: string;
+	public userLogged: any;
+
+	constructor(public platform: Platform) {
+		if (navigator.language) {
+			if (navigator.language.indexOf("it") > -1) {
 				this.language = "it";
-			}else{
-				this.language= "en";
+			} else {
+				this.language = "en";
 			}
 		}
 
@@ -21,17 +23,17 @@ export class Global {
 		this._isiOS = platform.is('ios');
 		if (this.platform.is('core')) {
 			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
-			
+
 			//this.preUrl = 'provaV2/';
-		}else{
+		} else {
 			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
 		}
 	}
- 
-	openSocial(social){
-		if(social == 'facebook'){
+
+	openSocial(social) {
+		if (social == 'facebook') {
 			window.open('https://www.facebook.com/aroundthewodapp/?ref=aymt_homepage_panel');
-		}else{
+		} else {
 			window.open('https://www.instagram.com/aroundthewodapp/?hl=it');
 		}
 	}
