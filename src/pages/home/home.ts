@@ -5,6 +5,8 @@ import {Global} from '../../services/global';
 import { Ricerca } from '../ricerca/ricerca';
 import { AutocompletePage } from './autocomplete';
 import { DialogSocial } from '../dialog/dialogSocial';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+
 
 import { Success } from '../dialog/success';
 declare var cordova:any;
@@ -16,18 +18,25 @@ declare var google: any;
 })
 export class HomePage {
 	splash= true;
-	address;
+	address; 
 	public allSearchPlace:any;
 	plat: any;
 	navOptions = {
 		animate: true,
 		animation: 'wp-transition'
 	};
-	constructor( public navCtrl: NavController, public global:Global,  public viewCtrl:ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	constructor(private facebook: Facebook, public navCtrl: NavController, public global:Global,  public viewCtrl:ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 		  place: ''
 		};
 	}
+	loginWithFB() {
+		this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
+		  this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile => {
+			this.global.userLogged = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+		  });
+		});
+	  }
 	info(){
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "info"});
 		modal.present();
@@ -37,7 +46,7 @@ export class HomePage {
 		this.viewCtrl.dismiss();
 	}
 	ionViewDidLoad() {
-		setTimeout(() => this.splash = false, 4000);
+		setTimeout(() => this.splash = false, 100);
 	}
 	showAddressModal () {
 		let modal = this.modalCtrl.create(AutocompletePage);

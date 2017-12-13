@@ -30,6 +30,12 @@
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
+<<<<<<< HEAD
+=======
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    },
+>>>>>>> 4bcd939e53facf8422da52b3bb71f74da30edf4b
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
@@ -50,6 +56,7 @@
     },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+<<<<<<< HEAD
     }
   },
   "dependent_plugins": {
@@ -57,4 +64,9 @@
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     }
   }
+=======
+    }
+  },
+  "dependent_plugins": {}
+>>>>>>> 4bcd939e53facf8422da52b3bb71f74da30edf4b
 }

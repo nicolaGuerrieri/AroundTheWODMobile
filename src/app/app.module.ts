@@ -11,9 +11,10 @@ import { DettaglioOrganizzazioni } from '../pages/ricerca/dettaglioOrganizzazion
 import { Success } from '../pages/dialog/success';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
-import {HttpModule, Http} from "@angular/http";
 import { Storage } from '@ionic/storage';
 import { Toast }   from 'ionic-native';
+ 
+import { Facebook } from '@ionic-native/facebook';
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -23,9 +24,6 @@ const cloudSettings: CloudSettings = {
       'webClientId': '923547097240-vj2comu32e960c7rr6h9sccrpsiihhef.apps.googleusercontent.com',
       'scope': ['profile']
     },
-    'facebook': {
-      'scope': ['public_profile']
-    }
   }
 }
 
@@ -57,6 +55,7 @@ const cloudSettings: CloudSettings = {
 	DialogSocial,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage, Toast]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage, Toast, Facebook]
+  
 })
 export class AppModule {}

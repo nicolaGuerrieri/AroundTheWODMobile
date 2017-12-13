@@ -45,6 +45,15 @@
 	margin:auto;
 }
 
+.profileImage{
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+}
+.logoImage{
+	border-radius: 50px;
+	border: 1px solid map-get($colors, personal3);
+}
 #map {
     width: 100%;
     height: 200px;
@@ -76,15 +85,21 @@ ion-list{
 	display: block;
 	border: 0px !important;
 	border-bottom-color: transparent !important;
-	border-radius: 100px;
+	border-radius: 50px;
+	border: 2px solid color($colors, personal3) !important;
 	
+}
+ion-app.md [padding],
+ion-app.md [padding] .scroll-content {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 .cardR{
 	width: 100%; 
 	margin-left: 0; 
-	margin-bottom: 10px; 
+	margin-bottom: 0px;
+	margin-top: 0px; 
 	text-align: left;
-	border: 2px solid #bdbdbd;
 	padding-top: 5px;
 }
 

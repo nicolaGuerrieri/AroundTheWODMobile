@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Geolocation } from 'ionic-native';
 import { Platform, LoadingController } from 'ionic-angular';
-import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
+import {FacebookAuth, Auth, GoogleAuth } from '@ionic/cloud-angular';
 
 
 declare var google: any;
