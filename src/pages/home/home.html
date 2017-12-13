@@ -15,14 +15,9 @@
 			<button style="font-size: 30px;" (click)="info()" class="" ion-button>
 				<ion-icon name="md-information-circle"></ion-icon>
 			</button>
-
-			<ion-item *ngIf="global.userLogged" class="item-profile">
-				<div class="item-avatar">
-					<!--<button *ngIf="global.userLogged" ion-button>-->
-					<img *ngIf="global.userLogged.picture" class="profileImage" [src]="global.userLogged.picture" />
-					<!--	</button>-->
-				</div>
-			</ion-item>
+			<button *ngIf="global.userLogged" ion-button>
+				<img *ngIf="global.userLogged.picture" class="profileImage" [src]="global.userLogged.picture" />
+			</button>
 		</ion-buttons>
 
 	</ion-navbar>
@@ -34,12 +29,34 @@
 	<button *ngIf="!global.userLogged" class="buttonClass" ion-button full (click)="loginWithFB()">Login con Facebook &nbsp; &nbsp;
 		<ion-icon name="logo-facebook"></ion-icon>
 	</button>
-	<ion-card *ngIf="global.userLogged">
-		<ion-card-header>Ciao
-			<b>{{ global.userLogged.username }} !!!</b>
-		</ion-card-header>
-	</ion-card>
-	<div class="row" *ngIf="global.userLogged">
+	<div *ngIf="global.userLogged">
+		Ciao
+		<b>{{ global.userLogged.username }} !!!</b>
+		<div class="row" *ngIf="global.userLogged">
+			<div class="centraTutto">
+				<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div>
+				<br />
+
+				<ion-input *ngIf="!global._isiOS" color="personal3" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place"
+				 type="text" placeholder="Pick a city"></ion-input>
+				<ion-input *ngIf="global._isiOS" color="personal3" class="centraTutto inputSearch" [(ngModel)]="address.place" type="text"
+				 placeholder="Pick a city"></ion-input>
+			</div>
+			<br />
+			<div style="text-align: center;">
+				<button (click)="ricerca()" ion-button icon-left class="buttonClass">
+					<ion-icon name="search"></ion-icon>
+					Let's workout
+				</button>
+				<button (click)="geolocalizza()" ion-button class="buttonClass">
+					<ion-icon class="colorPersonal buttonNav" style="color: white !important;" name="pin"></ion-icon>
+				</button>
+			</div>
+			<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
+		</div>
+	</div>
+
+	<div class="row" *ngIf="global.platform.is('core')">
 		<div class="centraTutto">
 			<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div>
 			<br />
@@ -61,7 +78,6 @@
 		</div>
 		<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
 	</div>
-
 </ion-content>
 <ion-footer class="centraTutto">
 	<ion-toolbar style="color: white; font-size: 35px;">
