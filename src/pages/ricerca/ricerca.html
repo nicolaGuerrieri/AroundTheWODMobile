@@ -28,12 +28,6 @@
 			<ion-icon name="md-add"></ion-icon>
 		</button>
 	</ion-fab>
-
-	<ul>
-		<li *ngFor="let item of cittaLuogo">
-			{{ item.nome }} {{ item.citta }}			
-		</li>
-	</ul>
 	<ion-card *ngFor="let item of cittaLuogo" tappable style="" class="cardR" (click)="selectPlace(item._id)">
 		<!-- <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>-->
 
