@@ -32534,41 +32534,6 @@ input {
   text-align: center;
 }
 
-li {
-  background: #00a994 linear-gradient(to right, #1fc8db 100%, #00a994 100%);
-  position: relative;
-  list-style-type: none;
-  /* drop the bullets */
-  color: white;
-  font-family: Verdana, Arial, Helvetica;
-  font-size: 15pt;
-  padding: 5pt;
-  padding-left: 10pt;
-  line-height: 20pt;
-  width: 90%;
-}
-
-li + li {
-  margin-top: 6pt;
-  /* This is the spacing between the arrows */
-}
-
-li:after {
-  content: "";
-  border-left: 0.5em solid #1fc8db;
-  /* This width determines the arrows length */
-  border-top: 15pt solid transparent;
-  /* This width has to be 50% of 'line-height + padding-top + padding-bottom' */
-  border-bottom: 15pt solid transparent;
-  /* Same for this width */
-  width: 0;
-  height: 0;
-  position: absolute;
-  right: -.5em;
-  /* This has to be the same value as 'border-left's width */
-  top: 0;
-}
-
 input {
   text-align: center;
 }
