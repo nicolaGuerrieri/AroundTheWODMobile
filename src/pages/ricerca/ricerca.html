@@ -1,8 +1,7 @@
 <ion-header class="colorPersonal">
 	<ion-navbar>
 		<ion-title>
-			Search places in
-			<span style="text-transform: capitalize">{{citta}}</span>
+			Around the WOD
 		</ion-title>
 
 		<ion-buttons end>
@@ -17,10 +16,13 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding style="">
+<ion-content padding>
 
 	<div #map id="map"></div>
 	<br />
+	<div text-center text-xl>Search places in
+		<span style="text-transform: capitalize"><b>{{citta}}</b></span>
+	</div>
 	<br />
 	<!--Places in:  	<ion-chip>	  <ion-label style="text-transform: capitalize;">{{citta}}</ion-label>	</ion-chip>	<hr class="hrS">	<br />	<br />-->
 	<ion-fab right bottom>

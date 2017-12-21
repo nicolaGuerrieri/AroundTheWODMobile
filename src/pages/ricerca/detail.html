@@ -17,13 +17,14 @@
 </ion-header>
 ciao
 <ion-content padding style="text-align: center">
+
+	<div #map id="map"></div>
+	
+	<br />
+	<br />
 	<ion-chip *ngIf="luogoSelezionato && !nuovoLuogo">
 		<ion-label style="width: 90%;" *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.ricerca}}</ion-label>
 	</ion-chip>
-	<br />
-	<br />
-	<div #map id="map"></div>
-
 	<ion-fab right bottom>
 		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3">
 			<ion-icon name="arrow-dropdown"></ion-icon>
