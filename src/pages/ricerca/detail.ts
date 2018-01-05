@@ -229,14 +229,16 @@ export class Detail implements OnInit {
 		if (this.nuovoLuogoObject.errore) {
 			return;
 		}
-		let modal = this.modalCtrl.create(DialogSocial, { "from": "login" });
-		modal.onDidDismiss(data => {
-			if (!data) {
-				return;
-			}
-			this.loginSocial(data);
-		});
-		modal.present();
+
+		this.inviaDatiServer(this.global.userLogged, this.loader);
+		/**	let modal = this.modalCtrl.create(DialogSocial, { "from": "login" });
+			modal.onDidDismiss(data => {
+				if (!data) {
+					return;
+				}**/
+		//		this.loginSocial(data);
+		//	});
+		//modal.present();
 	}
 
 	loginSocial(social) {
@@ -303,8 +305,7 @@ export class Detail implements OnInit {
 
 		try {
 			if (!tokenAuth) {
-				alert("No token");
-				return;
+				tokenAuth= "{prova: \"prova\"}";
 			}
 			console.log(tokenAuth);
 			this.nuovoLuogoObject.utente = tokenAuth;
@@ -344,7 +345,7 @@ export class Detail implements OnInit {
 			}, this.navOptions);
 		});
 	}
-	
+
 
 	//search del luogo scritto
 	loadMapVed(cittaResult) {
@@ -438,7 +439,7 @@ export class Detail implements OnInit {
 
 
 	//localizzazione posizione
-geolocalizza(){
+	geolocalizza() {
 		this.loader = this.loading.create({
 			content: 'Please wait...',
 		});
@@ -462,7 +463,6 @@ geolocalizza(){
 
 			var geocoder;
 			geocoder = new google.maps.Geocoder();
-			var elem = this.mapElement;
 			let latLng = new google.maps.LatLng(luogo.latitudine, luogo.longitudine);
 
 

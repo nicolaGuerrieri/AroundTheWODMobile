@@ -12,7 +12,7 @@
 			{{global.title}}
 		</ion-title>
 		<ion-buttons end>
-			<button style="font-size: 30px;" (click)="info()" class="" ion-button>
+			<button style="font-size: 30px; display: none;" (click)="info()" class="" ion-button>
 				<ion-icon name="md-information-circle"></ion-icon>
 			</button>
 			<button *ngIf="global.userLogged" ion-button>
@@ -30,11 +30,12 @@
 		<ion-icon name="logo-facebook"></ion-icon>
 	</button>
 	<div *ngIf="global.userLogged">
-		Ciao
-		<b>{{ global.userLogged.username }} !!!</b>
-		<div class="row" *ngIf="global.userLogged">
-			<div class="centraTutto">
-				<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div>
+
+		<div class="row" *ngIf="global.userLogged" style="text-align: center;">
+			<div class="centraTutto paddingCustom">
+				<div style="font-size: 18px;">Ciao
+					<b>{{ global.userLogged.username }} !!!</b>
+				</div>  Cerca una città o usa la tua posizione GPS
 				<br />
 
 				<ion-input *ngIf="!global._isiOS" color="personal3" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place"
@@ -80,7 +81,7 @@
 	</div>
 </ion-content>
 <ion-footer class="centraTutto">
-	<ion-toolbar style="color: white; font-size: 35px;">
+	<ion-toolbar style="color: white; font-size: 35px;" position="bottom">
 		<ion-title class="centraTutto">Follow us</ion-title>
 		<div class="centraTutto" style="padding-left: 15px;">
 			<a (click)="global.openSocial('facebook')">
@@ -89,6 +90,16 @@
 			<a (click)="global.openSocial('instagram')">
 				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
 			</a>
+			<div *ngIf="global.userLogged" class="centraTutto footerMenu">
+				<a (click)="logOut()">&nbsp;Logout</a>
+			</div>
+			<div class="centraTutto footerMenu">
+				<a (click)="openTermini()">&nbsp;Terms&nbsp;|</a><br />
+			</div>
+			<div class="centraTutto footerMenu">
+				<a (click)="info()">&nbsp;About&nbsp;|</a><br />
+			</div>
+
 		</div>
 	</ion-toolbar>
 </ion-footer>

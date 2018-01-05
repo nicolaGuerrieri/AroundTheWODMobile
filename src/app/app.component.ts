@@ -17,9 +17,10 @@ declare var  cordova:any;
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = HomePage;
- 
   constructor(platform: Platform, public storage: Storage) {
     platform.ready().then(() => {
+
+      this.nav.setRoot(HomePage);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 		this.storage.set('versionAndroid', Device.version).then(() => {

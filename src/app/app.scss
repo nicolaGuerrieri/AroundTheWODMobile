@@ -102,7 +102,12 @@ ion-app.md [padding] .scroll-content {
 	text-align: left;
 	padding-top: 5px;
 }
-
+.paddingCustom{
+	padding: 15px;
+}
+.footerMenu{
+	float: right; font-size: 15px;
+}
 .hrS{
 	height: 3px; 
 	font-size: 2px; 

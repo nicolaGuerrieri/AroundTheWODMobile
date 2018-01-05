@@ -59,27 +59,30 @@ export class Ricerca {
 		let actionSheet = this.actionSheetCtrl.create({
 		  title: 'Menu',
 		  buttons: [
-			//{			  text: 'Add your new place',			  role: 'addPlace',			  handler: () => {				this.addPlace();			  }			},
 			{
-			  text: 'Change your search',
+				text: 'Change your search',
+				icon: 'md-search',
 			  handler: () => {
 				this.showAddressModalR();
 			  }
 			},{
 			  text: 'Locate your position',
-			  role: 'locate',
+				role: 'locate',
+				icon: 'md-pin',
 			  handler: () => {
 				this.geolocalizza();
 			  }
 			},{
 			  text: 'Share your experience',
-			  role: 'Share',
+				role: 'Share',
+				icon: 'md-share',
 			  handler: () => {
 				this.share();
 			  }
 			},{
 			  text: 'AroundTheWOD Community',
-			  role: 'Friends',
+				role: 'Friends',
+				icon: 'md-contacts',
 			  handler: () => {
 				this.organizzazioni();
 			  }
@@ -148,8 +151,6 @@ export class Ricerca {
 		geocoder.geocode({'latLng': latLng}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (results[0]) {
-					var add= results[0].address_components;
-					//let city=add[3];
 				} else  {
 					alert("address not found");
 				}

@@ -8,7 +8,7 @@ export class Global {
 	public language: any;
 	public preUrl: string;
 	public userLogged: any;
-
+	
 	constructor(public platform: Platform) {
 		if (navigator.language) {
 			if (navigator.language.indexOf("it") > -1) {
