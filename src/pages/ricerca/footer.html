@@ -8,8 +8,9 @@
 			<a (click)="global.openSocial('instagram')">
 				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
 			</a>
-			<div   class="centraTutto footerMenu">
-				<a (click)="logOut()">|&nbsp;Logout</a>
+
+			<div  *ngIf="global.userLogged" class="centraTutto footerMenu">
+				<a (click)="logOut()">|&nbsp;LogOut&nbsp;</a><br />
 			</div>
 			<div class="centraTutto footerMenu">
 				<a (click)="openTermini()">&nbsp;Terms&nbsp;</a><br />

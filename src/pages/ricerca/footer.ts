@@ -23,10 +23,10 @@ export class Footer {
 	}
 
 	logOut() {
-		/**this.global.userLogged.azione = "logout";
+		this.global.userLogged.azione = "logout";
 		this.global.userLogged.dataAzione = new Date();
 		this.cittaLuogoService.salvaUtente(this.global.userLogged).then(data => { });
-		this.global.userLogged = null;**/
+		this.global.userLogged = null;
 		this.nav.setPages([
 			{ page: HomePage }
 		]);

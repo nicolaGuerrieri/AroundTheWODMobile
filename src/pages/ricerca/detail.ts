@@ -57,10 +57,6 @@ export class Detail implements OnInit {
 		this.content.scrollToBottom();
 	}
 	ngOnInit() {
-		this.loader = this.loading.create({
-			content: 'Please wait...',
-		});
-		this.loader.present();
 		this.idLuogo = this.params.get("idLuogo");
 		if (this.idLuogo != -1) {
 			this.nuovoLuogo = false;
@@ -425,10 +421,6 @@ export class Detail implements OnInit {
 
 				}
 			});
-			if (this.loader != null) {
-				this.loader.dismiss();
-			}
-
 		} catch (e) {
 			alert("error: " + e);
 		}
@@ -439,17 +431,11 @@ export class Detail implements OnInit {
 
 	//localizzazione posizione
 	geolocalizza() {
-		this.loader = this.loading.create({
-			content: 'Please wait...',
-		});
-		this.loader.present();
+		
 		this.cittaLuogoService.localizza(this.loader).then(data => {
 			if (data != "error") {
 				this.riempiOggetto(data);
 				this.loadMap(null);
-				if (this.loader != null) {
-					this.loader.dismiss();
-				}
 			} else {
 				this.geolocalizza();
 			}
