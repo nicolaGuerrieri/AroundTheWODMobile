@@ -25,26 +25,17 @@ ciao
 	<ion-chip *ngIf="luogoSelezionato && !nuovoLuogo">
 		<ion-label style="width: 90%;" *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.ricerca}}</ion-label>
 	</ion-chip>
-	<ion-fab right bottom>
+	<ion-fab right bottom class="paddingOnFooter">
 		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3">
 			<ion-icon name="arrow-dropdown"></ion-icon>
 		</button>
-		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3">
+		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="openMapsApp()" ion-fab color="personal3">
 			<img src="{{global.preUrl}}/images/g.png" style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail">
 		</button>
 
 	</ion-fab>
-	<div class="row text-center" *ngIf="luogoSelezionato && false">
-		<img *ngIf="luogoSelezionato.foto" src="{{global.preUrl}}users/leggi/{{luogoSelezionato.foto}}" alt="" class="imgDetail">
-	</div>
+ 
 	<br />
-	<div class="row" *ngIf="false">
-		<div class="col" style="text-align: center;">
-			<button *ngIf="!nuovoLuogo" class="buttonNavSenzaFont" (click)="openMapsApp()" ion-button icon-left>
-				Take me there
-			</button>
-		</div>
-	</div>
 	<br />
 	<div class="row" *ngIf="nuovoLuogo">
 		<span class="genericText">Select what can I do: </span>
@@ -201,16 +192,4 @@ ciao
 		</div>
 	</div>
 </ion-content>
-<ion-footer class="centraTutto">
-	<ion-toolbar style="color: white; font-size: 35px;">
-		<ion-title class="centraTutto">Follow us</ion-title>
-		<div class="centraTutto" style="padding-left: 15px;">
-			<a (click)="global.openSocial('facebook')">
-				<ion-icon name="logo-facebook"></ion-icon>
-			</a>
-			<a (click)="global.openSocial('instagram')">
-				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
-			</a>
-		</div>
-	</ion-toolbar>
-</ion-footer>
+<footer [userLogged]="global.userLogged"></footer>

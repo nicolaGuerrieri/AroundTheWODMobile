@@ -6,6 +6,7 @@ import { AutocompletePage } from '../pages/home/autocomplete';
 import { Ricerca } from '../pages/ricerca/ricerca';
 import { Organizzazioni } from '../pages/ricerca/organizzazioni';
 import { Detail } from '../pages/ricerca/detail';
+import { Footer } from '../pages/ricerca/footer';
 import { DialogSocial } from '../pages/dialog/dialogSocial';
 import { DettaglioOrganizzazioni } from '../pages/ricerca/dettaglioOrganizzazioni';
 import { Success } from '../pages/dialog/success';
@@ -13,7 +14,7 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import {Global} from '../services/global';
 import { Storage } from '@ionic/storage';
 import { Toast }   from 'ionic-native';
- 
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Facebook } from '@ionic-native/facebook';
 const cloudSettings: CloudSettings = {
     'core': {
@@ -36,7 +37,8 @@ const cloudSettings: CloudSettings = {
   Organizzazioni,
   DettaglioOrganizzazioni,
 	Detail,
-	DialogSocial,
+  DialogSocial,
+  Footer,
 	Success
   ],
   imports: [
@@ -53,9 +55,10 @@ const cloudSettings: CloudSettings = {
   DettaglioOrganizzazioni,
 	Organizzazioni,
 	DialogSocial,
+  Footer,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage, Toast, Facebook]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage, Toast, Facebook, NativePageTransitions]
   
 })
 export class AppModule {}

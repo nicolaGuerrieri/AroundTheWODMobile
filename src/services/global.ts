@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+
 @Injectable()
 export class Global {
 	public title: string = "AroundTheWOD App";
@@ -9,7 +11,7 @@ export class Global {
 	public preUrl: string;
 	public userLogged: any;
 	
-	constructor(public platform: Platform) {
+	constructor(public platform: Platform, private nativePageTransitions: NativePageTransitions) {
 		if (navigator.language) {
 			if (navigator.language.indexOf("it") > -1) {
 				this.language = "it";
@@ -36,5 +38,15 @@ export class Global {
 		} else {
 			window.open('https://www.instagram.com/aroundthewodapp/?hl=it');
 		}
+	}
+
+	getOptionTransition(){
+		let options: NativeTransitionOptions = {
+			direction: 'left',
+			duration: 200,
+			slowdownfactor: -1,
+			iosdelay: 50
+		};
+		return options;
 	}
 }

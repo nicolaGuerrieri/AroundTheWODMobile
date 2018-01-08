@@ -24,18 +24,51 @@
 </ion-header>
 
 <ion-content padding>
-	<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;">
+	<img src="assets/images/ket.jpg" class="img-circular centraTutto borda">
 	<br />
-	<button *ngIf="!global.userLogged" class="buttonClass" ion-button full (click)="loginWithFB()">Login con Facebook &nbsp; &nbsp;
+	<button *ngIf="!global.userLogged && false" class="buttonClass" ion-button full (click)="loginWithFB()">Login con Facebook &nbsp; &nbsp;
 		<ion-icon name="logo-facebook"></ion-icon>
 	</button>
-	<div *ngIf="global.userLogged">
+		<div text-center>
+			<button *ngIf="!global.userLogged" (click)="loginWithFB()" class="loginBtn loginBtn--facebook">
+				Login with Facebook
+			</button>
 
-		<div class="row" *ngIf="global.userLogged" style="text-align: center;">
-			<div class="centraTutto paddingCustom">
-				<div style="font-size: 18px;">Ciao
-					<b>{{ global.userLogged.username }} !!!</b>
-				</div>  Cerca una città o usa la tua posizione GPS
+		</div>
+		<button *ngIf="!global.userLogged && false" class="loginBtn loginBtn--google">
+			Login with Google
+		</button>
+		<div *ngIf="global.userLogged">
+
+			<div class="row" *ngIf="global.userLogged" style="text-align: center;">
+				<div class="centraTutto paddingCustom">
+					<div style="font-size: 18px;">Ciao
+						<b>{{ global.userLogged.username }} !!!</b>
+					</div> Cerca una città o usa la tua posizione GPS
+					<br />
+
+					<ion-input *ngIf="!global._isiOS" color="personal3" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place"
+					 type="text" placeholder="Pick a city"></ion-input>
+					<ion-input *ngIf="global._isiOS" color="personal3" class="centraTutto inputSearch" [(ngModel)]="address.place" type="text"
+					 placeholder="Pick a city"></ion-input>
+				</div>
+				<br />
+				<div style="text-align: center;">
+					<button (click)="ricerca()" ion-button icon-left class="buttonClass">
+						<ion-icon name="search"></ion-icon>
+						Let's workout
+					</button>
+					<button (click)="geolocalizza()" ion-button class="buttonClass">
+						<ion-icon class="colorPersonal buttonNav" style="color: white !important;" name="pin"></ion-icon>
+					</button>
+				</div>
+				<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
+			</div>
+		</div>
+
+		<div class="row" *ngIf="global.platform.is('core')">
+			<div class="centraTutto">
+				<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div>
 				<br />
 
 				<ion-input *ngIf="!global._isiOS" color="personal3" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place"
@@ -55,51 +88,5 @@
 			</div>
 			<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
 		</div>
-	</div>
-
-	<div class="row" *ngIf="global.platform.is('core')">
-		<div class="centraTutto">
-			<div style="text-align: center; font-size: 18px;">Cerca una città o usa la tua posizione GPS</div>
-			<br />
-
-			<ion-input *ngIf="!global._isiOS" color="personal3" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place"
-			 type="text" placeholder="Pick a city"></ion-input>
-			<ion-input *ngIf="global._isiOS" color="personal3" class="centraTutto inputSearch" [(ngModel)]="address.place" type="text"
-			 placeholder="Pick a city"></ion-input>
-		</div>
-		<br />
-		<div style="text-align: center;">
-			<button (click)="ricerca()" ion-button icon-left class="buttonClass">
-				<ion-icon name="search"></ion-icon>
-				Let's workout
-			</button>
-			<button (click)="geolocalizza()" ion-button class="buttonClass">
-				<ion-icon class="colorPersonal buttonNav" style="color: white !important;" name="pin"></ion-icon>
-			</button>
-		</div>
-		<!-- <button (click)="showAddressModal2()"  ion-button class="centraTutto"><ion-icon name="locate"></ion-icon></button> -->
-	</div>
 </ion-content>
-<ion-footer class="centraTutto">
-	<ion-toolbar style="color: white; font-size: 35px;" position="bottom">
-		<ion-title class="centraTutto">Follow us</ion-title>
-		<div class="centraTutto" style="padding-left: 15px;">
-			<a (click)="global.openSocial('facebook')">
-				<ion-icon name="logo-facebook"></ion-icon>
-			</a>
-			<a (click)="global.openSocial('instagram')">
-				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
-			</a>
-			<div *ngIf="global.userLogged" class="centraTutto footerMenu">
-				<a (click)="logOut()">&nbsp;Logout</a>
-			</div>
-			<div class="centraTutto footerMenu">
-				<a (click)="openTermini()">&nbsp;Terms&nbsp;|</a><br />
-			</div>
-			<div class="centraTutto footerMenu">
-				<a (click)="info()">&nbsp;About&nbsp;|</a><br />
-			</div>
-
-		</div>
-	</ion-toolbar>
-</ion-footer>
+<footer [userLogged]="global.userLogged"></footer>

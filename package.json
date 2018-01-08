@@ -22,10 +22,13 @@
     "@ionic-native/core": "^4.2.1",
     "@ionic-native/device": "^3.5.0",
     "@ionic-native/facebook": "^3.14.0",
+    "@ionic-native/native-page-transitions": "^4.5.2",
     "@ionic-native/toast": "^4.2.1",
     "@ionic/cloud-angular": "^0.11.0",
     "@ionic/storage": "1.1.7",
     "@ngx-translate/core": "^6.0.1",
+    "com.telerik.plugins.nativepagetransitions": "^0.6.5",
+    "cordova-android": "~6.3.0",
     "cordova-browser": "~5.0.1",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "1.1.4",
@@ -43,7 +46,7 @@
     "rxjs": "5.0.0-beta.12",
     "sw-toolbox": "3.4.0",
     "zone.js": "0.6.26",
-    "cordova-android": "~6.3.0"
+    "cordova-ios": "~4.5.4"
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.1.4",
@@ -69,11 +72,13 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "1116576615134600",
         "APP_NAME": "aroundTheWodMobile"
-      }
+      },
+      "com.telerik.plugins.nativepagetransitions": {}
     },
     "platforms": [
       "browser",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

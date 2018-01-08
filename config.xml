@@ -87,4 +87,6 @@
         <variable name="APP_ID" value="1116576615134600" />
         <variable name="APP_NAME" value="aroundTheWodMobile" />
     </plugin>
+    <engine name="ios" spec="~4.5.4" />
+    <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
 </widget>

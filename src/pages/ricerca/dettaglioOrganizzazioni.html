@@ -49,7 +49,7 @@
 				<span *ngFor="let itemm of item.listaAttivita">
 				 <button *ngIf="itemm.selezionato" class="buttonNavSenzaFontRound" style="font-size:10px" ion-button icon-only>
 					 <ion-icon *ngIf="!itemm.img"  name="{{ itemm.nome }}"></ion-icon> 
-					 <img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"  style="" alt="" class="imgDetail altreIconaLittle">
+					 <img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"   class="imgDetail altreIconaLittle">
 				 </button>
 			 </span>
 			</div><br />
@@ -71,16 +71,4 @@
 	</ion-card>
 
 </ion-content>
-<ion-footer class="centraTutto">
-	<ion-toolbar style="color: white; font-size: 35px;">
-		<ion-title class="centraTutto">Follow us</ion-title>
-		<div class="centraTutto" style="padding-left: 15px;">
-			<a (click)="global.openSocial('facebook')">
-				<ion-icon name="logo-facebook"></ion-icon>
-			</a>
-			<a (click)="global.openSocial('instagram')">
-				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
-			</a>
-		</div>
-	</ion-toolbar>
-</ion-footer>
+<footer [userLogged]="global.userLogged"></footer>

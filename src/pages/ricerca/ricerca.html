@@ -25,7 +25,7 @@
 	</div>
 	<br />
 	<!--Places in:  	<ion-chip>	  <ion-label style="text-transform: capitalize;">{{citta}}</ion-label>	</ion-chip>	<hr class="hrS">	<br />	<br />-->
-	<ion-fab right bottom>
+	<ion-fab right bottom class="paddingOnFooter">
 		<button mini (click)="addPlace()" ion-fab color="personal3">
 			<ion-icon name="md-add"></ion-icon>
 		</button>
@@ -74,22 +74,6 @@
 		<ion-icon ios="ios-sad" md="md-sad"></ion-icon>
 		No results found for this place...
 	</div>
-
-
-
-
 </ion-content>
-<ion-footer class="centraTutto">
-	<ion-toolbar style="color: white; font-size: 35px;">
-		<ion-title class="centraTutto">Follow us</ion-title>
-		<div class="centraTutto" style="padding-left: 15px;">
-			<a (click)="global.openSocial('facebook')">
-				<ion-icon name="logo-facebook"></ion-icon>
-			</a>
-			<a (click)="global.openSocial('instagram')">
-				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
-			</a>
-		</div>
-		<!--<span style="font-size: 10px; color: white;">{{global.preUrl}}</span>-->
-	</ion-toolbar>
-</ion-footer>
+
+<footer [userLogged]="global.userLogged"></footer>

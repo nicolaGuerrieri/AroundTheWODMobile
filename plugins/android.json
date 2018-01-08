@@ -53,6 +53,9 @@
     },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    },
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     }
   },
   "dependent_plugins": {}

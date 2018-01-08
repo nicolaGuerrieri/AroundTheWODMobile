@@ -8,6 +8,8 @@ import { DialogSocial } from '../dialog/dialogSocial';
 import { Success } from '../dialog/success';
 import { FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular';
 import { DettaglioOrganizzazioni } from '../ricerca/dettaglioOrganizzazioni';
+import { Footer } from '../ricerca/footer';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 
 declare var google: any;
@@ -33,12 +35,10 @@ export class Detail implements OnInit {
 	public listaAttivita: any;
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
-	navOptions = {
-		animate: true,
-		animation: 'wp-transition'
-	};
+ 
+	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
+		this.nativePageTransitions.slide(global.getOptionTransition());
 
-	constructor(public navCtrl: NavController, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.loadAttivita();
@@ -114,7 +114,7 @@ export class Detail implements OnInit {
 		this.navCtrl.push(DettaglioOrganizzazioni, {
 			luoghiOrganizzazione: this.listaRaccordo,
 			organizzazione: org
-		}, this.navOptions);
+		} );
 	}
 
 	removeActivity(post) {
@@ -175,8 +175,7 @@ export class Detail implements OnInit {
 	}
 
 
-	openMapsApp(item) {
-
+	openMapsApp() {
 		var coords = this.luogoSelezionato.latitudine + "," + this.luogoSelezionato.longitudine;
 		if (this._isiOS) {
 			window.open("http://maps.apple.com/?q=" + coords, '_system');
@@ -342,7 +341,7 @@ export class Detail implements OnInit {
 			this.navCtrl.push(Ricerca, {
 				citta: this.nuovoLuogoObject.citta,
 				allSearchPlace: data
-			}, this.navOptions);
+			} );
 		});
 	}
 

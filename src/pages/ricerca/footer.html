@@ -1,0 +1,23 @@
+<ion-footer class="centraTutto">
+	<ion-toolbar style="color: white; font-size: 35px;" position="bottom">
+		<ion-title class="centraTutto">Follow us</ion-title>
+		<div class="centraTutto" style="padding-left: 15px;">
+			<a (click)="global.openSocial('facebook')">
+				<ion-icon name="logo-facebook"></ion-icon>
+			</a>
+			<a (click)="global.openSocial('instagram')">
+				<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon>
+			</a>
+			<div   class="centraTutto footerMenu">
+				<a (click)="logOut()">|&nbsp;Logout</a>
+			</div>
+			<div class="centraTutto footerMenu">
+				<a (click)="openTermini()">&nbsp;Terms&nbsp;</a><br />
+			</div>
+			<div class="centraTutto footerMenu">
+				<a (click)="info()">&nbsp;About&nbsp;|</a><br />
+			</div>
+
+		</div>
+	</ion-toolbar>
+</ion-footer>

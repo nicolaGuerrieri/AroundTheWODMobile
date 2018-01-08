@@ -100,7 +100,6 @@ export class CittaLuogoService {
 		if (this.data) {
 			return Promise.resolve(this.data);
 		}
-		alert(utente);
 		var body = utente;
 		// don't have the data yet
 		return new Promise(resolve => { 
@@ -108,7 +107,7 @@ export class CittaLuogoService {
 			let options = new RequestOptions({ headers: headers });
 			this.http.post(this.preUrl + 'users/salvaUtente', body, options).subscribe(data => {
 				resolve(data);
-			}, err => alert(">>" + err), () => alert('done'));
+			}, err => console.error(">>" + err), () => console.log('done'));
 		});
 	}
 

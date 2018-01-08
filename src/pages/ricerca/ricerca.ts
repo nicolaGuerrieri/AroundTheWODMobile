@@ -8,6 +8,8 @@ import { Detail } from '../ricerca/detail';
 import { Organizzazioni } from '../ricerca/organizzazioni';
 import { DialogSocial } from '../dialog/dialogSocial';
 import { FacebookAuth, User, Auth } from '@ionic/cloud-angular';
+import { Footer } from '../ricerca/footer';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 declare var google: any;
 declare var cordova:any;
@@ -30,14 +32,12 @@ export class Ricerca {
     public url  : string = 'www.aroundTheWOD.com';
     public message  : string = 'hey guys, i share new location on AroundTheWOD app...look here ' + this.url;
 
-	navOptions = {
-		animate: true,
-		animation: 'wp-transition'
-	};
+	
 	public listaAttivita: any;
 
 
-	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+	constructor(public actionSheetCtrl: ActionSheetController, private nativePageTransitions: NativePageTransitions, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+		this.nativePageTransitions.slide(global.getOptionTransition());
 		this.loadAttivita();
 		this.cittaLuogo = [];
 		this.citta= params.get("citta");
@@ -47,6 +47,7 @@ export class Ricerca {
       place: this.citta
     };
 		this.loadCity(this.citta);
+	
 
 
 	}
@@ -101,7 +102,7 @@ export class Ricerca {
 	addPlace(){
 		this.navCtrl.push(Detail,{
 			idLuogo: -1
-		}, this.navOptions);
+		});
 	}
 
 	doShare() { 
@@ -274,14 +275,14 @@ export class Ricerca {
       this.navCtrl.push(Ricerca,{
         citta: this.address.place,
         allSearchPlace: this.allSearchPlace
-      }, this.navOptions);
+      } );
     }else{
   		if(this.address.place != ""){
         this.cittaLuogoService.localizzaByNome(this.address.place).then(data => {
           this.navCtrl.push(Ricerca,{
     				citta: this.address.place,
     				allSearchPlace: data
-    			}, this.navOptions);
+    			} );
         });
   		}else{
   			console.log("bloccato");
@@ -311,7 +312,7 @@ export class Ricerca {
 				this.navCtrl.push(Ricerca,{
 					citta: this.address.place,
 					allSearchPlace: this.allSearchPlace
-				}, this.navOptions);
+				} );
 			}else{
 				console.log("bloccato");
 				return;
@@ -326,7 +327,7 @@ export class Ricerca {
 			if(this.address.place != ""){
 				this.navCtrl.push(Organizzazioni,{
 					citta: this.address.citta
-				}, this.navOptions);
+				} );
 			}else{
 				console.log("bloccato");
 				return;
@@ -342,7 +343,7 @@ export class Ricerca {
 			if(this.address.place != ""){
 				this.navCtrl.push(Detail,{
 					idLuogo: idPlace
-				}, this.navOptions);
+				} );
 			}else{
 				console.log("bloccato");
 				return;

@@ -7,6 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    },
     "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
@@ -30,6 +33,9 @@
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    },
+    "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
     "cordova-plugin-splashscreen": {
