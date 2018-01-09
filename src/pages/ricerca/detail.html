@@ -19,7 +19,7 @@ ciao
 <ion-content padding style="text-align: center">
 
 	<div #map id="map"></div>
-	
+
 	<br />
 	<br />
 	<ion-chip *ngIf="luogoSelezionato && !nuovoLuogo">
@@ -34,7 +34,7 @@ ciao
 		</button>
 
 	</ion-fab>
- 
+
 	<br />
 	<br />
 	<div class="row" *ngIf="nuovoLuogo">
@@ -178,18 +178,20 @@ ciao
 			</p>
 		</ion-card-content>
 	</ion-card>
+
+	<button (click)="back()" class="buttonNavSenzaFont" ion-button icon-left>
+		Back
+	</button>
+	<button *ngIf="nuovoLuogo" class="buttonNavSenzaFont" (click)="salva()" ion-button icon-left>
+		Save
+	</button>
 	<br />
-
-
 	<div class="row">
-		<div class="col" style="text-align: center;">
-			<button (click)="back()" class="buttonNavSenzaFont" ion-button icon-left>
-				Back
-			</button>
-			<button *ngIf="nuovoLuogo" class="buttonNavSenzaFont" (click)="salva()" ion-button icon-left>
-				Save
-			</button>
+		<div class="col" style="text-align: center; height: 50px;">
+
 		</div>
 	</div>
+ 
 </ion-content>
+
 <footer [userLogged]="global.userLogged"></footer>

@@ -36,11 +36,13 @@ export class Detail implements OnInit {
 	map: any;
 
 	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
+		
 		this.nativePageTransitions.slide(global.getOptionTransition());
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
+		this.inizializzaDettaglio();
 		this.loadAttivita();
-		alert("")
+		
 	}
 
 
@@ -55,10 +57,10 @@ export class Detail implements OnInit {
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
+	ngOnInit(){
 
-	ngOnInit() {
-
-
+	}
+	inizializzaDettaglio() {
 		this.idLuogo = this.params.get("idLuogo");
 		if (this.idLuogo != -1) {
 			this.nuovoLuogo = false;
@@ -379,7 +381,7 @@ export class Detail implements OnInit {
 
 
 	//search del luogo scritto
-	loadMap(cittaResult) {
+	loadMap(cittaResult) { 
 		this.global.inserisciOverlay();
 		if (cittaResult == null) {
 			cittaResult = this.nuovoLuogoObject.ricerca;
@@ -425,7 +427,7 @@ export class Detail implements OnInit {
 
 		} catch (e) {
 			this.global.togliOverlay();
-			alert("essrror: " + e);
+			console.log("ERROR  >>>>>>>>>>>>>>> : " + e);
 		}
 	}
 
