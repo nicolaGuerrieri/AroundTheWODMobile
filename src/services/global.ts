@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, LoadingController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 @Injectable()
@@ -10,8 +10,9 @@ export class Global {
 	public language: any;
 	public preUrl: string;
 	public userLogged: any;
-	
-	constructor(public platform: Platform, private nativePageTransitions: NativePageTransitions) {
+	public loader;
+
+	constructor(public platform: Platform, private nativePageTransitions: NativePageTransitions, public loading: LoadingController, ) {
 		if (navigator.language) {
 			if (navigator.language.indexOf("it") > -1) {
 				this.language = "it";
@@ -40,7 +41,19 @@ export class Global {
 		}
 	}
 
-	getOptionTransition(){
+	togliOverlay() {
+		if(this.loader){
+			this.loader.dismiss();
+
+		}
+	}
+	inserisciOverlay() {
+		this.loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		this.loader.present();
+	}
+	getOptionTransition() {
 		let options: NativeTransitionOptions = {
 			direction: 'left',
 			duration: 200,

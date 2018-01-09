@@ -31,17 +31,16 @@ export class Detail implements OnInit {
 	private _isiOS: boolean;
 	public listaRaccordo: any = [];
 
-
 	public listaAttivita: any;
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
- 
+
 	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
 		this.nativePageTransitions.slide(global.getOptionTransition());
-
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.loadAttivita();
+		alert("")
 	}
 
 
@@ -56,7 +55,10 @@ export class Detail implements OnInit {
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
+
 	ngOnInit() {
+
+
 		this.idLuogo = this.params.get("idLuogo");
 		if (this.idLuogo != -1) {
 			this.nuovoLuogo = false;
@@ -81,14 +83,12 @@ export class Detail implements OnInit {
 			this.nuovoLuogoObject.listaAttivita = [];
 			this.geolocalizza();
 		}
+
+
 	}
 
 	cercaOrganizzazioni(idLuogo) {
-		this.loader = this.loading.create({
-			content: 'Please wait...',
-		});
 		this.listaRaccordo = [];
-		this.loader.present();
 		this.cittaLuogoService.getLuogoForIdLuogo(idLuogo).then(data => {
 			console.log(data)
 			if (data) {
@@ -103,14 +103,13 @@ export class Detail implements OnInit {
 				}
 
 			}
-			this.loader.dismiss();
 		});
 	}
 	goDetail(org) {
 		this.navCtrl.push(DettaglioOrganizzazioni, {
 			luoghiOrganizzazione: this.listaRaccordo,
 			organizzazione: org
-		} );
+		});
 	}
 
 	removeActivity(post) {
@@ -300,7 +299,7 @@ export class Detail implements OnInit {
 
 		try {
 			if (!tokenAuth) {
-				tokenAuth= "{prova: \"prova\"}";
+				tokenAuth = "{prova: \"prova\"}";
 			}
 			console.log(tokenAuth);
 			this.nuovoLuogoObject.utente = tokenAuth;
@@ -337,7 +336,7 @@ export class Detail implements OnInit {
 			this.navCtrl.push(Ricerca, {
 				citta: this.nuovoLuogoObject.citta,
 				allSearchPlace: data
-			} );
+			});
 		});
 	}
 
@@ -381,7 +380,7 @@ export class Detail implements OnInit {
 
 	//search del luogo scritto
 	loadMap(cittaResult) {
-
+		this.global.inserisciOverlay();
 		if (cittaResult == null) {
 			cittaResult = this.nuovoLuogoObject.ricerca;
 		}
@@ -420,9 +419,13 @@ export class Detail implements OnInit {
 					});
 
 				}
+			}).then(function () {
+				this.global.togliOverlay();
 			});
+
 		} catch (e) {
-			alert("error: " + e);
+			this.global.togliOverlay();
+			alert("essrror: " + e);
 		}
 	}
 
@@ -431,8 +434,8 @@ export class Detail implements OnInit {
 
 	//localizzazione posizione
 	geolocalizza() {
-		
-		this.cittaLuogoService.localizza(this.loader).then(data => {
+
+		this.cittaLuogoService.localizza(null).then(data => {
 			if (data != "error") {
 				this.riempiOggetto(data);
 				this.loadMap(null);
@@ -470,9 +473,7 @@ export class Detail implements OnInit {
 				zoom: 15,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
-			if (this.loader) {
-				this.loader.dismiss();
-			}
+
 			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
 
