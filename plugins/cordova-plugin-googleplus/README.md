@@ -65,7 +65,7 @@ Login on iOS takes the user to a [SafariViewController](https://developer.apple.
 ### Android
 To configure Android, [generate a configuration file here](https://developers.google.com/mobile/add?platform=android&cntapi=signin). Once Google Sign-In is enabled Google will automatically create necessary credentials in Developer Console. There is no need to add the generated google-services.json file into your cordova project.
 
-Make sure you execute the `keytool` steps as explained [here](https://developers.google.com/android/guides/client-auth) or authentication will fail.
+Make sure you execute the `keytool` steps as explained [here](https://developers.google.com/drive/android/auth) or authentication will fail (do this for both release and debug keystores).
 
 IMPORTANT:
 * The step above, about `keytool`, show 2 types of certificate fingerprints, the **Release** and the **Debug**, when generating the configuration file, it's better to use the **Debug** certificate fingerprint, after that, you have to go on [Google Credentials Manager](https://console.developers.google.com/apis/credentials), and manually create a credential for **OAuth2 client** with your **Release** certificate fingerprint. This is necessary to your application work on both Development and Production releases.
@@ -74,6 +74,10 @@ IMPORTANT:
 $ keytool -exportcert -keystore <path-to-debug-or-production-keystore> -list -v -alias <alias-name>
 ```
 Login on Android will use the accounts signed in on the user's device.
+
+#### Publishing your app in Google Play Store
+
+Google re-signs your app with a different certificate when you publish it in the Play Store. Once your app is published, copy the SHA-1 fingerprint of the "App signing certificate", found in the "App signing" section under "Release Management", in [Google Play Console](https://play.google.com/apps/publish/). Paste this fingerprint in the Release OAuth client ID in [Google Credentials Manager](https://console.developers.google.com/apis/credentials).
 
 ### Web Client Id
 
@@ -84,6 +88,7 @@ This plugin is compatible with:
 * [Cordova Plugman](https://github.com/apache/cordova-plugman)
 * [PhoneGap 3.0 CLI](http://docs.phonegap.com/en/3.0.0/guide_cli_index.md.html#The%20Command-line%20Interface_add_features)
 * [Ionic](http://ionic.io/) ***(must use the Cordova CLI)***
+* [Meteor JS](https://atmospherejs.com/hedcet/cordova-google-plus-native-sign-in)
 
 Here's how it works (backup your project first!):
 
@@ -110,18 +115,18 @@ GooglePlus.js is brought in automatically. There is no need to change or add any
 ## 5. Installation (PhoneGap Build)
 Add this to your config.xml:
 
-For the NPM Version:
+For the (stable) NPM Version:
 ```xml
-<gap:plugin name="cordova-plugin-googleplus" source="npm">
-  <param name="REVERSED_CLIENT_ID" value="myreversedclientid" />
-</gap:plugin>
+<plugin name="cordova-plugin-googleplus" source="npm">
+  <variable name="REVERSED_CLIENT_ID" value="myreversedclientid" />
+</plugin>
 ```
 
-For the Git version:
+For the latest version from Git (not recommended):
 ```xml
-<gap:plugin spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git" source="git">
-    <param name="REVERSED_CLIENT_ID" value="myreversedclientid" />
-</gap:plugin>
+<plugin spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git" source="git">
+  <variable name="REVERSED_CLIENT_ID" value="myreversedclientid" />
+<plugin>
 ```
 
 ## 6. Usage
@@ -147,7 +152,7 @@ function deviceReady() {
 
 The login function walks the user through the Google Auth process. All parameters are optional, however there are a few caveats.
 
-To get an `idToken` on Android, you ***must*** pass in your `webClientId`. On iOS, the `idToken` is included in the sign in result by default.
+To get an `idToken` on Android, you ***must*** pass in your `webClientId` (a frequent mistake is to supply Android Client ID). On iOS, the `idToken` is included in the sign in result by default.
 
 To get a `serverAuthCode`, you must pass in your `webClientId` _and_ set `offline` to true. If offline is true, but no webClientId is provided, the `serverAuthCode` will _**NOT**_ be requested.
 
@@ -161,7 +166,7 @@ window.plugins.googleplus.login(
     {
       'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
       'webClientId': 'client id of the web app/server side', // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
-      'offline': true, // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+      'offline': true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
     },
     function (obj) {
       alert(JSON.stringify(obj)); // do something useful instead of alerting
@@ -182,6 +187,7 @@ The success callback (second argument) gets a JSON object with the following con
  obj.imageUrl       // 'http://link-to-my-profilepic.google.com'
  obj.idToken        // idToken that can be exchanged to verify user identity.
  obj.serverAuthCode // Auth code that can be exchanged for an access token and refresh token for offline access
+ obj.accessToken    // OAuth2 access token
 ```
 
 Additional user information is available by use case. Add the scopes needed to the scopes option then return the info to the result object being created in the `handleSignInResult` and `didSignInForUser` functions on Android and iOS, respectively.
@@ -246,7 +252,7 @@ As the above articles mention, the `idToken` can be exchanged for user informati
 
 _Note: Google does not want user identity data sent directly to a server. The idToken is their preferred method to send that data securely and safely, as it must be verified through their servers in order to unpack._
 
-This has several uses. On the client-side, it can be a way to get doubly confirm the user identity, or it can be used to get details such as the email host domain. The server-side is where the `idToken` really hits its stride. It is an easy way to confirm the users identity before allowing them access to that servers resources or before exchaning the `serverAuthCode` for an access and refresh token (see the next section).
+This has several uses. On the client-side, it can be a way to get doubly confirm the user identity, or it can be used to get details such as the email host domain. The server-side is where the `idToken` really hits its stride. It is an easy way to confirm the users identity before allowing them access to that servers resources or before exchanging the `serverAuthCode` for an access and refresh token (see the next section).
 
 If your server-side only needs identity, and not additional account access, this is a secure and simple way to supply that information.
 

@@ -8,7 +8,7 @@ import { AutocompletePage } from './autocomplete';
 import { DialogSocial } from '../dialog/dialogSocial';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
-
+import { GooglePlus } from 'ionic-native';
 import { Success } from '../dialog/success';
 declare var cordova: any;
 declare var google: any;
@@ -22,15 +22,45 @@ export class HomePage {
 	address;
 	public allSearchPlace: any;
 	plat: any;
-
+	optionNav: any;
 	constructor(private facebook: Facebook, public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 			place: ''
 		};
-
-		this.nativePageTransitions.slide(global.getOptionTransition());
-
+		this.optionNav = global.getOptionTransition();
 	}
+	login() {
+		let loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		try {
+			loader.present();
+			GooglePlus.login({
+				'scopes': 'profile',
+				'webClientId': '615577621412-aj0uvmdgh0j7bff7cbsra0pjqvoij4jb.apps.googleusercontent.com',
+				'offline': true
+			}).then((res) => {
+				console.log(res);
+				alert(res.email);
+				alert(res.displayName);
+				alert(res.familyName);
+				alert(res.givenName);
+				alert(res.imageUrl);
+				this.global.userLogged = { email: res.email, first_name: res.familyName + " " + res.givenName, picture: res.imageUrl, username: res.displayName }
+				this.global.userLogged.azione = "login";
+				this.global.userLogged.dataAzione = new Date();
+				this.cittaLuogoService.salvaUtente(this.global.userLogged).then(data => { });
+				loader.dismiss();
+			}, (err) => {
+				console.log(err);
+				alert(err)
+
+			});
+		} catch (err) {
+			loader.dismiss();
+		}
+	}
+
 	loginWithFB() {
 		let loader = this.loading.create({
 			content: 'Please wait...',
@@ -103,6 +133,8 @@ export class HomePage {
 
 
 	ricerca(flagPresent) {
+		this.nativePageTransitions.slide(this.optionNav);
+
 		if (flagPresent) {
 			this.navCtrl.push(Ricerca, {
 				citta: this.address.place,

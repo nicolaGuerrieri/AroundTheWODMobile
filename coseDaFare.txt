@@ -1,15 +1,85 @@
 "# AroundTheWODMobile"
 
 Io
-- termini e condizioni
-- riguardare accesso con google +
+- termini e condizioni 
 - riguardare sezione amici
 
 
 Cazzate
  - gestire meglio indietro
- - animazione
  - splash screen
 
 problema build e emulate ios
 https://stackoverflow.com/questions/46328873/error-run-on-ios-emulator-after-update-to-ios-11-ionic-3
+
+
+
+guida per google plus
+https://www.joshmorony.com/implementing-google-plus-sign-in-with-oauth-2-0-in-ionic-2/
+
+cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g 
+keytool -genkey -v -keystore my-key.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
+
+
+SHA-1 produzione
+C:\AroundTheWODMobile\AroundNew\AroundTheWODMobile>keytool -exportcert -list -v
+ -alias myalias -keystore my-key.keystore
+Immettere la password del keystore:
+Nome alias: myalias
+Data di creazione: 10-gen-2018
+Tipo di voce: PrivateKeyEntry
+Lunghezza catena certificati: 1
+Certificato[1]:
+Proprietario: CN=Nicola Guerrieri, OU=AroundTheWOD, O=AroundTheWOD, L=Italia, ST
+=Bologna, C=IT
+Autorità emittente: CN=Nicola Guerrieri, OU=AroundTheWOD, O=AroundTheWOD, L=Ital
+ia, ST=Bologna, C=IT
+Numero di serie: 73d6996a
+Valido da: Wed Jan 10 12:24:33 CET 2018 a: Sun May 28 13:24:33 CEST 2045
+Impronte digitali certificato:
+         MD5:  7D:5A:A5:BF:DE:E5:4D:D0:8E:7C:BD:F2:D5:91:DA:5D
+         SHA1: 9C:02:B2:90:45:C8:66:BB:85:40:AD:62:EC:C3:3A:1D:0F:37:A8:DA
+         SHA256: 93:EB:16:37:7B:61:DB:3E:A3:7F:C4:6C:2B:EE:27:BC:16:36:AF:15:0A:
+09:8A:46:1F:72:78:D8:0F:C5:6A:CE
+         Nome algoritmo firma: SHA256withRSA
+         Versione: 3
+
+Estensioni:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 36 A0 DB CB 78 10 EE 8F   7D 99 2B 4C DD 0D 2F 78  6...x.....+L../x
+0010: 21 B7 D4 36                                        !..6
+]
+]
+
+
+
+SHA-1 DEBUG
+
+Certificato[1]:
+Proprietario: CN=Android Debug, O=Android, C=US
+Autorità emittente: CN=Android Debug, O=Android, C=US
+Numero di serie: 671f69b9
+Valido da: Wed May 27 17:00:44 CEST 2015 a: Fri May 19 17:00:44 CEST 2045
+Impronte digitali certificato:
+         MD5:  21:C1:D7:D1:2A:C6:3A:3E:D1:E0:D5:3B:D3:78:AB:BA
+         SHA1: 1A:EB:82:DC:78:67:38:F3:8D:20:0D:2B:A5:25:90:D5:DB:87:6D:96
+         SHA256: E6:5F:53:EF:B5:BB:15:FA:7B:2D:DE:37:5D:24:F2:D5:98:3A:C4:25:F3:
+50:50:E6:F4:BA:0F:81:22:B3:3C:03
+         Nome algoritmo firma: SHA256withRSA
+         Versione: 3
+
+Estensioni:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 34 23 86 2D F8 38 99 A9   48 20 C2 69 52 1B 28 88  4#.-.8..H .iR.(.
+0010: BC 49 D0 32                                        .I.2
+]
+]
+ 
+Authenticating Your Client 
+https://developers.google.com/android/guides/client-auth

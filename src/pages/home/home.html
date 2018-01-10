@@ -33,13 +33,11 @@
 			<button *ngIf="!global.userLogged" (click)="loginWithFB()" class="loginBtn loginBtn--facebook">
 				Login with Facebook
 			</button>
-
+			<button *ngIf="!global.userLogged" (click)="login()" class="loginBtn loginBtn--google">
+				Login with Google
+			</button>
 		</div>
-		<button *ngIf="!global.userLogged && false" class="loginBtn loginBtn--google">
-			Login with Google
-		</button>
 		<div *ngIf="global.userLogged">
-
 			<div class="row" *ngIf="global.userLogged" style="text-align: center;">
 				<div class="centraTutto paddingCustom">
 					<div style="font-size: 18px;">Ciao

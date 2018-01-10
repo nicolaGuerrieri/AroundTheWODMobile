@@ -90,11 +90,11 @@
   "cordova-plugin-googleplus": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-googleplus@~5.1.1"
+      "id": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus"
     },
     "is_top_level": true,
     "variables": {
-      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm"
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g"
     }
   },
   "cordova-plugin-x-toast": {
