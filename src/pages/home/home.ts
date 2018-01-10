@@ -40,12 +40,6 @@ export class HomePage {
 				'webClientId': '615577621412-aj0uvmdgh0j7bff7cbsra0pjqvoij4jb.apps.googleusercontent.com',
 				'offline': true
 			}).then((res) => {
-				console.log(res);
-				alert(res.email);
-				alert(res.displayName);
-				alert(res.familyName);
-				alert(res.givenName);
-				alert(res.imageUrl);
 				this.global.userLogged = { email: res.email, first_name: res.familyName + " " + res.givenName, picture: res.imageUrl, username: res.displayName }
 				this.global.userLogged.azione = "login";
 				this.global.userLogged.dataAzione = new Date();
@@ -139,7 +133,7 @@ export class HomePage {
 			this.navCtrl.push(Ricerca, {
 				citta: this.address.place,
 				allSearchPlace: this.allSearchPlace
-			});
+			},{animate:false});
 		} else {
 			if (this.address.place != "") {
 				this.cittaLuogoService.localizzaByNome(this.address.place).then(data => {

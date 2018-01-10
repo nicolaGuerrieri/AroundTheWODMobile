@@ -23,23 +23,25 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="gradienteBack">
+	<br />
+	<br />
 	<img src="assets/images/ket.jpg" class="img-circular centraTutto borda">
 	<br />
 	<button *ngIf="!global.userLogged && false" class="buttonClass" ion-button full (click)="loginWithFB()">Login con Facebook &nbsp; &nbsp;
 		<ion-icon name="logo-facebook"></ion-icon>
 	</button>
-		<div text-center>
+		<div text-center class="animated bounceInDown">
 			<button *ngIf="!global.userLogged" (click)="loginWithFB()" class="loginBtn loginBtn--facebook">
 				Login with Facebook
-			</button>
+			</button><br />
 			<button *ngIf="!global.userLogged" (click)="login()" class="loginBtn loginBtn--google">
 				Login with Google
 			</button>
 		</div>
 		<div *ngIf="global.userLogged">
 			<div class="row" *ngIf="global.userLogged" style="text-align: center;">
-				<div class="centraTutto paddingCustom">
+				<div class="centraTutto paddingCustom bianco">
 					<div style="font-size: 18px;">Ciao
 						<b>{{ global.userLogged.username }} !!!</b>
 					</div> Cerca una città o usa la tua posizione GPS

@@ -16,7 +16,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="">
 
 	<div #map id="map"></div>
 	<br />
@@ -33,7 +33,7 @@
 	<ion-card *ngFor="let item of cittaLuogo" tappable style="" class="cardR" (click)="selectPlace(item._id)">
 		<!-- <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>-->
 
-		<ion-card-content>
+		<ion-card-content id="carddd" class="animated flipInX">
 
 			<ion-card-title>
 				{{ item.nome }} {{ item.citta }}

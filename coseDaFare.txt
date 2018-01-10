@@ -83,3 +83,10 @@ KeyIdentifier [
  
 Authenticating Your Client 
 https://developers.google.com/android/guides/client-auth
+
+
+
+
+animazioni
+
+https://daneden.github.io/animate.css/
