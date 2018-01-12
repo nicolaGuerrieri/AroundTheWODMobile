@@ -10,6 +10,10 @@
  #carddd{
 	animation-duration: 1.5s;
 }
+
+#bottoniHome{
+  animation-duration: 1.8s;
+}
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -1578,4 +1582,18 @@
 
 .slideOutUp {
   animation-name: slideOutUp;
+}
+
+
+.text-input::-moz-placeholder {
+  color: white;
+}
+
+.text-input:-ms-input-placeholder {
+  color: white;
+}
+
+.text-input::-webkit-input-placeholder {
+  text-indent: 0;
+  color: white;
 }
