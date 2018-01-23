@@ -37,7 +37,6 @@ export class Detail implements OnInit {
 
 	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
 		
-		this.nativePageTransitions.slide(global.getOptionTransition());
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.inizializzaDettaglio();
