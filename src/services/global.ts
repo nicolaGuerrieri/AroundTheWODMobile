@@ -24,14 +24,9 @@ export class Global {
 		//alert(this.language);
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
-		if (this.platform.is('core')) {
-			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
-
-			//this.preUrl = 'provaV2/';
-		} else {
-			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
+	
+			this.preUrl = 'http://45.62.253.187:3000/';
 		}
-	}
 
 	openSocial(social) {
 		if (social == 'facebook') {

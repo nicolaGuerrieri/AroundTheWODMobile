@@ -20,7 +20,7 @@ export class Organizzazioni {
 	public loader;
 
 	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
-		this.nativePageTransitions.slide(global.getOptionTransition());
+		//this.nativePageTransitions.slide(global.getOptionTransition());
 
 		this.citta = params.get("citta");
 		this.caricaOrganizzazioni(this.citta);

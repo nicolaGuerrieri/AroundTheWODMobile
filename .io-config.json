@@ -6,7 +6,7 @@
   "proxies": [
     {
       "path": "/provaV2/",
-      "proxyUrl": "http://app.nicolaguerrieri.it:3000/"
+      "proxyUrl": "http://45.62.253.187:3000/"
     }
   ]
 }

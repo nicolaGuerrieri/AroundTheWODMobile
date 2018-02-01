@@ -19,7 +19,7 @@ export class CittaLuogoService {
 		if (this.platform.is('core')) {
 			this.preUrl = 'provaV2/';
 		} else {
-			this.preUrl = 'http://app.nicolaguerrieri.it:3000/';
+			this.preUrl = 'http://45.62.253.187:3000/';
 		}
 	}
 	//https://apps.ionic.io/login

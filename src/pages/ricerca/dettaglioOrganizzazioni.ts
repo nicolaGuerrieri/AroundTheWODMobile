@@ -16,10 +16,7 @@ export class DettaglioOrganizzazioni {
 	public luoghiOrganizzazione: any = [];
 	public item: any;
 	public loader;
-	navOptions = {
-		animate: true,
-		animation: 'wp-transition'
-	};
+ 
 
 	constructor(public navCtrl: NavController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.luoghiOrganizzazione = params.get("luoghiOrganizzazione");
@@ -48,7 +45,7 @@ export class DettaglioOrganizzazioni {
 	selectPlace(idPlace) {
 		this.navCtrl.push(Detail, {
 			idLuogo: idPlace
-		}, this.navOptions);
+		});
 	}
 
 	back() {

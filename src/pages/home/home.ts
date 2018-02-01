@@ -27,7 +27,7 @@ export class HomePage {
 		this.address = {
 			place: ''
 		};
-		this.optionNav = global.getOptionTransition();
+	//	this.optionNav = global.getOptionTransition();
 	}
 	login() {
 		let loader = this.loading.create({
@@ -133,7 +133,7 @@ export class HomePage {
 			this.navCtrl.push(Ricerca, {
 				citta: this.address.place,
 				allSearchPlace: this.allSearchPlace
-			},{animate:false});
+			}, {animate:false});
 		} else {
 			if (this.address.place != "") {
 				this.cittaLuogoService.localizzaByNome(this.address.place).then(data => {

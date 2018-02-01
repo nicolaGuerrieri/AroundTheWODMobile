@@ -42,8 +42,9 @@ const cloudSettings: CloudSettings = {
 	Success
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
-	 CloudModule.forRoot(cloudSettings)
+    IonicModule.forRoot(MyApp, { animate: false }),
+   CloudModule.forRoot(cloudSettings)
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
