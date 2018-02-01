@@ -31,7 +31,8 @@
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-android": "~6.3.0",
     "cordova-browser": "~5.0.1",
-    "cordova-ios": "~4.5.4",
+    "cordova-ios": "^4.5.4",
+    "cordova-plugin-background-mode": "~0.7.2",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-facebook4": "~1.9.1",
@@ -43,6 +44,7 @@
     "ionic-native": "2.4.1",
     "ionic-plugin-keyboard": "~2.2.1",
     "ionicons": "3.0.0",
+    "ios-sim": "^6.1.2",
     "ng2-cordova-oauth": "0.0.8",
     "ng2-translate": "^5.0.0",
     "node-sass": "^4.7.2",
@@ -78,12 +80,12 @@
       "com.telerik.plugins.nativepagetransitions": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g"
-      }
+      },
+      "cordova-plugin-background-mode": {}
     },
     "platforms": [
       "browser",
-      "android",
-      "ios"
+      "android"
     ]
   }
 }

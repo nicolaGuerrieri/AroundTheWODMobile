@@ -90,3 +90,6 @@ https://developers.google.com/android/guides/client-auth
 animazioni
 
 https://daneden.github.io/animate.css/
+
+problema build ios
+https://github.com/ionic-team/ionic/issues/12849
