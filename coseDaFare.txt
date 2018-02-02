@@ -91,6 +91,7 @@ animazioni
 
 https://daneden.github.io/animate.css/
 
+<<<<<<< HEAD
 
 versione https://github.com/nodejs/node-gyp
 
@@ -115,3 +116,7 @@ npm cache clean
 npm install -g @angular/cli@latest
 
 npm install typescript@latest --save-dev
+=======
+problema build ios
+https://github.com/ionic-team/ionic/issues/12849
+>>>>>>> 44e1c7337d5d9c44fba7c9288f8718758c894dfe
