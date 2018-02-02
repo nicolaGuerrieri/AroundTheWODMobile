@@ -16,6 +16,8 @@ import { Storage } from '@ionic/storage';
 import { Toast }   from 'ionic-native';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Facebook } from '@ionic-native/facebook';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -42,7 +44,7 @@ const cloudSettings: CloudSettings = {
 	Success
   ],
   imports: [
-    IonicModule.forRoot(MyApp, { animate: false }),
+    IonicModule.forRoot(MyApp, { animate: false }), BrowserModule, HttpModule,
    CloudModule.forRoot(cloudSettings)
    
   ],
