@@ -61,12 +61,14 @@
       "id": "cordova-plugin-geolocation"
     },
     "is_top_level": true,
-    "variables": {}
+    "variables": {
+      "GEOLOCATION_USAGE_DESCRIPTION": " "
+    }
   },
   "cordova-plugin-background-mode": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-background-mode"
+      "id": "cordova-plugin-background-mode@~0.7.2"
     },
     "is_top_level": true,
     "variables": {}
@@ -119,7 +121,7 @@
   "cordova-plugin-ionic-webview": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-ionic-webview@^1.1.11"
+      "id": "cordova-plugin-ionic-webview@^1.1.16"
     },
     "is_top_level": true,
     "variables": {}
@@ -136,6 +138,14 @@
     "source": {
       "type": "registry",
       "id": "com.telerik.plugins.nativepagetransitions@^0.6.5"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-wkwebview-engine": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-wkwebview-engine"
     },
     "is_top_level": true,
     "variables": {}
