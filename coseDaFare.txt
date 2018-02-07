@@ -95,7 +95,8 @@ https://daneden.github.io/animate.css/
 
 versione https://github.com/nodejs/node-gyp
 
-
+npm uninstall -g @angular/cli
+npm uninstall -g ionic
 npm install -g ionic@latest
 npm install ionic-angular@3.7.0 --save
 npm install @ionic/app-scripts@3.0.0 --save-dev
@@ -111,11 +112,13 @@ npm install rxjs@5.4.3 --save
 npm install zone.js@0.8.17 --save
 npm install -g typescript@latest
 
-npm uninstall -g @angular/cli
-npm cache clean
+npm cache clean --force
 npm install -g @angular/cli@latest
 
 npm install typescript@latest --save-dev
+
+npm update -g
+
 =======
 problema build ios
 https://github.com/ionic-team/ionic/issues/12849
