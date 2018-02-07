@@ -30,9 +30,6 @@
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
@@ -54,7 +51,13 @@
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    },
     "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    },
+    "cordova-plugin-wkwebview-engine": {
       "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
     }
   },
