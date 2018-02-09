@@ -89,16 +89,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-googleplus": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus"
-    },
-    "is_top_level": true,
-    "variables": {
-      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g"
-    }
-  },
   "cordova-plugin-x-toast": {
     "source": {
       "type": "registry",
@@ -149,5 +139,15 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus"
+    },
+    "is_top_level": true,
+    "variables": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q"
+    }
   }
 }

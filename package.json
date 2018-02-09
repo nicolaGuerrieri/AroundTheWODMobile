@@ -80,11 +80,11 @@
         "APP_NAME": "aroundTheWodMobile"
       },
       "com.telerik.plugins.nativepagetransitions": {},
-      "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g"
-      },
       "cordova-plugin-background-mode": {},
-      "cordova-plugin-wkwebview-engine": {}
+      "cordova-plugin-wkwebview-engine": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q"
+      }
     },
     "platforms": [
       "browser",

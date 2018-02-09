@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.aroundthewodmobile356464" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.nicolaguerrieri.aroundthewod" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>around</name>
     <description>Around the WOD</description>
     <author email="guerrierinicola@gmail.com" href="app.nicolaguerrieri.it:3000">Guerrieri Nicola</author>
@@ -88,11 +88,11 @@
         <variable name="APP_NAME" value="aroundTheWodMobile" />
     </plugin>
     <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
-    <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g" />
-    </plugin>
     <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
     <plugin name="cordova-plugin-wkwebview-engine" spec="^1.1.4" />
+    <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q" />
+    </plugin>
     <engine name="browser" spec="~5.0.1" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.3.1" />

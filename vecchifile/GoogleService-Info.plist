@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q.apps.googleusercontent.com</string>
+	<string>923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q</string>
+	<string>com.googleusercontent.apps.923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.nicolaguerrieri.aroundthewod</string>
+	<string>com.ionicframework.aroundthewodmobile356464</string>
 	<key>PROJECT_ID</key>
-	<string>firebase-aroundthewod</string>
+	<string>aroundthewodmobile</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -23,6 +23,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:919543662520:ios:33c3fc551c2e99e1</string>
+	<string>1:923547097240:ios:3b8f9a77f4c49a76</string>
 </dict>
 </plist>
