@@ -37,7 +37,7 @@ export class HomePage {
 			loader.present();
 			GooglePlus.login({
 				'scopes': 'profile',  
-				'webClientId': '919543662520-9r1p2dj4q9q50cncaf304eko34smehru.apps.googleusercontent.com ',
+				'webClientId': '919543662520-9r1p2dj4q9q50cncaf304eko34smehru.apps.googleusercontent.com',
 				'offline': true
 			}).then((res) => {
 				this.global.userLogged = { email: res.email, first_name: res.familyName + " " + res.givenName, picture: res.imageUrl, username: res.displayName }

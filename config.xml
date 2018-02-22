@@ -90,10 +90,10 @@
     <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
     <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
     <plugin name="cordova-plugin-wkwebview-engine" spec="^1.1.4" />
-    <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q" />
-    </plugin>
     <engine name="browser" spec="~5.0.1" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.3.1" />
+    <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q" />
+    </plugin>
 </widget>
