@@ -22,7 +22,7 @@ https://www.joshmorony.com/implementing-google-plus-sign-in-with-oauth-2-0-in-io
 
 e 3
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g
-
+com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g 
 
 SHA-1 produzione
@@ -149,3 +149,84 @@ npm update -g
 problema build ios
 https://github.com/ionic-team/ionic/issues/12849
 >>>>>>> 44e1c7337d5d9c44fba7c9288f8718758c894dfe
+
+
+
+
+
+
+
+keytool -genkey -v -keystore my-key.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
+
+keytool -exportcert -list -v -alias myalias -keystore my-key.keystore
+
+sha Debug
+ata di creazione: 9-feb-2018
+Tipo di voce: PrivateKeyEntry
+Lunghezza catena certificati: 1
+Certificato[1]:
+Proprietario: CN=nicola guerrieri, OU=nicola guerrieri, O=nicola guerrieri, L=bo, ST=bo, C=it
+Emittente: CN=nicola guerrieri, OU=nicola guerrieri, O=nicola guerrieri, L=bo, ST=bo, C=it
+Numero di serie: 5ee51437
+Valido da: Fri Feb 09 17:05:28 CET 2018 a: Tue Jun 27 18:05:28 CEST 2045
+Impronte certificato:
+         MD5:  C4:DD:DB:16:BC:8D:74:48:E8:2F:8B:13:E7:B5:24:95
+         SHA1: D0:E6:39:BA:9D:54:BC:67:31:79:24:16:DA:F3:6E:F4:FB:BA:9D:C4
+         SHA256: 28:14:16:5A:D6:2D:A8:E1:97:E2:77:41:A6:AE:FA:D7:25:42:32:9F:08:C2:9F:C4:DC:53:53:98:68:99:07:9E
+Nome algoritmo firma: SHA256withRSA
+Algoritmo di chiave pubblica oggetto: Chiave RSA a 2048 bit
+Versione: 3
+
+Estensioni:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 0E 35 3A 92 AC 58 EF D6   81 44 27 63 D4 0D 8F 17  .5:..X...D'c....
+0010: C6 4C EA 16                                        .L..
+]
+]
+
+
+cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q
+
+
+
+sha Debug
+Immettere la password del keystore:
+Nome alias: androiddebugkey
+Data di creazione: 7-feb-2018
+Tipo di voce: PrivateKeyEntry
+Lunghezza catena certificati: 1
+Certificato[1]:
+Proprietario: C=US, O=Android, CN=Android Debug
+Emittente: C=US, O=Android, CN=Android Debug
+Numero di serie: 1
+Valido da: Wed Feb 07 17:16:28 CET 2018 a: Fri Jan 31 17:16:28 CET 2048
+Impronte certificato:
+         MD5:  18:6E:BB:F0:61:B8:A1:8E:3D:FF:EE:B6:EB:B2:FE:08
+         SHA1: 77:0D:E3:A2:4A:A8:AA:56:9C:76:92:19:C1:6E:EA:A6:DA:C6:D3:C9
+         SHA256: DC:0A:51:7E:3C:8B:AA:51:8B:E9:11:3D:DB:F3:38:0D:02:6C:0A:A7:A1:B4:59:9F:28:87:93:C6:AC:B2:24:FB
+Nome algoritmo firma: SHA1withRSA
+Algoritmo di chiave pubblica oggetto: Chiave RSA a 2048 bit
+Versione: 1
+
+
+
+
+
+keytool -exportcert -list -v -alias androiddebugkey -keystore utente\.android\debug.keystore
+919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q.apps.googleusercontent.com
+
+
+
+http://45.62.253.187:3000/privacy
+dw3jokqoqlacdplZwW7qptrG08k=
+
+
+nHl7jMAEusgPBXg2fpnWp+S/AmY=
+
+
+
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1655044127910111" --variable APP_NAME="around"
+npm install --save @ionic-native/facebook

@@ -47,7 +47,7 @@ export class HomePage {
 				loader.dismiss();
 			}, (err) => {
 				console.log(err);
-				alert(err)
+				alert(err);
 
 			});
 		} catch (err) {
@@ -69,8 +69,13 @@ export class HomePage {
 					this.cittaLuogoService.salvaUtente(this.global.userLogged).then(data => { });
 					loader.dismiss();
 				});
+			}, (err) => {
+				console.log(err);
+				alert(JSON.stringify(err));
+
 			});
 		} catch (err) {
+			alert(JSON.stringify(err));
 			loader.dismiss();
 		}
 	}
