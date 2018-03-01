@@ -7,58 +7,58 @@
     "files": {}
   },
   "installed_plugins": {
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
     "cordova-plugin-background-mode": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-facebook4": {
-      "APP_ID": "1116576615134600",
-      "APP_NAME": "aroundTheWodMobile",
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "APP_ID": "1655044127910111",
+      "APP_NAME": "around",
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-googleplus": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "cordova-plugin-x-socialsharing": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "cordova-plugin-x-toast": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "cordova.plugins.diagnostic": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
-    },
-    "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
-    "com.telerik.plugins.nativepagetransitions": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-wkwebview-engine": {
-      "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   },
   "dependent_plugins": {}

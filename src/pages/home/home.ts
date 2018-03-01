@@ -36,8 +36,8 @@ export class HomePage {
 		try {
 			loader.present();
 			GooglePlus.login({
-				'scopes': 'profile',
-				'webClientId': '615577621412-aj0uvmdgh0j7bff7cbsra0pjqvoij4jb.apps.googleusercontent.com',
+				'scopes': 'profile',  
+				'webClientId': '919543662520-9r1p2dj4q9q50cncaf304eko34smehru.apps.googleusercontent.com',
 				'offline': true
 			}).then((res) => {
 				this.global.userLogged = { email: res.email, first_name: res.familyName + " " + res.givenName, picture: res.imageUrl, username: res.displayName }
@@ -47,7 +47,7 @@ export class HomePage {
 				loader.dismiss();
 			}, (err) => {
 				console.log(err);
-				alert(err)
+				alert(err);
 
 			});
 		} catch (err) {
@@ -69,8 +69,13 @@ export class HomePage {
 					this.cittaLuogoService.salvaUtente(this.global.userLogged).then(data => { });
 					loader.dismiss();
 				});
+			}, (err) => {
+				console.log(err);
+				alert(JSON.stringify(err));
+
 			});
 		} catch (err) {
+			alert(JSON.stringify(err));
 			loader.dismiss();
 		}
 	}

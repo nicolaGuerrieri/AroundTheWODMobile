@@ -52,14 +52,14 @@
 		</button>
 	</div>
 	<br />
-	<div class="row" *ngIf="luogoSelezionato && !nuovoLuogo">
+	<div class="centraTutto" *ngIf="luogoSelezionato && !nuovoLuogo">
 		<span class="genericText">What i can do: </span>
 		<br />
 		<span *ngFor="let item of luogoSelezionato.listaAttivita">
 			<button class="disabilitaBlue" ion-button icon-only *ngIf="item.selezionato" (click)="showDescriptionIconSport(item.mostra)">
 
 				<ion-icon *ngIf="!item.img && item.selezionato" name="{{ item.nome }}"></ion-icon>
-				<img *ngIf="item.img && item.selezionato" src="{{global.preUrl}}/images/{{item.img}}" style="" alt="" class="imgDetail altreIcona">
+				<img *ngIf="item.img && item.selezionato" src="{{global.preUrl}}/images/{{item.img}}" class="imgDetail altreIcona">
 			</button>
 		</span>
 	</div>
@@ -67,7 +67,7 @@
 
 
 	<!-- se selezionato scorro la lista e prendo solo i nomi e mostro disabilitati, se nuovo faccio vedere tutti, faccio selezionare-->
-	<div class="row">
+	<div class="centraTutto">
 		<div class="col" style="text-align: center; font-size: 20px; color: red;" *ngIf="nuovoLuogoObject">
 			<div class="row text-center" *ngIf="nuovoLuogoObject.errore">
 				{{nuovoLuogoObject.errore}}

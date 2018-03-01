@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "615577621412",
+    "project_id": "firebase-aroundnew"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615577621412:android:3b8f9a77f4c49a76",
+        "android_client_info": {
+          "package_name": "com.ionicframework.aroundthewodmobile356464"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615577621412-aj0uvmdgh0j7bff7cbsra0pjqvoij4jb.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "615577621412-p9k98gtum83f10alu5mqrph3c0cpsiqm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ionicframework.aroundthewodmobile356464",
+            "certificate_hash": "9c02b29045c866bb8540ad62ecc33a1d0f37a8da"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgkVMp-ZYlfwsUsiKuehrCzn9Zsxi-txA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

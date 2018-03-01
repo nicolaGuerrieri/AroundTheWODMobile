@@ -89,16 +89,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-googleplus": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus"
-    },
-    "is_top_level": true,
-    "variables": {
-      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.615577621412-3940nga7ef21n7b9dmheodh1gfa0mo4g"
-    }
-  },
   "cordova-plugin-x-toast": {
     "source": {
       "type": "registry",
@@ -110,12 +100,12 @@
   "cordova-plugin-facebook4": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-facebook4"
+      "id": "cordova-plugin-facebook4@^1.9.1"
     },
     "is_top_level": true,
     "variables": {
-      "APP_ID": "1116576615134600",
-      "APP_NAME": "aroundTheWodMobile"
+      "APP_ID": "1655044127910111",
+      "APP_NAME": "around"
     }
   },
   "cordova-plugin-ionic-webview": {
@@ -149,5 +139,15 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-googleplus": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus"
+    },
+    "is_top_level": true,
+    "variables": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q"
+    }
   }
 }
