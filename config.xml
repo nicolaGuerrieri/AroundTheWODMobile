@@ -99,4 +99,5 @@
     <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q" />
     </plugin>
+    <plugin name="cordova-android-support-gradle-release" spec="1.2.0" />
 </widget>
