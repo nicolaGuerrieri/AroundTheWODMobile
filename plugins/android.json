@@ -10,10 +10,11 @@
     "com.telerik.plugins.nativepagetransitions": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
-    "cordova-plugin-background-mode": {
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "26.+",
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
-    "cordova-plugin-console": {
+    "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-device": {
@@ -58,10 +59,6 @@
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
-    },
-    "cordova-android-support-gradle-release": {
-      "ANDROID_SUPPORT_VERSION": "26.+",
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   },

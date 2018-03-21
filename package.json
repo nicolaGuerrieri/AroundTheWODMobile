@@ -29,7 +29,7 @@
     "@ngx-translate/core": "^6.0.1",
     "animate.css": "^3.5.2",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
-    "cordova-android": "6.3.0",
+    "cordova-android-support-gradle-release": "1.2.0",
     "cordova-browser": "~5.0.1",
     "cordova-ios": "4.4.0",
     "cordova-plugin-background-mode": "~0.7.2",
@@ -52,7 +52,8 @@
     "rxjs": "^5.4.3",
     "socket.io": "^2.0.4",
     "sw-toolbox": "3.4.0",
-    "zone.js": "^0.8.17"
+    "zone.js": "^0.8.17",
+    "cordova-android": "~7.0.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3.0.0",
@@ -84,7 +85,8 @@
       "cordova-plugin-wkwebview-engine": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q"
-      }
+      },
+      "cordova-android-support-gradle-release": {}
     },
     "platforms": [
       "browser",
