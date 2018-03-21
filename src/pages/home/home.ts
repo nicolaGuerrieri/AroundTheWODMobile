@@ -10,6 +10,8 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { GooglePlus } from 'ionic-native';
 import { Success } from '../dialog/success';
+import { Clipboard } from '@ionic-native/clipboard';
+
 declare var cordova: any;
 declare var google: any;
 @Component({
@@ -23,7 +25,7 @@ export class HomePage {
 	public allSearchPlace: any;
 	plat: any;
 	optionNav: any;
-	constructor(private facebook: Facebook, public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	constructor( private facebook: Facebook, public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 			place: ''
 		};
@@ -48,7 +50,7 @@ export class HomePage {
 			}, (err) => {
 				console.log(err);
 				alert(err);
-
+				
 			});
 		} catch (err) {
 			loader.dismiss();
@@ -72,9 +74,13 @@ export class HomePage {
 			}, (err) => {
 				console.log(err);
 				alert(JSON.stringify(err));
+				this.clipboard.copy(err);
 
+				loader.dismiss();
 			});
 		} catch (err) {
+			this.clipboard.copy(err);
+
 			alert(JSON.stringify(err));
 			loader.dismiss();
 		}

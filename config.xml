@@ -19,7 +19,7 @@
     <preference name="FadeSplashScreenDuration" value="1000" />
     <preference name="SplashScreen" value="screen" />
     <preference name="ShowSplashScreen" value="true" />
-    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="FadeSplashScreen" value="true" />
     <platform name="android">
@@ -106,8 +106,9 @@
     <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q" />
     </plugin>
+    <allow-navigation href="http://137.204.22.129:8101" />
     <engine name="browser" spec="~5.0.1" />
     <engine name="ios" spec="4.4.0" />
     <engine name="android" spec="~7.0.0" />
-    <allow-navigation href="http://137.204.22.129:8101" />
+    <plugin name="cordova-clipboard" spec="^1.1.1" />
 </widget>

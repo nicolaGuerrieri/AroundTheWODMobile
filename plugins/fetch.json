@@ -149,5 +149,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-clipboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-clipboard@^1.1.1"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
