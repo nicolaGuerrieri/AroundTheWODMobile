@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, Platform, Content, ViewController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, Platform, ViewController, ToastController } from 'ionic-angular';
 import { Global } from '../../services/global';
 import { HomePage } from '../home/home';
 import { CittaLuogoService } from '../../providers/citta-luogo-service';

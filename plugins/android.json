@@ -14,6 +14,9 @@
       "ANDROID_SUPPORT_VERSION": "26.+",
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
+    "cordova-clipboard": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
     "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
@@ -59,9 +62,6 @@
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
-    },
-    "cordova-clipboard": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   },

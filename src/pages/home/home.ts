@@ -50,10 +50,15 @@ export class HomePage {
 			}, (err) => {
 				console.log(err);
 				alert(err);
-				
+				this.clipboard.copy(err);
+
+				loader.dismiss();
 			});
 		} catch (err) {
 			loader.dismiss();
+			this.clipboard.copy(err);
+
+				loader.dismiss();
 		}
 	}
 

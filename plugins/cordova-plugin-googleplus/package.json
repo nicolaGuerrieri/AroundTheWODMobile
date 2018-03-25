@@ -18,7 +18,7 @@
   ],
   "_resolved": "git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git#3d98492cd60289d9238807ec494cacb229f253a2",
   "_spec": "https://github.com/EddyVerbruggen/cordova-plugin-googleplus",
-  "_where": "C:\\around\\AroundTheWODMobile",
+  "_where": "/Users/nicolaguerrieri/Desktop/applicazioni JavaScript/around3/AroundTheWODMobile",
   "bundleDependencies": false,
   "cordova_name": "Google SignIn",
   "deprecated": false,

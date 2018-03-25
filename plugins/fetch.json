@@ -92,7 +92,7 @@
   "cordova-plugin-facebook4": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-facebook4@^1.9.1"
+      "id": "git+https://github.com/amritk/cordova-plugin-facebook4.git"
     },
     "is_top_level": true,
     "variables": {
