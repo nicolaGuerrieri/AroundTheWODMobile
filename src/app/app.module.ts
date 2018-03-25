@@ -18,6 +18,8 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Facebook } from '@ionic-native/facebook';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { Clipboard } from '@ionic-native/clipboard';
+
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -61,7 +63,7 @@ const cloudSettings: CloudSettings = {
   Footer,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Global, Storage, Toast, Facebook, NativePageTransitions]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
   
 })
 export class AppModule {}

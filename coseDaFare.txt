@@ -227,13 +227,17 @@ dw3jokqoqlacdplZwW7qptrG08k=
 nHl7jMAEusgPBXg2fpnWp+S/AmY=
 
 
-
+ionic cordova plugin remove cordova-plugin-facebook4
 ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1655044127910111" --variable APP_NAME="around"
 npm install --save @ionic-native/facebook
 
+<<<<<<< HEAD
+keytool -exportcert -alias androiddebugkey -keystore %HOMEPATH%\.android\debug.keystore | openssl sha1 -binary | openssl base64
+=======
 
 /Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/
 keytool -exportcert -list -v -alias myalias -keystore my-key.keystore
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore /Users/nicolaguerrieri/Desktop/applicazioni JavaScript/around3/AroundTheWODMobile/platforms/android/build/outputs/apk/Android-release-unsigned.apk aroundTheWod
 
 /Users/nicolaguerrieri/Desktop/applicazioni JavaScript/around3/AroundTheWODMobile/platforms/android/build/outputs/apk
+>>>>>>> 0768252cec209c2d8983b448f9e66513857ae603

@@ -35,7 +35,9 @@ export class MyApp {
   }
   hideSplashScreen() {
     if (Splashscreen) {
+      setTimeout(() => {
         Splashscreen.hide();
+      }, 1000);
     }
   }
 
