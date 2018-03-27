@@ -31,8 +31,8 @@
     "animate.css": "^3.5.2",
     "clipboard": "^2.0.0",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
-    "cordova-android": "6.4.0",
-    "cordova-android-support-gradle-release": "1.2.0",
+    "cordova-android": "^7.0.0",
+    "cordova-android-support-gradle-release": "^1.2.0",
     "cordova-browser": "~5.0.1",
     "cordova-clipboard": "^1.1.1",
     "cordova-ios": "4.4.0",
@@ -89,8 +89,10 @@
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919543662520-n6a1la5uml9cltocuri2c1n3ugc4o16q"
       },
-      "cordova-android-support-gradle-release": {},
-      "cordova-clipboard": {}
+      "cordova-clipboard": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "26.+"
+      }
     },
     "platforms": [
       "browser",
