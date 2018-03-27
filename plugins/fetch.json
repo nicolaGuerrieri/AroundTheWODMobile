@@ -89,17 +89,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-facebook4": {
-    "source": {
-      "type": "registry",
-      "id": "git+https://github.com/amritk/cordova-plugin-facebook4.git"
-    },
-    "is_top_level": true,
-    "variables": {
-      "APP_ID": "1655044127910111",
-      "APP_NAME": "around"
-    }
-  },
   "cordova-plugin-ionic-webview": {
     "source": {
       "type": "registry",
@@ -120,14 +109,6 @@
     "source": {
       "type": "registry",
       "id": "com.telerik.plugins.nativepagetransitions@^0.6.5"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-wkwebview-engine": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-wkwebview-engine@^1.1.4"
     },
     "is_top_level": true,
     "variables": {}
@@ -154,6 +135,25 @@
     "source": {
       "type": "registry",
       "id": "cordova-android-support-gradle-release@1.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-facebook4": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-facebook4@^1.9.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "210010336436761",
+      "APP_NAME": "aroundApp"
+    }
+  },
+  "com.danielsogl.cordova.deviceaccounts": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-device-accounts"
     },
     "is_top_level": true,
     "variables": {}

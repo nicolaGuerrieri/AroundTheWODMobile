@@ -11,6 +11,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { GooglePlus } from 'ionic-native';
 import { Success } from '../dialog/success';
 import { Clipboard } from '@ionic-native/clipboard';
+import { DeviceAccounts } from '@ionic-native/device-accounts';
 
 declare var cordova: any;
 declare var google: any;
@@ -25,12 +26,25 @@ export class HomePage {
 	public allSearchPlace: any;
 	plat: any;
 	optionNav: any;
-	constructor( private facebook: Facebook, public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	searchQuery: string = '';
+	items: string[];
+
+	constructor(private facebook: Facebook, private deviceAccounts: DeviceAccounts, public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 			place: ''
 		};
-	//	this.optionNav = global.getOptionTransition();
+		if (plt.is("android")) {
+			DeviceAccounts.getPlugin().getEmail(
+				account => alert('Account' + account),
+				error => alert(error));
+
+			DeviceAccounts.getPlugin().get(
+				accounts => alert(accounts),
+				error => alert(error));
+		}
 	}
+
+
 	login() {
 		let loader = this.loading.create({
 			content: 'Please wait...',
@@ -38,7 +52,7 @@ export class HomePage {
 		try {
 			loader.present();
 			GooglePlus.login({
-				'scopes': 'profile',  
+				'scopes': 'profile',
 				'webClientId': '919543662520-9r1p2dj4q9q50cncaf304eko34smehru.apps.googleusercontent.com',
 				'offline': true
 			}).then((res) => {
@@ -58,7 +72,7 @@ export class HomePage {
 			loader.dismiss();
 			this.clipboard.copy(err);
 
-				loader.dismiss();
+			loader.dismiss();
 		}
 	}
 
@@ -149,7 +163,7 @@ export class HomePage {
 			this.navCtrl.push(Ricerca, {
 				citta: this.address.place,
 				allSearchPlace: this.allSearchPlace
-			}, {animate:false});
+			}, { animate: false });
 		} else {
 			if (this.address.place != "") {
 				this.cittaLuogoService.localizzaByNome(this.address.place).then(data => {

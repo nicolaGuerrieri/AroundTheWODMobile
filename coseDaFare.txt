@@ -156,7 +156,7 @@ https://github.com/ionic-team/ionic/issues/12849
 
 
 
-keytool -genkey -v -keystore my-key.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
+keytool -genkey -v -keystore my-key.keystore -alias aliasKeyProduzione -keyalg RSA -keysize 2048 -validity 10000
 
 keytool -exportcert -list -v -alias myalias -keystore my-key.keystore
 
@@ -228,7 +228,9 @@ nHl7jMAEusgPBXg2fpnWp+S/AmY=
 
 
 ionic cordova plugin remove cordova-plugin-facebook4
-ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1655044127910111" --variable APP_NAME="around"
+ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="210010336436761" --variable APP_NAME="aroundApp" &&
+
+
 npm install --save @ionic-native/facebook
 
 <<<<<<< HEAD
@@ -236,8 +238,31 @@ keytool -exportcert -alias androiddebugkey -keystore %HOMEPATH%\.android\debug.k
 =======
 
 /Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/
-keytool -exportcert -list -v -alias myalias -keystore my-key.keystore
+keytool -exportcert -list -v -alias aliasKeyProduzione -keystore my-key.keystore
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore /Users/nicolaguerrieri/Desktop/applicazioni JavaScript/around3/AroundTheWODMobile/platforms/android/build/outputs/apk/Android-release-unsigned.apk aroundTheWod
 
 /Users/nicolaguerrieri/Desktop/applicazioni JavaScript/around3/AroundTheWODMobile/platforms/android/build/outputs/apk
 >>>>>>> 0768252cec209c2d8983b448f9e66513857ae603
+
+
+
+le piattaforme da usare secondo
+cordova platform add ios@4.5.0
+cordova platform add android@7.0.0
+se rompe il cazzo con AAPT fb_app_name, inserirli a manazza nel value.xml
+
+
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+keytool -exportcert -alias aliasKeyProduzione -keystore ./ | openssl sha1 -binary | openssl base64
+
+era il plugin webview tralala
+
+
+Firmare
+usare keytool -keystore my-key.keystore -list -v per vedere quanti alias ci sono su un keystore
+
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-key.keystore ./platforms/android/app/build/outputs/apk/debug/app-debug.apk alias
+
+
+

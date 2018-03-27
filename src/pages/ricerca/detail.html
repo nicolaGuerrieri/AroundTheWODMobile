@@ -18,26 +18,22 @@
 <ion-chip *ngIf="luogoSelezionato && !nuovoLuogo">
 	<ion-label style="width: 90%;" *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.ricerca}}</ion-label>
 </ion-chip>
-<!--<ion-fab right bottom class="paddingOnFooter">
-	<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3">
-		<ion-icon name="arrow-dropdown"></ion-icon>
-	</button>
-	<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="openMapsApp()" ion-fab color="personal3">
-		<img src="{{global.preUrl}}/images/g.png" style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail">
-	</button>
 
-</ion-fab>-->
-<ion-content padding style="text-align: center"  >
+<ion-content padding style="text-align: center">
 
 	<div #map id="map"></div>
 
 	<br />
 	<br />
-	
+
 	<ion-fab right bottom class="paddingOnFooter">
-		<button mini (click)="addPlace()" ion-fab color="personal3">
-			<ion-icon name="md-add"></ion-icon>
+		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3">
+			<ion-icon name="arrow-dropdown"></ion-icon>
 		</button>
+		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="openMapsApp()" ion-fab color="personal3">
+			<img src="{{global.preUrl}}/images/g.png" style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail">
+		</button>
+
 	</ion-fab>
 	<br />
 	<br />

@@ -10,6 +10,10 @@
     "com.telerik.plugins.nativepagetransitions": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "26.+",
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
     "cordova-clipboard": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
@@ -20,8 +24,8 @@
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-facebook4": {
-      "APP_ID": "1655044127910111",
-      "APP_NAME": "around",
+      "APP_ID": "210010336436761",
+      "APP_NAME": "aroundApp",
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
     "cordova-plugin-geolocation": {
@@ -45,9 +49,6 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
-    "cordova-plugin-wkwebview-engine": {
-      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
-    },
     "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
@@ -60,8 +61,7 @@
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
-    "cordova-android-support-gradle-release": {
-      "ANDROID_SUPPORT_VERSION": "26.+",
+    "com.danielsogl.cordova.deviceaccounts": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   },

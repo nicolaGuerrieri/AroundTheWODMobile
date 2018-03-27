@@ -4,9 +4,9 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 
 @Injectable()
 export class Global {
-	public title: string = "AroundTheWOD App";
-	private _isAndroid: boolean;
-	private _isiOS: boolean;
+	public title: string = "Training everywhere";
+	public _isAndroid: boolean;
+	public _isiOS: boolean;
 	public language: any;
 	public preUrl: string;
 	public userLogged: any;
