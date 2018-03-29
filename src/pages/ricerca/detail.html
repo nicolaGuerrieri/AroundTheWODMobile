@@ -27,10 +27,10 @@
 	<br />
 
 	<ion-fab right bottom class="paddingOnFooter">
-		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3">
+		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab class="buttonFab">
 			<ion-icon name="arrow-dropdown"></ion-icon>
 		</button>
-		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="openMapsApp()" ion-fab color="personal3">
+		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="openMapsApp()" ion-fab  class="buttonFab">
 			<img src="{{global.preUrl}}/images/g.png" style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail">
 		</button>
 
@@ -64,7 +64,7 @@
 
 	<!-- se selezionato scorro la lista e prendo solo i nomi e mostro disabilitati, se nuovo faccio vedere tutti, faccio selezionare-->
 	<div class="centraTutto">
-		<div class="col" style="text-align: center; font-size: 20px; color: red;" *ngIf="nuovoLuogoObject">
+		<div class="col" style="text-align: center; font-size: 20px; color: #0f635d;" *ngIf="nuovoLuogoObject">
 			<div class="row text-center" *ngIf="nuovoLuogoObject.errore">
 				{{nuovoLuogoObject.errore}}
 			</div>
@@ -125,24 +125,22 @@
 			<ion-input type="text" readonly placeholder="Cap" [(ngModel)]="luogoSelezionato.cap" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
-	<!--	<br />
 	<br />
 	<ion-list>
 		<ion-item>
-		<ion-input type="text" placeholder="Time"    [(ngModel)]="nuovoLuogoObject.orari"  *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="time"   [(ngModel)]="luogoSelezionato.orari" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input type="text" placeholder="Your mail"  [(ngModel)]="nuovoLuogoObject.mail"  *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="Your mail"   [(ngModel)]="luogoSelezionato.mail" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
-	</ion-list>-->
+	</ion-list> 
 	<br />
-	<div class="row">
-		<div class="col" style="text-align: center; font-size: 20px; color: red;" *ngIf="nuovoLuogoObject">
+	<div>
+		<div class="col" style="text-align: center; font-size: 20px; color: #0f635d;" *ngIf="nuovoLuogoObject">
 			<div class="row text-center" *ngIf="nuovoLuogoObject.errore">
 				{{nuovoLuogoObject.errore}}
 			</div>
 		</div>
 	</div>
-	<br />
-	<ion-card *ngFor="let item of listaRaccordo" (click)="goDetail(item.organizzazione)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
+ 	<ion-card hidden *ngFor="let item of listaRaccordo" (click)="goDetail(item.organizzazione)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
 		<ion-card-content>
 			<ion-card-title>
 				{{ item.organizzazione.nome }}, {{ item.organizzazione.citta }}

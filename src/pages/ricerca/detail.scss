@@ -1586,14 +1586,15 @@
 
 
 .text-input::-moz-placeholder {
-  color: white;
+  color: color($colors, blueGray);
 }
 
 .text-input:-ms-input-placeholder {
-  color: white;
+  color: color($colors, blueGray);
 }
 
 .text-input::-webkit-input-placeholder {
   text-indent: 0;
-  color: white;
+  color: color($colors, blueGray);
 }
+

@@ -36,12 +36,12 @@ export class Detail implements OnInit {
 	map: any;
 
 	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
-		
+
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.inizializzaDettaglio();
 		this.loadAttivita();
-		
+
 	}
 
 
@@ -56,7 +56,7 @@ export class Detail implements OnInit {
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
-	ngOnInit(){
+	ngOnInit() {
 
 	}
 	inizializzaDettaglio() {
@@ -69,6 +69,7 @@ export class Detail implements OnInit {
 			this.nuovoLuogo = true;
 			this.nuovoLuogoObject = {};
 			this.nuovoLuogoObject.ricerca = "";
+			this.nuovoLuogoObject.mail = "";
 			this.nuovoLuogoObject.citta = "";
 			this.nuovoLuogoObject.nazione = "";
 			this.nuovoLuogoObject.provincia = "";
@@ -198,6 +199,10 @@ export class Detail implements OnInit {
 		} else if (this.nuovoLuogoObject.nazione == undefined || this.nuovoLuogoObject.nazione.trim() == "" || this.nuovoLuogoObject.nazione.trim() == undefined) {
 			this.nuovoLuogoObject.errore = "Insert nation";
 			return;
+		} else if (this.nuovoLuogoObject.mail == undefined || this.nuovoLuogoObject.mail.trim() == "" || this.nuovoLuogoObject.mail.trim() == undefined) {
+			this.nuovoLuogoObject.errore = "Insert your e-mail";
+			return;
+		
 		} else {
 			var conta = 0;
 			for (var i = 0; i < this.listaAttivita.length; i++) {
@@ -206,7 +211,7 @@ export class Detail implements OnInit {
 				}
 			}
 			if (conta == 0) {
-				this.nuovoLuogoObject.errore = "Select an activity";
+				this.nuovoLuogoObject.errore = "Select what you can do";
 				return;
 			}
 		}
@@ -380,7 +385,7 @@ export class Detail implements OnInit {
 
 
 	//search del luogo scritto
-	loadMap(cittaResult) { 
+	loadMap(cittaResult) {
 		this.global.inserisciOverlay();
 		if (cittaResult == null) {
 			cittaResult = this.nuovoLuogoObject.ricerca;

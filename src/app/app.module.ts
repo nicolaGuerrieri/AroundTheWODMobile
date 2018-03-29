@@ -19,7 +19,6 @@ import { Facebook } from '@ionic-native/facebook';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { Clipboard } from '@ionic-native/clipboard';
-import { DeviceAccounts } from '@ionic-native/device-accounts';
 
 const cloudSettings: CloudSettings = {
     'core': {
@@ -64,7 +63,7 @@ const cloudSettings: CloudSettings = {
   Footer,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DeviceAccounts, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
   
 })
 export class AppModule {}

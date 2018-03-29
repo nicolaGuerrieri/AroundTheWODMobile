@@ -11,8 +11,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { GooglePlus } from 'ionic-native';
 import { Success } from '../dialog/success';
 import { Clipboard } from '@ionic-native/clipboard';
-import { DeviceAccounts } from '@ionic-native/device-accounts';
-
+ 
 declare var cordova: any;
 declare var google: any;
 @Component({
@@ -29,18 +28,18 @@ export class HomePage {
 	searchQuery: string = '';
 	items: string[];
 
-	constructor(private facebook: Facebook, private deviceAccounts: DeviceAccounts, public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	constructor(private facebook: Facebook,   public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 			place: ''
 		};
 		if (plt.is("android")) {
-			DeviceAccounts.getPlugin().getEmail(
+		/**	DeviceAccounts.getPlugin().getEmail(
 				account => alert('Account' + account),
 				error => alert(error));
 
 			DeviceAccounts.getPlugin().get(
 				accounts => alert(accounts),
-				error => alert(error));
+				error => alert(error));**/
 		}
 	}
 

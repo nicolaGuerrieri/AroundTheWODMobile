@@ -4,7 +4,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 
 @Injectable()
 export class Global {
-	public title: string = "Training everywhere";
+	public title: string = "No matter where";
 	public _isAndroid: boolean;
 	public _isiOS: boolean;
 	public language: any;

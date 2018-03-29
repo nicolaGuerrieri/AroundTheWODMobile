@@ -7,6 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
+    "com.danielsogl.cordova.deviceaccounts": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    },
     "com.telerik.plugins.nativepagetransitions": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     },
@@ -60,10 +63,11 @@
     },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
-    },
-    "com.danielsogl.cordova.deviceaccounts": {
-      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    }
+  }
 }

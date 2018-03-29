@@ -1,0 +1,4 @@
+ion-footer > ion-toolbar > div.toolbar-background, ion-footer > ion-toolbar > div.button-effect, ion-footer > ion-toolbar > div.button-effect::after, ion-footer > ion-toolbar > div.bar-button-default-md, ion-footer > ion-toolbar > div.bar-button-clear-md-default, ion-footer > ion-toolbar > div.bar-button-md-default {
+	background-color:  map-get($colors, blueGray);
+	color: white;
+}
