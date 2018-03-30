@@ -1,3 +1,7 @@
 input{
 	text-align: center;
 }
+
+ion-card {
+	border-bottom: 0.1em solid  color($colors, blueGray) ;
+}

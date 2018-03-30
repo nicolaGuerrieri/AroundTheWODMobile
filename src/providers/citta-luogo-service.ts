@@ -20,6 +20,7 @@ export class CittaLuogoService {
 			this.preUrl = 'provaV2/';
 		} else {
 			this.preUrl = 'http://45.62.253.187:3000/';
+			//this.preUrl = 'http://137.204.22.202:3000/';
 		}
 	}
 	//https://apps.ionic.io/login

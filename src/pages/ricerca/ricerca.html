@@ -53,7 +53,6 @@
 					</button>
 				</span>
 			</div>
-			<br />
 		</ion-card-content>
 		<ion-row no-padding>
 			<ion-col>
@@ -70,10 +69,11 @@
 			</ion-col>
 		</ion-row>
 	</ion-card>
-	<div class="textNoResults" *ngIf="cittaLuogo.length == 0">
+	<div class="textNoResults centraTutto" *ngIf="cittaLuogo.length == 0">
 		<ion-icon ios="ios-sad" md="md-sad"></ion-icon>
-		No results found for this place...
+		No results found for this place... Add one !!!
 	</div>
 </ion-content>
-
+<br /><br />
+<br /><br />
 <footer [userLogged]="global.userLogged"></footer>
