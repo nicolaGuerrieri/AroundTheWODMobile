@@ -20,7 +20,7 @@
 	<ion-card *ngFor="let item of listaOrganizzazioni" (click)="selectOrg(item)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
 		<ion-card-content>
 			<ion-card-title>
-				{{ item.nome }}, {{ item.citta }} <br /> {{ item.tipo }}
+			{{ item.nome }}, {{ item.citta }} <br /> {{ item.tipo }}
 			</ion-card-title>
 			<p>
 				{{ item.descrizione }} <br /> Where: {{ item.dove }} <br /> {{ item.telefono }}<br />
@@ -32,6 +32,20 @@
 				</a>
 			</p>
 		</ion-card-content>
+		<ion-row no-padding>
+			<ion-col>
+
+			</ion-col>
+			<ion-col text-center>
+
+			</ion-col>
+			<ion-col text-right>
+				<button ion-button style="background-color: white; font-size:17px; font-weight: bold;" clear small color="personal3" icon-left>
+				 <ion-icon name='share-alt'></ion-icon>
+				  Where...
+			 </button>
+			</ion-col>
+		</ion-row>
 	</ion-card>
 
 	<div class="textNoResults" *ngIf="!listaOrganizzazioni">

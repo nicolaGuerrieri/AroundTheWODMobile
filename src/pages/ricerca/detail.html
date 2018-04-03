@@ -129,7 +129,7 @@
 	<ion-list>
 		<ion-item>
 		<ion-input type="text" placeholder="Your mail"  [(ngModel)]="nuovoLuogoObject.mail"  *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="Your mail"   [(ngModel)]="luogoSelezionato.mail" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input hidden type="text" readonly placeholder="Your mail"   [(ngModel)]="luogoSelezionato.mail" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list> 
 	<br />
@@ -140,7 +140,15 @@
 			</div>
 		</div>
 	</div>
- 	<ion-card hidden *ngFor="let item of listaRaccordo" (click)="goDetail(item.organizzazione)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
+	<br />
+	<br /><p *ngIf="!nuovoLuogo">Friends who train here:</p>
+	<br />
+
+	<div  class="textNoResults centraTutto" *ngIf="listaRaccordo.length == 0 && !nuovoLuogo">
+		<ion-icon ios="ios-sad" md="md-sad"></ion-icon>
+		No friends found for this place... 
+	</div>
+ 	<ion-card *ngFor="let item of listaRaccordo" (click)="goDetail(item.organizzazione)" tappable style="width: 100%; margin-left: 0; margin-bottom: 10px; text-align: left;">
 		<ion-card-content>
 			<ion-card-title>
 				{{ item.organizzazione.nome }}, {{ item.organizzazione.citta }}
