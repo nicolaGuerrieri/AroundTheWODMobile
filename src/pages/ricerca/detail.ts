@@ -92,11 +92,9 @@ export class Detail implements OnInit {
 	cercaOrganizzazioni(idLuogo) {
 		this.listaRaccordo = [];
 		this.cittaLuogoService.getLuogoForIdLuogo(idLuogo).then(data => {
-			console.log(data)
 			if (data) {
 				if (data != "error") {
-					data.listaLuoghi.forEach(element => {
-						console.log(element);
+					data.listaLuoghi.forEach(element => { 
 						this.cittaLuogoService.getOrgById(element.organizzazione_id).then(data => {
 							this.listaRaccordo.push(data);
 						});
@@ -108,8 +106,9 @@ export class Detail implements OnInit {
 		});
 	}
 	goDetail(org) {
+		console.log(this.listaRaccordo)
 		this.navCtrl.push(DettaglioOrganizzazioni, {
-			luoghiOrganizzazione: this.listaRaccordo,
+			luoghiOrganizzazione: null,
 			organizzazione: org
 		});
 	}
