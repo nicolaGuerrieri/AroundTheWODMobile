@@ -9,7 +9,7 @@
 <ion-content padding style="text-align: center;">
 
 	<ion-fab right bottom>
-		<button mini (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
+		<button mini (click)="scrollToBottom()" ion-fab class="buttonFab">><ion-icon name="arrow-dropdown"></ion-icon></button>
 	</ion-fab>
 
 	Member friends: <br />
@@ -21,10 +21,10 @@
 			<p>
 				{{ item.descrizione }} <br /> Where: {{ item.dove }} <br /> {{ item.telefono }}<br />
 				<a *ngIf="item.url_social" href="{{ item.url_social }}">
-					<ion-icon name="logo-facebook" color="personal3" style="font-size: 50px;"></ion-icon>
+					<ion-icon name="logo-facebook" class="bottoniJustText" style="font-size: 50px;"></ion-icon>
 				</a>
 				<a *ngIf="item.url_social_instagram" href="{{ item.url_social_instagram }}">
-					<ion-icon name="logo-instagram" color="personal3" style="font-size: 50px;"></ion-icon>
+					<ion-icon name="logo-instagram" class="bottoniJustText" style="font-size: 50px;"></ion-icon>
 				</a>
 			</p>
 		</ion-card-content>
@@ -47,7 +47,7 @@
 			</p>
 			<div class="row">
 				<span *ngFor="let itemm of item.listaAttivita">
-				 <button *ngIf="itemm.selezionato" class="buttonNavSenzaFontRound" style="font-size:10px" ion-button icon-only>
+				 <button *ngIf="itemm.selezionato"  class="disabilita" style="font-size:10px" ion-button icon-only>
 					 <ion-icon *ngIf="!itemm.img"  name="{{ itemm.nome }}"></ion-icon> 
 					 <img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"   class="imgDetail altreIconaLittle">
 				 </button>
@@ -62,7 +62,7 @@
 
 			</ion-col>
 			<ion-col text-right>
-				<button ion-button style="background-color: white; font-size:17px; font-weight: bold;" clear small color="personal3" icon-left>
+				<button ion-button class="detailButton" clear small color="personal3" icon-left>
 				 <ion-icon name='share-alt'></ion-icon>
 				 Detail
 			 </button>
