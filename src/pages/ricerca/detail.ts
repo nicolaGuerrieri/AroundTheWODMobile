@@ -36,12 +36,12 @@ export class Detail implements OnInit {
 	map: any;
 
 	constructor(public navCtrl: NavController, private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, public viewCtrl: ViewController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform, public googleAuth: GoogleAuth, public user: User, public facebookAuth: FacebookAuth, public auth: Auth) {
-		
+
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
 		this.inizializzaDettaglio();
 		this.loadAttivita();
-		
+
 	}
 
 
@@ -56,7 +56,7 @@ export class Detail implements OnInit {
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
-	ngOnInit(){
+	ngOnInit() {
 
 	}
 	inizializzaDettaglio() {
@@ -69,6 +69,7 @@ export class Detail implements OnInit {
 			this.nuovoLuogo = true;
 			this.nuovoLuogoObject = {};
 			this.nuovoLuogoObject.ricerca = "";
+			this.nuovoLuogoObject.mail = "";
 			this.nuovoLuogoObject.citta = "";
 			this.nuovoLuogoObject.nazione = "";
 			this.nuovoLuogoObject.provincia = "";
@@ -91,11 +92,9 @@ export class Detail implements OnInit {
 	cercaOrganizzazioni(idLuogo) {
 		this.listaRaccordo = [];
 		this.cittaLuogoService.getLuogoForIdLuogo(idLuogo).then(data => {
-			console.log(data)
 			if (data) {
 				if (data != "error") {
-					data.listaLuoghi.forEach(element => {
-						console.log(element);
+					data.listaLuoghi.forEach(element => { 
 						this.cittaLuogoService.getOrgById(element.organizzazione_id).then(data => {
 							this.listaRaccordo.push(data);
 						});
@@ -107,8 +106,9 @@ export class Detail implements OnInit {
 		});
 	}
 	goDetail(org) {
+		console.log(this.listaRaccordo)
 		this.navCtrl.push(DettaglioOrganizzazioni, {
-			luoghiOrganizzazione: this.listaRaccordo,
+			luoghiOrganizzazione: null,
 			organizzazione: org
 		});
 	}
@@ -187,7 +187,11 @@ export class Detail implements OnInit {
 	//- See more at: http://www.codingandclimbing.co.uk/blog/ionic-2-open-native-maps-application-22#sthash.lc4YYgC7.dpuf
 
 	validaDati() {
+
 		this.nuovoLuogoObject.errore = null;
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		
+		
 		console.log(this.nuovoLuogoObject.ricerca.trim());
 		if (this.nuovoLuogoObject.ricerca == undefined || this.nuovoLuogoObject.ricerca.trim() == "" || this.nuovoLuogoObject.ricerca.trim() == undefined) {
 			this.nuovoLuogoObject.errore = "Insert place";
@@ -198,6 +202,12 @@ export class Detail implements OnInit {
 		} else if (this.nuovoLuogoObject.nazione == undefined || this.nuovoLuogoObject.nazione.trim() == "" || this.nuovoLuogoObject.nazione.trim() == undefined) {
 			this.nuovoLuogoObject.errore = "Insert nation";
 			return;
+		} else if (this.nuovoLuogoObject.mail == undefined || this.nuovoLuogoObject.mail.trim() == "" || this.nuovoLuogoObject.mail.trim() == undefined) {
+			this.nuovoLuogoObject.errore = "Insert your e-mail";
+			return;
+		} else if(! re.test(String(this.nuovoLuogoObject.mail).toLowerCase())){
+			this.nuovoLuogoObject.errore = "Insert correct e-mail";
+			return;
 		} else {
 			var conta = 0;
 			for (var i = 0; i < this.listaAttivita.length; i++) {
@@ -206,10 +216,12 @@ export class Detail implements OnInit {
 				}
 			}
 			if (conta == 0) {
-				this.nuovoLuogoObject.errore = "Select an activity";
+				this.nuovoLuogoObject.errore = "Select what you can do";
 				return;
 			}
 		}
+		
+		
 	}
 
 	//}else if(this.nuovoLuogoObject.descrizione == undefined || this.nuovoLuogoObject.descrizione.trim()== "" || this.nuovoLuogoObject.descrizione.trim() == undefined){
@@ -380,7 +392,7 @@ export class Detail implements OnInit {
 
 
 	//search del luogo scritto
-	loadMap(cittaResult) { 
+	loadMap(cittaResult) {
 		this.global.inserisciOverlay();
 		if (cittaResult == null) {
 			cittaResult = this.nuovoLuogoObject.ricerca;

@@ -10,7 +10,7 @@
   "cordova-plugin-statusbar": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-statusbar@~2.2.1"
+      "id": "cordova-plugin-statusbar@2.4.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -153,7 +153,7 @@
   "com.danielsogl.cordova.deviceaccounts": {
     "source": {
       "type": "registry",
-      "id": "cordova-device-accounts"
+      "id": "https://github.com/danielsogl/cordova-device-accounts.git"
     },
     "is_top_level": true,
     "variables": {}

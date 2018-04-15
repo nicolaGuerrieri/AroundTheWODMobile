@@ -6,7 +6,7 @@
 
 		<ion-buttons end>
 
-			<button style="font-size: 30px;" (click)="presentActionSheet()" class="buttonClass" ion-button>
+			<button style="font-size: 30px;" (click)="presentActionSheet()" class="buttonNavHeader" ion-button>
 				<ion-icon name="menu"></ion-icon>
 			</button>
 			<button *ngIf="global.userLogged" ion-button>
@@ -15,7 +15,7 @@
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>
-ciao
+
 <ion-content padding>
 
 	<div #map id="map"></div>
@@ -26,7 +26,7 @@ ciao
 	<br />
 	<!--Places in:  	<ion-chip>	  <ion-label style="text-transform: capitalize;">{{citta}}</ion-label>	</ion-chip>	<hr class="hrS">	<br />	<br />-->
 	<ion-fab right bottom class="paddingOnFooter">
-		<button mini (click)="addPlace()" ion-fab color="personal3">
+		<button mini (click)="addPlace()" ion-fab class="buttonFab">
 			<ion-icon name="md-add"></ion-icon>
 		</button>
 	</ion-fab>
@@ -47,13 +47,12 @@ ciao
 			</p>
 			<div class="row">
 				<span *ngFor="let itemm of item.listaAttivita">
-					<button *ngIf="itemm.selezionato" class="buttonNavSenzaFontRound" style="font-size:10px" ion-button icon-only>
+					<button *ngIf="itemm.selezionato" class="disabilita" style="font-size:10px" ion-button icon-only>
 						<ion-icon *ngIf="!itemm.img" name="{{ itemm.nome }}"></ion-icon>
 						<img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}" style="" alt="" class="imgDetail altreIconaLittle">
 					</button>
 				</span>
 			</div>
-			<br />
 		</ion-card-content>
 		<ion-row no-padding>
 			<ion-col>
@@ -63,17 +62,18 @@ ciao
 
 			</ion-col>
 			<ion-col text-right>
-				<button ion-button style="background-color: white; font-size:17px; font-weight: bold;" clear small color="personal3" icon-left>
+				<button ion-button class="detailButton" clear small icon-left>
 					<ion-icon name='share-alt'></ion-icon>
 					Detail
 				</button>
 			</ion-col>
 		</ion-row>
 	</ion-card>
-	<div class="textNoResults" *ngIf="cittaLuogo.length == 0">
+	<div class="textNoResults centraTutto" *ngIf="cittaLuogo.length == 0">
 		<ion-icon ios="ios-sad" md="md-sad"></ion-icon>
-		No results found for this place...
+		No results found for this place... Add one !!!
 	</div>
 </ion-content>
-
+<br /><br />
+<br /><br />
 <footer [userLogged]="global.userLogged"></footer>

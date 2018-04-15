@@ -12,9 +12,7 @@ page-home {
 .bianco{
   color: #336799;
 }
-.colorPersonal{
-	background-color: color($colors, light) !important;
-}
+
 
 #ion-header{
 	background-color: color($colors, personal1) !important;
@@ -32,12 +30,7 @@ input{
 	font-size: 18px;
 
 }
-.buttonNav{
-	font-size: 30px !important;
-	color: white !important;
-  background-color: color($colors, personal3) !important;
 
-}
 ion-input{
 	text-transform: capitalize;
 }
@@ -51,28 +44,9 @@ ion-input{
 	padding-right: 3px;
 }
 
-.buttonNavSenzaFont{
-  color: white !important;
-  background-color: color($colors, personal3) !important;
-
-}
-.disabilita{
-  color: white !important;
-  background-color: color($colors, verdino) !important;
-  font-size: 15px;
-}
-.disabilitaBlue{
-  color: white !important;
-  background-color: color($colors, personal3) !important;
-  font-size: 15px;
-}
-.buttonNavSenzaFontRound{
-  color: white !important;
-  background-color: color($colors, personal3) !important;
-  font-size: 15px;
-}
 .textNoResults{
-	color:  color($colors, personal3) !important;
+  text-align: center;
+	color:  color($colors, blueGray) !important;
 	font-size: 20px;
 
 }
@@ -245,9 +219,10 @@ ion-input{
   text-align: center;
 }
 
-.bottomDiv{
-  background: color($colors, personal3);
-}
 .topDiv{
-  background: color($colors, verdino);
+  height: 40%;
+  background: color($colors, apersonal3);
+}
+.bottomDiv{
+  
 }

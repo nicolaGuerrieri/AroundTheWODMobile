@@ -6,7 +6,8 @@
   "proxies": [
     {
       "path": "/provaV2/",
-      "proxyUrl": "http://45.62.253.187:3000/"
+      "proxyUrl": "http://app.aroundthewodapp.com:3000/"
     }
   ]
 }
+  

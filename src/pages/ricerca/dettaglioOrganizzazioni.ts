@@ -21,25 +21,30 @@ export class DettaglioOrganizzazioni {
 	constructor(public navCtrl: NavController, public global: Global, public params: NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.luoghiOrganizzazione = params.get("luoghiOrganizzazione");
 		this.item = params.get("organizzazione"); 
-		console.log(this.luoghiOrganizzazione)
-		console.log(">>>>>>>>>>>")
 		if (this.luoghiOrganizzazione == null) {
-			this.caricaLuoghiPerOrg(this.item);
+				this.caricaLuoghiPerOrg(this.item);
 		}
 	}
 
 	caricaLuoghiPerOrg(organizzazione) {
+		this.loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		this.loader.present();
+		this.luoghiOrganizzazione = [];
 		this.cittaLuogoService.getLuogoForIdOrganizzazione(organizzazione._id).then(data => {
 			if (data != "error") {
-				data.listaLuoghi.forEach(element => {
-					console.log(element);
+				data.listaLuoghi.forEach(element => { 
 					this.cittaLuogoService.getLuogoForId(element.luogo_id).then(data => {
-						this.luoghiOrganizzazione.push(data);
+						console.log(data)
+						 this.luoghiOrganizzazione.push(data);
 					});
 
 				});
 			}
-			this.loader.dismiss();
+			if(this.loader){
+				this.loader.dismiss();
+			}
 		});
 	}
 	selectPlace(idPlace) {

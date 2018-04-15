@@ -4,7 +4,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 
 @Injectable()
 export class Global {
-	public title: string = "Training everywhere";
+	public title: string = "No matter where";
 	public _isAndroid: boolean;
 	public _isiOS: boolean;
 	public language: any;
@@ -12,7 +12,7 @@ export class Global {
 	public userLogged: any;
 	public loader;
 
-	constructor(public platform: Platform, private nativePageTransitions: NativePageTransitions, public loading: LoadingController, ) {
+	constructor(public platform: Platform, public loading: LoadingController, ) {
 		if (navigator.language) {
 			if (navigator.language.indexOf("it") > -1) {
 				this.language = "it";
@@ -25,7 +25,9 @@ export class Global {
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
 	
-			this.preUrl = 'http://45.62.253.187:3000/';
+			this.preUrl = 'http://app.aroundthewodapp.com:3000/';
+			// this.preUrl = 'http://137.204.22.202:3000/';
+			
 		}
 
 	openSocial(social) {
