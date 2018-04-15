@@ -246,6 +246,8 @@ keytool -exportcert -alias androiddebugkey -keystore C:\Users\utente\.android\de
 
  cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="1655044127910111" --variable APP_NAME="around"
 
+
+
 NUOVO GIRO (SPERO ULTIMO)   
 
  
@@ -253,16 +255,15 @@ TERMINI: assegnare termini e condizioni nell'app
 
 APP PRONTA
 
-
-
 RILASCIO ANDROID: eseguire screen pulite per lo store
                 : riguardare bene la firma del pacchetto
                 : provare a salvar un progetto e a ricaricarne un altro con stessa firma
-HEROKU: provare installazione del progetto
-      : creare account, assegnare la parte gratuita
-      : collegare progetto localmente e provare i push
-      : capire e creare la parte di mongo DB
-      : assegnare un hostName ( che già abbiamo)
 
 ANDROID: riassegnare i link del server e rilasciare
+
+IOS: trovare o creare profilo sviluppatore
+   : provare a firmare l'app
+   : rilasciare
+
+WEB: creare single page application presentazione
 =======
