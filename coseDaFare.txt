@@ -266,3 +266,22 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-key.keystore
 
 
 
+NUOVO GIRO (SPERO ULTIMO)   
+
+ 
+TERMINI: assegnare termini e condizioni nell'app
+
+APP PRONTA
+
+
+
+RILASCIO ANDROID: eseguire screen pulite per lo store
+                : riguardare bene la firma del pacchetto
+                : provare a salvar un progetto e a ricaricarne un altro con stessa firma
+HEROKU: provare installazione del progetto
+      : creare account, assegnare la parte gratuita
+      : collegare progetto localmente e provare i push
+      : capire e creare la parte di mongo DB
+      : assegnare un hostName ( che già abbiamo)
+
+ANDROID: riassegnare i link dell server e rilasciare
