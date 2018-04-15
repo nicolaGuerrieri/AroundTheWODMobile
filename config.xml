@@ -103,8 +103,8 @@
         <variable name="ANDROID_SUPPORT_VERSION" value="26.+" />
     </plugin>
     <plugin name="com.danielsogl.cordova.deviceaccounts" spec="https://github.com/danielsogl/cordova-device-accounts.git" />
-    <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
     <engine name="browser" spec="~5.0.1" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
 </widget>

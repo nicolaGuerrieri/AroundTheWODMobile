@@ -264,5 +264,5 @@ HEROKU: provare installazione del progetto
       : capire e creare la parte di mongo DB
       : assegnare un hostName ( che già abbiamo)
 
-ANDROID: riassegnare i link dell server e rilasciare
+ANDROID: riassegnare i link del server e rilasciare
 =======
