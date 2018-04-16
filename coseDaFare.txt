@@ -265,5 +265,12 @@ IOS: trovare o creare profilo sviluppatore
    : provare a firmare l'app
    : rilasciare
 
-WEB: creare single page application presentazione
+WEB: creare single page application presentazione (primo impianto fatto)
 =======
+
+
+
+
+
+Guida definitiva
+https://www.pluralsight.com/guides/front-end-javascript/ionic-framework-a-definitive-10-000-word-guide#run-the-application
