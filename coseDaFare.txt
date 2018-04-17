@@ -274,3 +274,11 @@ WEB: creare single page application presentazione (primo impianto fatto)
 
 Guida definitiva
 https://www.pluralsight.com/guides/front-end-javascript/ionic-framework-a-definitive-10-000-word-guide#run-the-application
+
+
+
+comando per lanciare landing page in background alwais 
+ nohup gulp dev &
+
+
+  forever start node_modules/gulp/bin/gulp.js dev
