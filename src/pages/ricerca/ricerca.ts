@@ -47,6 +47,7 @@ export class Ricerca {
 			citta: this.citta,
 			place: this.citta
 		};
+		alert(this.citta)
 		this.loadCity(this.citta);
 
 

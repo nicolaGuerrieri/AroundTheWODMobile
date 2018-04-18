@@ -282,3 +282,13 @@ comando per lanciare landing page in background alwais
 
 
   forever start node_modules/gulp/bin/gulp.js dev
+
+
+  ____Rilascio Android____
+  ionic cordova run android --prod --release
+ho rimosso questo da Android.json
+  "dependent_plugins": {
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
+    }
+  }

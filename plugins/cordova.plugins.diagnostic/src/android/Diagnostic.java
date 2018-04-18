@@ -425,9 +425,10 @@ public class Diagnostic extends CordovaPlugin{
     }
 
     public boolean isWifiAvailable() {
-        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        /**WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         boolean result = wifiManager.isWifiEnabled();
-        return result;
+        return result;**/
+        return true;
     }
 
     public boolean isCameraPresent() {
@@ -512,12 +513,12 @@ public class Diagnostic extends CordovaPlugin{
     }
 
     public void setWifiState(boolean enable) {
-        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        /**WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         if (enable && !wifiManager.isWifiEnabled()) {
             wifiManager.setWifiEnabled(true);
         } else if (!enable && wifiManager.isWifiEnabled()) {
             wifiManager.setWifiEnabled(false);
-        }
+        }**/
     }
 
     public static boolean setBluetoothState(boolean enable) {

@@ -65,9 +65,5 @@
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   },
-  "dependent_plugins": {
-    "cordova-plugin-wkwebview-engine": {
-      "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
-    }
-  }
+  "dependent_plugins": {}
 }
