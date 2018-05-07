@@ -292,3 +292,12 @@ ho rimosso questo da Android.json
       "PACKAGE_NAME": "com.nicolaguerrieri.aroundthewod"
     }
   }
+
+
+
+
+Premium
+implementare il wod del giorno
+
+New features
+social????
