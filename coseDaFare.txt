@@ -1,13 +1,3 @@
-"# AroundTheWODMobile"
-
-Io
-- termini e condizioni 
-- riguardare sezione amici
-
-
-Cazzate
- - gestire meglio indietro
- - splash screen
 
 problema build e emulate ios
 https://stackoverflow.com/questions/46328873/error-run-on-ios-emulator-after-update-to-ios-11-ionic-3
@@ -285,7 +275,14 @@ comando per lanciare landing page in background alwais
 
 
   ____Rilascio Android____
-  ionic cordova run android --prod --release
+514  ionic cordova build android --prod --release
+  515  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-key.keystore ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk myalias
+  516  /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk around.apk
+  517  /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk around.apk
+  518  /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/apksigner verify around.apk
+
+
+
 ho rimosso questo da Android.json
   "dependent_plugins": {
     "cordova-plugin-wkwebview-engine": {
