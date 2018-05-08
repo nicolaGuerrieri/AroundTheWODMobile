@@ -20,7 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { Clipboard } from '@ionic-native/clipboard';
 import { StatusBar } from '@ionic-native/status-bar';
-
+ 
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -48,8 +48,7 @@ const cloudSettings: CloudSettings = {
   ],
   imports: [
     IonicModule.forRoot(MyApp, { animate: false }), BrowserModule, HttpModule,
-   CloudModule.forRoot(cloudSettings)
-   
+   CloudModule.forRoot(cloudSettings) 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,7 +63,7 @@ const cloudSettings: CloudSettings = {
   Footer,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},StatusBar, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, StatusBar, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
   
 })
 export class AppModule {}

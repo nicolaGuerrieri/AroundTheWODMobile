@@ -37,7 +37,18 @@ ion-input{
 .altreIcona{
 	padding: 2px; width: 35px; height: 35px; border-radius: 0px;
 }
+.buttonCss {
 
+  button.alert-button:nth-child(1){
+    color: white;
+    background:  color($colors, blueGray) !important;
+
+  }
+
+  button.alert-button:nth-child(2){
+    color: green;
+  }
+}
 .altreIconaLittle{
 	  width: 30px; height: 25px; border-radius: 0px;
 	padding-left: 3px;

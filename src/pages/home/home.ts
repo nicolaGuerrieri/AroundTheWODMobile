@@ -11,7 +11,9 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { GooglePlus } from 'ionic-native';
 import { Success } from '../dialog/success';
 import { Clipboard } from '@ionic-native/clipboard';
- 
+import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 declare var cordova: any;
 declare var google: any;
 @Component({
@@ -27,23 +29,41 @@ export class HomePage {
 	optionNav: any;
 	searchQuery: string = '';
 	items: string[];
+	textAlert: string;
+	titleAlert: string;
 
-	constructor(private facebook: Facebook,   public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
+	constructor(public storage: Storage, private alertCtrl: AlertController, private facebook: Facebook, public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 			place: ''
 		};
-		if (plt.is("android")) {
-		/**	DeviceAccounts.getPlugin().getEmail(
-				account => alert('Account' + account),
-				error => alert(error));
 
-			DeviceAccounts.getPlugin().get(
-				accounts => alert(accounts),
-				error => alert(error));**/
+
+		if (navigator.language == 'it-IT') {
+			this.titleAlert = 'Ciao...';
+			this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
+		} else {
+			this.titleAlert = 'Ciao...';
+			this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
+
 		}
+
+		this.storage.get('explain').then((value) => {
+			!value ? this.presentAlert() : ""
+		  }).catch((e) => alert(e));
 	}
 
-
+	presentAlert() {
+	
+			this.storage.set('explain', true);
+			let alert = this.alertCtrl.create({
+				title: this.titleAlert,
+				subTitle: this.textAlert,
+				cssClass: 'buttonCss',
+				buttons: ['Ok']
+			});
+			alert.present();
+		
+	}
 	login() {
 		let loader = this.loading.create({
 			content: 'Please wait...',
