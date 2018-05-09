@@ -232,11 +232,13 @@ export class Ricerca {
 					var marker = new google.maps.Marker({
 						position: latLng,
 						map: this.map,
+						icon: { url : 'assets/images/point.png'
+					 },
 						title: localizzaRicerca.formatted_address
 					});
 
 					var infowindow = new google.maps.InfoWindow({
-						content: "<span>" + localizzaRicerca.formatted_address + "</span>"
+						content: "<span>" + "Posizione attuale: " + localizzaRicerca.formatted_address + "</span>"
 					});
 					google.maps.event.addListener(marker, 'click', function () {
 						infowindow.open(this.map, marker);
