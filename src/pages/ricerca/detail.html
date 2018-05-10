@@ -84,11 +84,11 @@
 	<div *ngIf="luogoSelezionato && !nuovoLuogo">
 		<h2>
 			<b>
-				<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">City: {{luogoSelezionato.citta}}, {{luogoSelezionato.provincia}}</ion-label>
+				<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">City: {{luogoSelezionato.citta}}, {{luogoSelezionato.provincia}}, Nation: {{luogoSelezionato.nazione}} </ion-label>
 			</b>
 		</h2>
 		<h3>
-			<ion-label *ngIf="luogoSelezionato && !nuovoLuogo"> Nation: {{luogoSelezionato.nazione}} Street: {{luogoSelezionato.via}} </ion-label>
+			<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">  Street: {{luogoSelezionato.via}} </ion-label>
 			<ion-label *ngIf="luogoSelezionato && !nuovoLuogo"> Description: {{luogoSelezionato.descrizione}} </ion-label>
 
 		</h3>
