@@ -20,7 +20,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { Clipboard } from '@ionic-native/clipboard';
 import { StatusBar } from '@ionic-native/status-bar';
- 
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 const cloudSettings: CloudSettings = {
     'core': {
     'app_id': 'f33b26b8'
@@ -63,7 +64,7 @@ const cloudSettings: CloudSettings = {
   Footer,
 	Success
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, StatusBar, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Camera, StatusBar, Clipboard, Global, Storage, Toast, Facebook, NativePageTransitions]
   
 })
 export class AppModule {}

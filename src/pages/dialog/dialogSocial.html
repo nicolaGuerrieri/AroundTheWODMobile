@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header  class="colorPersonal">
 	<ion-toolbar>
 		<ion-title *ngIf="from == 'social'">
 			Social share
@@ -6,10 +6,10 @@
 		<ion-title *ngIf="from == 'login'">
 			Social login
 		</ion-title>
-		<ion-title *ngIf="from == 'info'">
-			Who we are?
+		<ion-title    *ngIf="from == 'info'">
+			<span style="color: #336799;">Who we are?</span>
 		</ion-title>
-		<ion-title *ngIf="from == 'termini'">
+		<ion-title   class="bianco" *ngIf="from == 'termini'">
 			Termini e condizioni
 		</ion-title>
 	</ion-toolbar>
