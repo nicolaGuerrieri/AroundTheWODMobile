@@ -39,6 +39,8 @@
 	</ion-list>
 	<br />
 	<div #map id="map"></div>
+
+
 	<ion-fab right bottom class="paddingOnFooter">
 		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab class="buttonFab">
 			<ion-icon name="arrow-dropdown"></ion-icon>
@@ -72,7 +74,43 @@
 	</div>
 	<br />
 
+	<ion-grid *ngIf="luogoSelezionato && !nuovoLuogo">
+		<ion-row>
 
+			<ion-col col-12 style="text-align: left">
+				<div *ngIf="luogoSelezionato && !nuovoLuogo">
+
+					<div class="colora">
+						<h6>
+							<ion-label style="text-align: center;" *ngIf="luogoSelezionato && !nuovoLuogo">City: </ion-label>
+						</h6>
+					</div>
+					<h4>
+						<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.citta}}</ion-label>
+						<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">{{luogoSelezionato.provincia}}, {{luogoSelezionato.nazione}} </ion-label>
+					</h4>
+					<div class="colora">
+						<h6>
+							<ion-label style="text-align: center;" class="colora" *ngIf="luogoSelezionato && !nuovoLuogo"> Street:</ion-label>
+						</h6>
+					</div>
+					<h5>
+						<ion-label *ngIf="luogoSelezionato && !nuovoLuogo"> {{luogoSelezionato.via}} </ion-label>
+					</h5>
+					<div class="colora">
+						<h6>
+							<ion-label style="text-align: center;" class="colora" *ngIf="luogoSelezionato && !nuovoLuogo"> Description:</ion-label>
+						</h6>
+					</div>
+					<h5>
+						<textarea readonly type="text" *ngIf="luogoSelezionato && !nuovoLuogo && luogoSelezionato.descrizione" style="border: none; resize: none; width: 100%">{{luogoSelezionato.descrizione}} </textarea>
+					</h5>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<!-- <hr *ngIf="luogoSelezionato && !nuovoLuogo" /> -->
 	<!-- se selezionato scorro la lista e prendo solo i nomi e mostro disabilitati, se nuovo faccio vedere tutti, faccio selezionare-->
 	<div class="centraTutto">
 		<div class="col" style="text-align: center; font-size: 20px; color: #0f635d;" *ngIf="nuovoLuogoObject">
@@ -81,18 +119,7 @@
 			</div>
 		</div>
 	</div>
-	<div *ngIf="luogoSelezionato && !nuovoLuogo">
-		<h2>
-			<b>
-				<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">City: {{luogoSelezionato.citta}}, {{luogoSelezionato.provincia}}, Nation: {{luogoSelezionato.nazione}} </ion-label>
-			</b>
-		</h2>
-		<h3>
-			<ion-label *ngIf="luogoSelezionato && !nuovoLuogo">  Street: {{luogoSelezionato.via}} </ion-label>
-			<ion-label *ngIf="luogoSelezionato && !nuovoLuogo"> Description: {{luogoSelezionato.descrizione}} </ion-label>
 
-		</h3>
-	</div>
 	<ion-list *ngIf="nuovoLuogo">
 		<ion-item>
 			<ion-input type="text" placeholder="City" [(ngModel)]="nuovoLuogoObject.citta" *ngIf="nuovoLuogo"></ion-input>
@@ -199,9 +226,11 @@
 	<button *ngIf="nuovoLuogo" class="buttonNavSenzaFont" (click)="salva()" ion-button icon-left>
 		Save
 	</button>
-	<button *ngIf="nuovoLuogo" class="buttonNavSenzaFont" (click)="takePicture()" ion-button>
-		<ion-icon *ngIf="!nuovoLuogoObject.imageUrl" ios="ios-camera" md="md-camera"></ion-icon>
-	</button>
+	<div *ngIf="nuovoLuogo">
+		<button *ngIf="!nuovoLuogoObject.imageUrl" class="buttonNavSenzaFont" (click)="takePicture()" ion-button>
+			<ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+		</button>
+	</div>
 	<br />
 	<div class="row">
 		<div class="col" style="text-align: center; height: 40px;">

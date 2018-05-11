@@ -25,7 +25,7 @@ export class MyApp {
       StatusBar.styleLightContent();
       Splashscreen.hide();
 
-      this.hideSplashScreen();
+    //  this.hideSplashScreen();
     });
   }
   hideSplashScreen() {

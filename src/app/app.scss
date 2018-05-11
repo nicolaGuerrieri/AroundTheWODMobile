@@ -225,3 +225,28 @@ git config --global user.name "guerrierinicola@gmail.com" */
 	border-bottom-color: color($colors, blueGray) !important;
 	box-shadow: inset 0 -1px 0 0  color($colors, blueGray) !important;
   }
+
+
+  hr {
+	height: 2px !important;
+	width: 90% !important;
+	background: gray !important;
+	display: block !important;
+	font-size: 2em !important;
+	visibility: visible !important;
+  }
+
+  .divDetail{
+
+    border: 1px solid color($colors, blueGray) !important;
+    border-radius: 15px;
+    padding: 20px;
+
+  }
+
+  .colora{
+	background-color: color($colors, consiglioGiallo) !important;
+	border-radius: 15px;
+	border: 1px solid transparent;
+	color: white;	
+  }

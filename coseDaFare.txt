@@ -275,10 +275,14 @@ comando per lanciare landing page in background alwais
 
 
   ____Rilascio Android____
-- ionic cordova build android --prod --release
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-key.keystore ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk myalias    
-- /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk around.apk
-- /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/apksigner verify around.apk
+
+ionic cordova build android --prod --release
+
+ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-key.keystore ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk myalias    
+
+ /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk around.apk
+
+ /Users/nicolaguerrieri/Library/Android/sdk/build-tools/25.0.1/apksigner verify around.apk
 
 
 
