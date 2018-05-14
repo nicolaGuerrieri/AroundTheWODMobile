@@ -75,13 +75,6 @@ export class Ricerca {
 						this.geolocalizza();
 					}
 				}, {
-					text: 'Share your experience',
-					role: 'Share',
-					icon: 'md-share',
-					handler: () => {
-						this.share();
-					}
-				}, {
 					text: 'AroundTheWOD Community',
 					role: 'Friends',
 					icon: 'md-contacts',
@@ -93,7 +86,13 @@ export class Ricerca {
 		});
 		actionSheet.present();
 	}
-
+/**text: 'Share your experience',
+					role: 'Share',
+					icon: 'md-share',
+					handler: () => {
+						this.share();
+					}
+				}, { */
 	share() {
 		let modal = this.modalCtrl.create(DialogSocial, { "from": "social" });
 		modal.present();

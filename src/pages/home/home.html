@@ -32,7 +32,7 @@
 			<br />
 			<br />
 			<br />
-			<ion-searchbar [debounce]="500" (tap)="showAddressModal()" [(ngModel)]="address.place" [showCancelButton]="shouldShowCancel">
+			<ion-searchbar [debounce]="500" (tap)="showAddressModal()" placeholder="City" [(ngModel)]="address.place" [showCancelButton]="shouldShowCancel">
 				<!--(ionInput)="onInput($event)"
   (ionCancel)="onCancel($event)"-->
 			</ion-searchbar>
