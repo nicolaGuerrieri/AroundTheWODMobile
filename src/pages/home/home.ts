@@ -46,23 +46,31 @@ export class HomePage {
 			this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
 
 		}
+		this.openTermini()
+		this.storage.get('terms').then((value) => {
+			!value ? this.openTermini() : ""
+		}).catch((e) => alert(e));
 
 		this.storage.get('explain').then((value) => {
 			!value ? this.presentAlert() : ""
-		  }).catch((e) => alert(e));
+		}).catch((e) => alert(e));
 	}
-
+	openTermini() {
+		this.storage.set('explain', true);
+		let modal = this.modalCtrl.create(DialogSocial, { "from": "termini" });
+		modal.present();
+	}
 	presentAlert() {
-	
-			this.storage.set('explain', true);
-			let alert = this.alertCtrl.create({
-				title: this.titleAlert,
-				subTitle: this.textAlert,
-				cssClass: 'buttonCss',
-				buttons: ['Ok']
-			});
-			alert.present();
-		
+
+		this.storage.set('terms', true);
+		let alert = this.alertCtrl.create({
+			title: this.titleAlert,
+			subTitle: this.textAlert,
+			cssClass: 'buttonCss',
+			buttons: ['Ok']
+		});
+		alert.present();
+
 	}
 	login() {
 		let loader = this.loading.create({

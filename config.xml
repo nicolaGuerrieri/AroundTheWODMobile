@@ -85,18 +85,12 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>we need the location to find the parks available around you. We not store or transmit your position</string>
     </edit-config>
-    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-        <string>If you want, you can add a photo to your insered park</string>
-    </edit-config>
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreenDelay" value="3000" />
     <allow-navigation href="http://172.30.204.24:8100" />
     <allow-navigation href="http://172.30.204.24:8100" />
     <allow-navigation href="http://137.204.22.129:8101" />
-    <engine name="browser" spec="~5.0.1" />
-    <engine name="ios" spec="4.5.4" />
-    <engine name="android" spec="^7.0.0" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
@@ -115,5 +109,8 @@
     <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.1" />
+    <engine name="browser" spec="~5.0.1" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
 </widget>
