@@ -13,19 +13,18 @@ export class Global {
 	public loader;
 	textAlert: string;
 	titleAlert: string;
+	textCosa: string;
 	constructor(public platform: Platform, public loading: LoadingController, ) {
 		if (navigator.language) {
 			if (navigator.language.indexOf("it") > -1) {
 				this.language = "it";
+					this.titleAlert = 'Ciao...';
+					this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
+					this.textCosa="Cerca una città, un indirizzo o un parco attraverso la pratica barra di ricerca con autocompletamento oppure utilizza il tasto geolocalizzazione per trovare facilmente i parchi vicino a te, scegli il tuo parco, visualizza il dettaglio e aprilo in Maps. Conosci un parco che non è presente in AroundTheWOD App, clicca sul pulsante  + per inserirlo, inserisci le attività, l'indirizzo e una tua mail e salva, il tuo parco ora è alla portata di tutti. Sfoglia tra la nostra community, cerca in AroundTheWOD community chi si allena nella tua zona. "
 			} else {
+				this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
+				this.titleAlert = 'Ciao...';
 				this.language = "en";
-			}
-			if (navigator.language == 'it-IT') {
-				this.titleAlert = 'Ciao...';
-				this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
-			} else {
-				this.titleAlert = 'Ciao...';
-				this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
 			}
 		}
 

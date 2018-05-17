@@ -36,5 +36,9 @@ export class Footer {
 		let modal = this.modalCtrl.create(DialogSocial, { "from": "termini" });
 		modal.present();
 	}
+	openHelp() {
+		let modal = this.modalCtrl.create(DialogSocial, { "from": "cosa" });
+		modal.present();
+	}
 
 }

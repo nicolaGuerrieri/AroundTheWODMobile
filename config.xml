@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.nicolaguerrieri.aroundthewod" version="0.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.nicolaguerrieri.aroundthewod" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>around</name>
     <description>Around the WOD</description>
     <author email="guerrierinicola@gmail.com" href="app.nicolaguerrieri.it:3000">Guerrieri Nicola</author>
@@ -94,6 +94,9 @@
     <allow-navigation href="http://172.30.204.24:8100" />
     <allow-navigation href="http://172.30.204.24:8100" />
     <allow-navigation href="http://137.204.22.129:8101" />
+    <engine name="browser" spec="~5.0.1" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="^7.0.0" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
@@ -112,8 +115,5 @@
     <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.1" />
-    <engine name="browser" spec="~5.0.1" />
-    <engine name="ios" spec="4.5.4" />
-    <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
 </widget>
