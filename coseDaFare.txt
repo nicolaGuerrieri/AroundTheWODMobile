@@ -286,6 +286,13 @@ ionic cordova build android --prod --release
 
 
 
+
+IOS
+ionic cordova build ios --release
+
+
+
+
 ho rimosso questo da Android.json
   "dependent_plugins": {
     "cordova-plugin-wkwebview-engine": {
