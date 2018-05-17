@@ -16,7 +16,7 @@
 </ion-header>
 
 
-<ion-content >
+<ion-content>
 	<div class="centraTutto row topDiv">
 		<div>
 			<br />
@@ -38,8 +38,8 @@
 			</ion-searchbar>
 			<ion-input hidden color="personal3" class="centraTutto inputSearch" (click)="showAddressModal()" [(ngModel)]="address.place"
 			 type="text" placeholder="Pick a city"></ion-input>
-			 <br />
-			 <br />
+			<br />
+			<br />
 
 			<div style="text-align: center;">
 				<button (click)="ricerca()" ion-button icon-left class="buttonClass">
@@ -50,7 +50,10 @@
 					<ion-icon class="colorPersonal buttonNav" style="color: white !important;" name="pin"></ion-icon>
 				</button>
 			</div>
-
+			<br />
+			<button hidden (click)="apriDisclaimer(true)" ion-button class="buttonClass">
+				<ion-icon name="help-circle"></ion-icon>
+			</button>
 		</div>
 	</div>
 

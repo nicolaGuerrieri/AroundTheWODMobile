@@ -330,7 +330,10 @@ export class Detail implements OnInit {
 		});
 	}
 	inviaDatiServer(tokenAuth, loader) {
-
+		this.loader = this.loading.create({
+			content: 'Please wait...',
+		});
+		this.loader.present();
 		try {
 			if (!tokenAuth) {
 				tokenAuth = "{prova: \"prova\"}";
@@ -354,11 +357,16 @@ export class Detail implements OnInit {
 					modal.onDidDismiss(data => {
 						this.ricerca();
 					});
+					if(this.loader){
+						this.loader.dismiss();
+					}
 					modal.present();
 				}else {
 					alert(JSON.stringify(data))
 				}
-				this.loader.dismiss();
+				if(this.loader){
+					this.loader.dismiss();
+				}
 			});
 		} catch (e) {
 			this.loader.dismiss();
