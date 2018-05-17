@@ -52,6 +52,14 @@ export class Ricerca {
 
 
 	}
+
+
+	abuso(id){
+		var oggetto = {id_object: id}
+		this.cittaLuogoService.salvaUtente(oggetto).then(data => { 
+			alert("Grazie, la tua segnalazione è in fase di elaborazione, se più utenti segnalano lo stesso elemento, questo verrà analizzato ed eventualmente rimosso.");
+		});
+	}
 	loadAttivita() {
 		this.cittaLuogoService.loadAttivita().then(data => {
 			this.listaAttivita = data;

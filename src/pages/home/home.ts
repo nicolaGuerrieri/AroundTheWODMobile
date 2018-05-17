@@ -28,50 +28,42 @@ export class HomePage {
 	plat: any;
 	optionNav: any;
 	searchQuery: string = '';
-	items: string[];
-	textAlert: string;
-	titleAlert: string;
-
+	items: string[]; 
 	constructor(public storage: Storage, private alertCtrl: AlertController, private facebook: Facebook, public navCtrl: NavController, private clipboard: Clipboard, private nativePageTransitions: NativePageTransitions, public global: Global, public viewCtrl: ViewController, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController, public loading: LoadingController, public plt: Platform) {
 		this.address = {
 			place: ''
 		};
 
 
-		if (navigator.language == 'it-IT') {
-			this.titleAlert = 'Ciao...';
-			this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
-		} else {
-			this.titleAlert = 'Ciao...';
-			this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
-
-		}
-		this.openTermini()
 		this.storage.get('terms').then((value) => {
-			!value ? this.openTermini() : ""
+			!value ? this.openTermini() : this.verificaExplain()
 		}).catch((e) => alert(e));
 
+		
+	}
+	verificaExplain(){
 		this.storage.get('explain').then((value) => {
 			!value ? this.presentAlert() : ""
 		}).catch((e) => alert(e));
-	}
-	openTermini() {
-		this.storage.set('explain', true);
-		let modal = this.modalCtrl.create(DialogSocial, { "from": "termini" });
-		modal.present();
+
 	}
 	presentAlert() {
-
-		this.storage.set('terms', true);
+		this.storage.set('explain', true);
 		let alert = this.alertCtrl.create({
-			title: this.titleAlert,
-			subTitle: this.textAlert,
+			title: this.global.titleAlert,
+			subTitle: this.global.textAlert,
 			cssClass: 'buttonCss',
 			buttons: ['Ok']
 		});
 		alert.present();
 
 	}
+	openTermini() {
+		this.storage.set('terms', true);
+		let modal = this.modalCtrl.create(DialogSocial, { "from": "termini" });
+		modal.present();
+	}
+
 	login() {
 		let loader = this.loading.create({
 			content: 'Please wait...',

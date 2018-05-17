@@ -4,6 +4,8 @@ import {Global} from '../../services/global';
 import {SocialSharing} from 'ionic-native';
 import {CittaLuogoService} from '../../providers/citta-luogo-service';
 import {FacebookAuth, User, Auth, GoogleAuth } from '@ionic/cloud-angular'; 
+import { AlertController } from 'ionic-angular';
+
 import { Storage } from '@ionic/storage';
 declare var google: any;
 declare var cordova:any;
@@ -29,11 +31,11 @@ export class DialogSocial {
 	public image    : string	= 'http://app.nicolaguerrieri.it:3000/images/ket.jpg';
 	private _isAndroid: boolean;
 	private androidVersion: any;
-	private _isiOS: boolean;
+	private _isiOS: boolean; 
 
 	public from:String;
 
-	constructor(public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth, public cittaLuogoService: CittaLuogoService, public storage: Storage) {
+	constructor(private alertCtrl: AlertController, public navCtrl: NavController, public global:Global, public viewCtrl:ViewController, public params:NavParams, public user:User, private modalCtrl: ModalController,  public loading: LoadingController, public googleAuth:GoogleAuth, public platform: Platform, public facebookAuth:FacebookAuth, public auth:Auth, public cittaLuogoService: CittaLuogoService, public storage: Storage) {
 		this.from = this.params.get("from");
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
@@ -43,13 +45,24 @@ export class DialogSocial {
 				this.androidVersion = parseInt(va, 10);
 			});
 		}
+		
 	}
 
 	loginGoogle(){
 		this.viewCtrl.dismiss("google");
 	}
+	
+	presentAlert() {
+		this.storage.set('explain', true);
+		let alert = this.alertCtrl.create({
+			title: this.global.titleAlert,
+			subTitle: this.global.textAlert,
+			cssClass: 'buttonCss',
+			buttons: ['Ok']
+		});
+		alert.present();
 
-
+	}
 	loginSocial(data){
 		this.loader = this.loading.create({
 			content: 'Please wait...',
@@ -66,6 +79,13 @@ export class DialogSocial {
 	//f33b26b8
 	dismiss() {
 		this.viewCtrl.dismiss("");
+	}
+	dismissOpen() {
+		this.viewCtrl.dismiss("");
+		this.storage.get('explain').then((value) => {
+			!value ? this.presentAlert() : ""
+		}).catch((e) => console.log(e));
+		
 	}
 	doInstagram() {
 	   this.platform.ready().then(() => {

@@ -21,7 +21,9 @@
 	<div #map id="map"></div>
 	<br />
 	<div text-center text-xl>Search places in
-		<span style="text-transform: capitalize"><b>{{citta}}</b></span>
+		<span style="text-transform: capitalize">
+			<b>{{citta}}</b>
+		</span>
 	</div>
 	<br />
 	<!--Places in:  	<ion-chip>	  <ion-label style="text-transform: capitalize;">{{citta}}</ion-label>	</ion-chip>	<hr class="hrS">	<br />	<br />-->
@@ -30,7 +32,7 @@
 			<ion-icon name="md-add"></ion-icon>
 		</button>
 	</ion-fab>
-	<ion-card *ngFor="let item of cittaLuogo" tappable style="" class="cardR" (click)="selectPlace(item._id)">
+	<ion-card *ngFor="let item of cittaLuogo" tappable style="" class="cardR">
 		<!-- <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>-->
 
 		<ion-card-content id="carddd" class="animated flipInX">
@@ -49,29 +51,35 @@
 				<span *ngFor="let itemm of item.listaAttivita">
 					<button *ngIf="itemm.selezionato" class="disabilita" style="font-size:10px" ion-button icon-only>
 						<ion-icon *ngIf="!itemm.img" name="{{ itemm.nome }}"></ion-icon>
-						<img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"  alt="" class="imgDetail altreIconaLittle">
+						<img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}" alt="" class="imgDetail altreIconaLittle">
 					</button>
 				</span>
 			</div>
 		</ion-card-content>
 		<ion-row no-padding>
-			<ion-col>
-
+			<ion-col style="text-align: left;">
+				<button (click)="abuso(item._id)" ion-button class="detailButton" clear small icon-left style="font-size: 10px;">
+					<ion-icon name="hand"></ion-icon>
+					Report abuse
+				</button>
 			</ion-col>
 			<ion-col text-center>
 
 			</ion-col>
 			<ion-col text-right>
-				<button ion-button class="detailButton" clear small icon-left>
+				<button (click)="selectPlace(item._id)" ion-button class="detailButton" clear small icon-left>
 					<ion-icon name='share-alt'></ion-icon>
 					Detail
 				</button>
 			</ion-col>
 		</ion-row>
 	</ion-card>
-	<br /><br />
-	<br /><br />
-	<br /><br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 	<div class="textNoResults centraTutto" *ngIf="cittaLuogo.length == 0">
 		<ion-icon ios="ios-sad" md="md-sad"></ion-icon>
 		No results found for this place... Add one !!!

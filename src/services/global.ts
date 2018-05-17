@@ -11,7 +11,8 @@ export class Global {
 	public preUrl: string;
 	public userLogged: any;
 	public loader;
-
+	textAlert: string;
+	titleAlert: string;
 	constructor(public platform: Platform, public loading: LoadingController, ) {
 		if (navigator.language) {
 			if (navigator.language.indexOf("it") > -1) {
@@ -19,16 +20,23 @@ export class Global {
 			} else {
 				this.language = "en";
 			}
+			if (navigator.language == 'it-IT') {
+				this.titleAlert = 'Ciao...';
+				this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
+			} else {
+				this.titleAlert = 'Ciao...';
+				this.textAlert = 'e benvenuto in AroundTheWod App, inserisci la tua città o geolocalizzati per cercare i parchi outdoor più vicini a te. Conosci un parco che non è presente in AroundTheWOD App? inseriscilo !!!';
+			}
 		}
 
 		//alert(this.language);
 		this._isAndroid = platform.is('android');
 		this._isiOS = platform.is('ios');
-	
-			this.preUrl = 'http://app.aroundthewodapp.com:3000/';
-			// this.preUrl = 'http://137.204.22.202:3000/';
-			
-		}
+
+		this.preUrl = 'http://app.aroundthewodapp.com:3000/';
+		// this.preUrl = 'http://137.204.22.202:3000/';
+
+	}
 
 	openSocial(social) {
 		if (social == 'facebook') {
@@ -39,7 +47,7 @@ export class Global {
 	}
 
 	togliOverlay() {
-		if(this.loader){
+		if (this.loader) {
 			this.loader.dismiss();
 
 		}
