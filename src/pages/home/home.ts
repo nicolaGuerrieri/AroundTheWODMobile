@@ -48,6 +48,7 @@ export class HomePage {
 
 	}
 	presentAlert() {
+		console.log("qua")
 		this.storage.set('explain', true);
 		let alert = this.alertCtrl.create({
 			title: this.global.titleAlert,
