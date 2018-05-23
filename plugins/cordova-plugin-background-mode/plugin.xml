@@ -33,7 +33,7 @@
         <clobbers target="plugin.backgroundMode" />
     </js-module>
 
-    <!-- ios -->
+    <!-- ios 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="BackgroundMode">
@@ -53,7 +53,7 @@
         <source-file src="src/ios/APPBackgroundMode.m" />
         <header-file src="src/ios/APPMethodMagic.h" />
         <source-file src="src/ios/APPMethodMagic.m" />
-    </platform>
+    </platform>-->
 
     <!-- android -->
     <platform name="android">
