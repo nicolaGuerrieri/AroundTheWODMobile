@@ -298,7 +298,6 @@ export class Detail implements OnInit {
 		if (!data) {
 			return;
 		}
-		console.log(data.geometry);
 		if (data.geometry != null) {
 			this.nuovoLuogoObject.lat = data.geometry.location.lat();
 			this.nuovoLuogoObject.longi = data.geometry.location.lng();
@@ -310,6 +309,8 @@ export class Detail implements OnInit {
 		} else if (data.address_components[2]) {
 			this.nuovoLuogoObject.ricerca = data.address_components[2].long_name;
 		}
+		console.log(data)
+
 		data.address_components.forEach((datoLuogo: any) => {
 			if (datoLuogo.types[0] == 'locality') {
 				this.nuovoLuogoObject.citta = datoLuogo.long_name;
@@ -328,6 +329,11 @@ export class Detail implements OnInit {
 			}
 
 		});
+		if(!this.nuovoLuogoObject.via){
+			this.nuovoLuogoObject.via= "";
+		}
+	
+
 	}
 	inviaDatiServer(tokenAuth, loader) {
 		this.loader = this.loading.create({
@@ -463,8 +469,8 @@ export class Detail implements OnInit {
 					});
 
 				}
-			}).then(function () {
 				this.global.togliOverlay();
+			 
 			});
 
 		} catch (e) {
